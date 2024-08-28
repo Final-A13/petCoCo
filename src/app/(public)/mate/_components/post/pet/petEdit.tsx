@@ -22,8 +22,6 @@ const PetEdit = ({ post, setFormPosts, userId }: handlePetSelect) => {
     return [];
   });
 
-
-
   const {
     data: userPets,
     isPending: isPetPending,
@@ -36,18 +34,6 @@ const PetEdit = ({ post, setFormPosts, userId }: handlePetSelect) => {
     },
     enabled: !!userId
   });
-
-  // const handlePetSelect = (value: string[]) => {
-  //   setSelectedPetIds(value);
-
-  //   setFormPosts(formPosts => {
-  //     const updatedPosts = formPosts.map(post => ({
-  //       ...post,
-  //       pet_id: value
-  //     }));
-  //     return updatedPosts;
-  //   });
-  // };
 
   const handlePetSelect = (value: string[]) => {
     setSelectedPetIds(value);

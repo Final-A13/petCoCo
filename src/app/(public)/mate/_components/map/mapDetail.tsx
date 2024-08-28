@@ -4,7 +4,6 @@ import { useState } from "react";
 interface MapDetailProps {
   center: { lat: number; lng: number };
   // onMapLoad: () => void;
-  //markerPosition: { lat: number; lng: number };
   tag: string;
 }
 

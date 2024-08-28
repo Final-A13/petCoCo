@@ -1,13 +1,5 @@
 import { create } from "zustand";
-
-export type Position = {
-  center: {
-    lat: number;
-    lng: number;
-  };
-  errMsg: string | null;
-  isLoading: boolean;
-};
+import { Position } from "@/types/position.type";
 
 type UseLocationStore = {
   position: Position;

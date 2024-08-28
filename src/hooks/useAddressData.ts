@@ -1,7 +1,6 @@
 "use client";
 
 import { getConvertAddress } from "@/app/(public)/mate/getConvertAddress";
-// import { Position } from "@/zustand/locationStore";
 import { useQuery } from "@tanstack/react-query";
 import { locationStore } from "@/zustand/locationStore";
 

@@ -10,16 +10,6 @@ import { Filters } from "../filter/page";
 import { useFilterStore } from '@/zustand/useFilterStore';
 import PlusIcon from "@/app/utils/plusIcon";
 
-
-export type PositionData = {
-  center: {
-    lat: number;
-    lng: number;
-  };
-  errMsg?: string;
-  isLoading: boolean;
-} | null;
-
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeSearchTerm, setActiveSearchTerm] = useState<string>("");

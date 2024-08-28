@@ -1,5 +1,5 @@
 import { UserType } from "./auth.type";
-import { Database, Json, Tables } from "./supabase";
+import { Json, Tables } from "./supabase";
 export type MatePostType = Tables<"matePosts">;
 export type matepostpetsType = Tables<"matepostpets">;
 export type UsersPetType = Tables<"usersPet">;
@@ -38,7 +38,6 @@ export type MatePostAllTypeForItem = MatePostType & {
     isLoading: boolean;
   };
   users: UserType[];
-  // matepostpets: matepostpetsType[];
   distance: number;
 };
 
@@ -52,7 +51,6 @@ export type MatePostAllType = MatePostType & {
     isLoading: boolean;
   };
   users: UserType;
-  // matepostpets: matepostpetsType[];
 };
 
 export type MateNextPostType = Omit<MatePostFullType, "id" | "created_at" | "users">;
