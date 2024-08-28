@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useCallback, useEffect } from "react";
-import { EmblaOptionsType, EmblaCarouselType } from "embla-carousel";
+import { useQuery } from "@tanstack/react-query";
 import { DotButton, useDotButton } from "./components/MyPetCarouselDotButtons";
+import PetItem from "../../posts/_components/petItem";
+import LoadingComponent from "@/components/loadingComponents/Loading";
+
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import styles from "../petCarousel/styles/css/petCarousel.module.css";
 
-import { matepostpetsType, MatePostAllType, PetId } from "@/types/mate.type";
 import { UsersPetType } from "@/types/usersPet.type";
-import PetItem from "../../posts/_components/petItem";
-import { useQuery } from "@tanstack/react-query";
-import LoadingComponent from "@/components/loadingComponents/Loading";
-
+import { MatePostAllType } from "@/types/mate.type";
+import { EmblaOptionsType } from "embla-carousel";
 
 type PropType = {
   post: MatePostAllType;
@@ -38,8 +38,6 @@ const PetCarousel: React.FC<PropType> = (props) => {
     }
   });
 
-  // console.log(petData)
-
   const autoplayOptions = {
     delay: 10000,
     stopOnInteraction: false
@@ -60,7 +58,13 @@ const PetCarousel: React.FC<PropType> = (props) => {
     }
   }, [emblaApi, handleSelect]);
 
-  if (isPending) return <div> <LoadingComponent /></div>;
+  if (isPending)
+    return (
+      <div>
+        {" "}
+        <LoadingComponent />
+      </div>
+    );
   if (error) return <div>An error occurred</div>;
 
   return (
@@ -68,8 +72,8 @@ const PetCarousel: React.FC<PropType> = (props) => {
       <div className={styles.embla__viewport} ref={emblaRef}>
         <div className={styles.embla__container}>
           {petData.map((pet) => (
-           <div key={pet.id} className={`${styles.embla__slide}`}>
-            <PetItem pet={pet} />
+            <div key={pet.id} className={`${styles.embla__slide}`}>
+              <PetItem pet={pet} />
             </div>
           ))}
         </div>
