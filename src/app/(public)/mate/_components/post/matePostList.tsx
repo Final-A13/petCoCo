@@ -1,11 +1,12 @@
 "use client";
 import MatePostItem from "./matePostItem";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useCallback, useRef, useEffect } from "react";
 import { locationStore } from "@/zustand/locationStore";
 import LoadingComponent from "@/components/loadingComponents/Loading";
-import { MatePostAllTypeForItem, PostsResponse } from "@/types/mate.type";
+import { PostsResponse } from "@/types/mate.type";
 import { useGeoData } from "@/hooks/useGeoData";
+import MatePostListSkeleton from "../Skeleton_UI/matePostItemSkeleton";
 
 export type PositionData = {
   center: {
@@ -103,9 +104,12 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   if (isPending) {
     return (
-      <div className="mt-[30%] flex h-full w-full flex-col items-center justify-center">
-        <div className="text-mainColor">사용자의 위치를 계산하는 중입니다 🐶</div>
-        <LoadingComponent />
+      <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
+        <div className="flex w-full flex-col gap-y-[1.5rem]">
+        <div className="w-full">
+          <MatePostListSkeleton />
+          </div>
+        </div>
       </div>
     );
   }
