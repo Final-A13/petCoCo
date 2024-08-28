@@ -1,11 +1,11 @@
 "use client";
 import MatePostItem from "./matePostItem";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import { locationStore } from "@/zustand/locationStore";
-import { getDistanceHaversine } from "../../getDistanceHaversine";
 import LoadingComponent from "@/components/loadingComponents/Loading";
 import { MatePostAllTypeForItem, PostsResponse } from "@/types/mate.type";
+import { useGeoData } from "@/hooks/useGeoData";
 
 export type PositionData = {
   center: {
@@ -18,7 +18,6 @@ export type PositionData = {
 
 interface MatePostListProps {
   activeSearchTerm: string;
-  // isCurrentPosts: boolean;
   sortBy: string;
   filters: {
     gender: string | null;
@@ -33,65 +32,10 @@ interface MatePostListProps {
 }
 
 const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) => {
-  const { geoData, setIsUseGeo, setGeoData } = locationStore();
-  // const [page, setPage] = useState(1);
+  const { geoData } = locationStore();
+  const { geolocationData, isGeoPending, geoError } = useGeoData();
   const observerTarget = useRef<HTMLDivElement>(null);
 
-  //console.log(geoData)
-
-  const getCurrentPosition = (): Promise<PositionData | null> => {
-    return new Promise((resolve) => {
-      if (!navigator.geolocation) {
-        // console.error('위치 정보 사용 거부:', error);
-        const defaultPosition = {
-          center: { lat: 37.5556236021213, lng: 126.992199507869 },
-          errMsg: "Geolocation is not supported",
-          isLoading: false
-        };
-        setIsUseGeo(false);
-        setGeoData(defaultPosition);
-        resolve(defaultPosition);
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const newPosition = {
-            center: {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            },
-            isLoading: false
-          };
-          setGeoData(newPosition);
-          // console.log('위치 정보 획득 성공');
-          setIsUseGeo(true);
-          resolve(newPosition);
-        },
-        (error) => {
-          // console.error('위치 정보 획득 실패:', error);
-          const defaultPosition = {
-            center: { lat: 37.5556236021213, lng: 126.992199507869 },
-            errMsg: error.message,
-            isLoading: false
-          };
-          setIsUseGeo(false);
-          setGeoData(defaultPosition);
-          resolve(defaultPosition);
-        }
-      );
-    });
-  };
-
-  const {
-    data: geolocationData,
-    isPending: isGeoPending,
-    error: geoError
-  } = useQuery<PositionData, Error>({
-    queryKey: ["geoData"],
-    queryFn: getCurrentPosition,
-    retry: false
-  });
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteQuery<
     PostsResponse,
@@ -193,27 +137,6 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
           </div>
         )}
       </div>
-
-      {/* pagination */}
-      {/* <div className="mt-[1.5rem] flex flex-row items-center justify-center">
-        <button
-          onClick={() => setPage((old) => Math.max(old - 1, 1))}
-          disabled={page === 1}
-          className="rounded bg-[#C5B1F7] px-4 py-2 text-black disabled:bg-opacity-50"
-        >
-          이전
-        </button>
-        <span className="px-4 py-2">
-          페이지 {!data || data.data?.length === 0 ? "0" : `${page}`} / {data?.totalPages ?? "0"}
-        </span>
-        <button
-          onClick={() => setPage((old) => (data?.totalPages && old < data.totalPages ? old + 1 : old))}
-          disabled={data?.totalPages !== undefined && page === data.totalPages}
-          className="rounded bg-[#C5B1F7] px-4 py-2 text-black disabled:bg-opacity-50"
-        >
-          다음
-        </button>
-      </div> */}
 
       <div ref={observerTarget} className="h-10 w-full">
         {isFetchingNextPage && (
