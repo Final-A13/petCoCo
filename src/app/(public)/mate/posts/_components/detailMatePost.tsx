@@ -37,9 +37,8 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
 
   const [formPosts, setFormPosts] = useState<Omit<MateNextPostType, "user_id" | "position">>(initialState);
   const { position, setPosition } = locationStore();
-  const [isEditing, setIstEditting] = useState<boolean>(false);
-
   const { address } = useAddressData();
+  const [isEditing, setIstEditting] = useState<boolean>(false);
 
   const updatePost = {
     ...formPosts,
