@@ -1,20 +1,18 @@
-import { MatePostAllTypeForItem } from "@/types/mate.type";
 import Link from "next/link";
 import Image from "next/image";
-// import { getDistanceHaversine } from "../../getDistanceHaversine";
-// import { locationStore } from "@/zustand/locationStore";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/zustand/useAuth";
 import { formatDateTimeContent } from "@/app/utils/getConvertTime";
 import Button from "@/components/Button";
 import startChat from "@/app/utils/startChat";
+// Type
+import { MatePostAllTypeForItem } from "@/types/mate.type";
 
 interface MatePostItemPorps {
   post: MatePostAllTypeForItem;
 }
 
 const MatePostItem = ({ post }: MatePostItemPorps) => {
-  // const { geoData, isUseGeo } = locationStore();
   const router = useRouter();
   const { user } = useAuthStore();
 
@@ -61,7 +59,7 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
             </div>
             <Link
               href={`/userInfo/${post.user_id}`}
-              className="whitespace-nowrap rounded-full border border-mainColor bg-[#EAE3FC] px-[0.62rem] py-[0.12rem] text-center text-[0.625rem] text-mainColor cursor-pointer"
+              className="cursor-pointer whitespace-nowrap rounded-full border border-mainColor bg-[#EAE3FC] px-[0.62rem] py-[0.12rem] text-center text-[0.625rem] text-mainColor"
             >
               {post.users[0]?.nickname}
             </Link>

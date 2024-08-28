@@ -1,21 +1,13 @@
 "use client";
-import MatePostItem from "./matePostItem";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useCallback, useRef, useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { locationStore } from "@/zustand/locationStore";
-import LoadingComponent from "@/components/loadingComponents/Loading";
-import { PostsResponse } from "@/types/mate.type";
 import { useGeoData } from "@/hooks/useGeoData";
+import MatePostItem from "./matePostItem";
+import LoadingComponent from "@/components/loadingComponents/Loading";
 import MatePostListSkeleton from "../Skeleton_UI/matePostItemSkeleton";
-
-export type PositionData = {
-  center: {
-    lat: number;
-    lng: number;
-  };
-  errMsg?: string;
-  isLoading: boolean;
-} | null;
+// Type
+import { PostsResponse } from "@/types/mate.type";
 
 interface MatePostListProps {
   activeSearchTerm: string;
@@ -36,7 +28,6 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
   const { geoData } = locationStore();
   const { geolocationData, isGeoPending, geoError } = useGeoData();
   const observerTarget = useRef<HTMLDivElement>(null);
-
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteQuery<
     PostsResponse,
