@@ -1,10 +1,10 @@
-import { Position } from "@/types/position.type";
+import { Position, PositionData } from "@/types/position.type";
 
 interface getUserCurrentPositionProps {
   setGeoData: (geoData: Omit<Position, "errMsg">) => void;
   setIsUseGeo: (isUseGeo: boolean) => void;
 }
-export const getUserCurrentPosition = ({setGeoData, setIsUseGeo}: getUserCurrentPositionProps): Promise<Position | null> => {
+export const getUserCurrentPosition = ({setGeoData, setIsUseGeo}: getUserCurrentPositionProps): Promise<PositionData | null> => {
 
   return new Promise((resolve) => {
     if (!navigator.geolocation) {

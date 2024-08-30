@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { locationStore } from "@/zustand/locationStore";
 import { getUserCurrentPosition } from "@/app/(public)/mate/getUserCurrentPostion";
 // Type
-import { Position } from "@/types/position.type";
+import { PositionData } from "@/types/position.type";
 
 export const useGeoData = () => {
   const { setIsUseGeo, setGeoData } = locationStore();
@@ -13,7 +13,7 @@ export const useGeoData = () => {
     data: geolocationData,
     isPending: isGeoPending,
     error: geoError
-  } = useQuery<Position, Error>({
+  } = useQuery<PositionData, Error>({
     queryKey: ["geoData"],
     queryFn: () => getUserCurrentPosition({ setIsUseGeo, setGeoData }),
     retry: false
