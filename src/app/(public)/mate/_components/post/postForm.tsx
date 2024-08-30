@@ -2,17 +2,16 @@
 
 import { useState } from "react";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { locationStore } from "@/zustand/locationStore";
-import { useRouter } from "next/navigation";
-
-import { getConvertAddress } from "../../getConvertAddress";
 import { useAuthStore } from "@/zustand/useAuth";
-import { MateNextPostType, Pets } from "@/types/mate.type";
-
+import { getConvertAddress } from "../../getConvertAddress";
+import { getConvertDate } from "../../../../utils/getConvertDate";
 import Swal from "sweetalert2";
 import PetForm from "./pet/petForm";
-import { getConvertDate } from "../getConvertDate";
+// Type
+import { MateNextPostType } from "@/types/mate.type";
 
 // 동적 로딩 설정
 const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_components/map/mapForm"), { ssr: false });
