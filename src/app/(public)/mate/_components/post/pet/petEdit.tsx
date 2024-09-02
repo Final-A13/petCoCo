@@ -1,19 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { UsersPetType } from "@/types/usersPet.type";
-import { Pets, MateNextPostType, MatePostAllType } from "@/types/mate.type";
+import { MateNextPostType, MatePostAllType } from "@/types/mate.type";
 import { PetFormSkeleton } from "../../Skeleton_UI/petFormSkeleton";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
+import { useUserPetsData } from "@/hooks/useUserPetsData";
 
 interface handlePetSelect {
   post: MatePostAllType;
   setFormPosts: React.Dispatch<React.SetStateAction<Omit<MateNextPostType, "position" | "user_id">>>;
-  userId: string;
 }
 
-const PetEdit = ({ post, setFormPosts, userId }: handlePetSelect) => {
+const PetEdit = ({ post, setFormPosts }: handlePetSelect) => {
+  // TODO: 초기값 부분 다시 생각해보기
   const [selectedPetIds, setSelectedPetIds] = useState<string[]>(() => {
     if (post.pet_id) {
       const petIds = Array.isArray(post.pet_id) ? post.pet_id : [post.pet_id];
@@ -21,19 +20,7 @@ const PetEdit = ({ post, setFormPosts, userId }: handlePetSelect) => {
     }
     return [];
   });
-
-  const {
-    data: userPets,
-    isPending: isPetPending,
-    error: petError
-  } = useQuery<UsersPetType[]>({
-    queryKey: ["userPets", userId],
-    queryFn: async () => {
-      const response = await fetch(`/api/mypage/${userId}/mypetprofile`);
-      return response.json();
-    },
-    enabled: !!userId
-  });
+  const { userPets, isPetPending, petError  } = useUserPetsData();
 
   const handlePetSelect = (value: string[]) => {
     setSelectedPetIds(value);
@@ -55,9 +42,9 @@ const PetEdit = ({ post, setFormPosts, userId }: handlePetSelect) => {
   return (
     <div>
       <div className="mt-[1.63rem] flex items-center justify-between px-[1.5rem]">
-        <button type="button" className="text-[1rem] font-[600] text-black">
+        <p className="text-[1rem] font-[600] text-black">
           반려동물 정보 추가
-        </button>
+        </p>
         <p className="mb-2 text-sm font-semibold text-subTitle1">다중 선택 가능</p>
       </div>
       <div className="mt-[0.81rem] flex w-full">
