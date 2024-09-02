@@ -11,7 +11,7 @@ export const getUserCurrentPosition = ({setGeoData, setIsUseGeo}: getUserCurrent
       // console.error('위치 정보 사용 거부:', error);
       const defaultPosition = {
         center: { lat: 37.5556236021213, lng: 126.992199507869 },
-        errMsg: "Geolocation is not supported",
+        errMsg: "위치 정보 사용 거부",
         isLoading: false
       };
       setIsUseGeo(false);
