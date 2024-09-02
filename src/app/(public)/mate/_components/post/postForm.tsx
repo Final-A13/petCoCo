@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import PetForm from "./pet/petForm";
 // Type
 import { MateNextPostType } from "@/types/mate.type";
+import { useAddressData } from "@/hooks/useAddressData";
 
 // 동적 로딩 설정
 const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_components/map/mapForm"), { ssr: false });
@@ -22,6 +23,7 @@ const PostForm = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { position } = locationStore();
+  const { isPending, error, roadAddress, address } = useAddressData();
 
   const initialState: Omit<MateNextPostType, "user_id"> = {
     title: "",
@@ -88,27 +90,6 @@ const PostForm = () => {
       router.replace("/mate");
     }
   });
-
-  const {
-    data: addressData,
-    isPending,
-    error
-  } = useQuery({
-    queryKey: ["address", position.center],
-    queryFn: async () => {
-      const response = await getConvertAddress(position.center);
-      return response;
-    },
-    enabled: !!position.center
-  });
-
-  const roadAddress =
-    (addressData && addressData?.documents[0]?.road_address?.address_name) ||
-    addressData?.documents[0]?.address?.address_name ||
-    "주소 정보를 찾을 수 없어요";
-  //  console.log(addressData)
-
-  const address = (addressData && addressData?.documents[0]?.address?.address_name) || "주소 정보를 찾을 수 없어요";
 
   // 폼 유효성 검사
   const isFormValid = () => {
@@ -216,7 +197,13 @@ const PostForm = () => {
           <div className="mb-[2rem] flex flex-col gap-y-[0.5rem]">
             <p className="text-[1rem] font-[600]">주소</p>
             <div className="border-b border-subTitle2 p-[0.75rem]">
-              <p className="text-subTitle1">{roadAddress}</p>
+              {isPending ? (
+                <p>주소 정보를 찾는 중입니다...</p>
+              ) : error ? (
+                <p>주소 정보를 가져오는 데 실패했습니다.</p>
+              ) : (
+                <p>{roadAddress}</p>
+              )}
             </div>
           </div>
           <div className="flex flex-col gap-y-[0.5rem]">
