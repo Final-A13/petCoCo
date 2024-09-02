@@ -1,8 +1,8 @@
 "use client";
 
-import FilterDateSelect from "../_components/select/filterDateSelect";
-import FilterWeightSelect from "../_components/select/filterWeightSelect";
-import FilterOptionSelect from "../_components/select/filterOptionSelect";
+import FilterDateSelect from "../_components/filter/select/filterDateSelect";
+import FilterWeightSelect from "../_components/filter/select/filterWeightSelect";
+import FilterOptionSelect from "../_components/filter/select/filterOptionSelect";
 import Button from "@/components/Button";
 import { gender, age, regions, times, male_female } from "../selectOptionArray";
 import { useState } from "react";
@@ -46,7 +46,6 @@ const FilterPage = () => {
     });
 
     router.push(`/mate?${queryParams.toString()}`);
-    // router.replace(`/mate?${queryParams.toString()}`);
   };
 
   const handleResetFilter = () => {
@@ -66,7 +65,6 @@ const FilterPage = () => {
     router.push("/mate");
   };
 
-  // console.log(filters);
 
   return (
     <div>

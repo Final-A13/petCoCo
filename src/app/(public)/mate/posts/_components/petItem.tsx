@@ -42,7 +42,6 @@ const PetItem = ({ pet }: PetItemProps) => {
           <p className="text-[#939396]">몸무게</p>
           <p>{weight}</p>
         </div>
-        {/* </div> */}
         <div className="flex gap-x-[0.5rem] text-[1rem]">
           <p className="text-[#939396]">중성화 여부</p>
           <p>{neutralized}</p>

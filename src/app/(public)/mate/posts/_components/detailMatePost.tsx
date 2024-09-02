@@ -1,7 +1,6 @@
 "use client";
 
-import { MateNextPostType, MatePostAllType } from "@/types/mate.type";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,6 +10,8 @@ import Swal from "sweetalert2";
 import DetailView from "./detailView";
 import DetailEdit from "./detailEdit";
 import { useAddressData } from "@/hooks/useAddressData";
+// Type
+import { MateNextPostType, MatePostAllType } from "@/types/mate.type";
 
 interface DetailMatePostProps {
   post: MatePostAllType;
@@ -50,7 +51,7 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
   const deletePost = async (id: string) => {
     try {
 
-      const response = await fetch(`/api/mate/post/${post.id}`, {
+      const response = await fetch(`/api/mate/post/${id}`, {
         method: "DELETE"
       });
 
@@ -65,7 +66,7 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
 
   const editPost = async (id: string) => {
     try {
-      const response = await fetch(`/api/mate/post/${post.id}`, {
+      const response = await fetch(`/api/mate/post/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -233,7 +234,6 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
         handleResetEditPost={handleResetEditPost}
         formPosts={formPosts}
         setFormPosts={setFormPosts}
-        userId={userId}
       />
       ) : (
         <DetailView

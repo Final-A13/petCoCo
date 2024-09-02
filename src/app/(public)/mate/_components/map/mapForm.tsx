@@ -17,8 +17,8 @@ const MapForm = ({ center }: MapComponentProps) => {
         (position) => {
           setPosition({
             center: {
-              lat: position.coords.latitude, 
-              lng: position.coords.longitude 
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
             },
             isLoading: false
           });

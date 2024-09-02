@@ -5,12 +5,12 @@ import { useEffect } from "react";
 import { Map, MapMarker, MapTypeControl, ZoomControl, CustomOverlayMap } from "react-kakao-maps-sdk";
 
 interface MapComponentProps {
-  center: { lat: number; lng: number };
+  // center: { lat: number; lng: number };
   isEditing?: boolean;
   dbPosition?: { lat: number; lng: number };
 }
 
-const MapEdit = ({ center, isEditing, dbPosition }: MapComponentProps) => {
+const MapEdit = ({ isEditing, dbPosition }: MapComponentProps) => {
   const { position, setPosition } = locationStore();
 
   useEffect(() => {

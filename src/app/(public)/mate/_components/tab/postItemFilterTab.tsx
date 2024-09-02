@@ -1,8 +1,6 @@
-"use client";
-
-import FilterOptionSelect from "../select/filterOptionSelect";
-import FilterDateSelect from "../select/filterDateSelect";
-import FilterWeightSelect from "../select/filterWeightSelect";
+import FilterOptionSelect from "../filter/select/filterOptionSelect";
+import FilterDateSelect from "../filter/select/filterDateSelect";
+import FilterWeightSelect from "../filter/select/filterWeightSelect";
 import { gender, age, male_female, regions, times } from "../../selectOptionArray";
 import Button from "@/components/Button";
 

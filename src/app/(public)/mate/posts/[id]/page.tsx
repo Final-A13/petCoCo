@@ -21,7 +21,8 @@ const MatePost = ({ params }: { params: { id: string } }) => {
       return data;
     }
   });
-  if (!post) return;
+
+
   if (isPending) {
     <div className="mt-[30%] flex h-full w-full items-center justify-center">
       <LoadingComponent />
