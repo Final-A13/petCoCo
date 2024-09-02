@@ -14,6 +14,7 @@ const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeSearchTerm, setActiveSearchTerm] = useState<string>("");
   const [sortBy, setSortBy] = useState("");
+  // 디폴트 값 어떻게 하나로 할껀지, 지금 이중처리된 상태라고 생각함
   const defaultSort = "all";
 
   const { user } = useAuthStore();
@@ -21,6 +22,7 @@ const MateContent = () => {
   const searchParams = useSearchParams();
   const { filters, setFilters } = useFilterStore();
 
+  // 검색 및 필터링
   const handleSearchPosts = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setActiveSearchTerm(searchTerm);
