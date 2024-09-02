@@ -3,6 +3,7 @@
 import { getConvertAddress } from "@/app/(public)/mate/getConvertAddress";
 import { useQuery } from "@tanstack/react-query";
 import { locationStore } from "@/zustand/locationStore";
+import { queryKeys } from "@/lib/queryKeys";
 
 export const useAddressData = () => {
   const { position } = locationStore();
@@ -11,7 +12,7 @@ export const useAddressData = () => {
     isPending,
     error
   } = useQuery({
-    queryKey: ["address", position.center],
+    queryKey: queryKeys.address(position.center),
     queryFn: async () => {
       const response = await getConvertAddress(position.center);
       return response;

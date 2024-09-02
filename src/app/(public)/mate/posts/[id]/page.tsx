@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import DetailMatePost from "../_components/detailMatePost";
 import LoadingComponent from "@/components/loadingComponents/Loading";
+import { queryKeys } from "@/lib/queryKeys";
 
 const MatePost = ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -12,7 +13,7 @@ const MatePost = ({ params }: { params: { id: string } }) => {
     isPending,
     error
   } = useQuery({
-    queryKey: ["matePosts", id],
+    queryKey: queryKeys.matePosts(id),
     queryFn: async () => {
       const response = await fetch(`/api/mate/post/${id}`);
       const data = response.json();

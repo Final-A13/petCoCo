@@ -13,6 +13,7 @@ import styles from "../petCarousel/styles/css/petCarousel.module.css";
 import { UsersPetType } from "@/types/usersPet.type";
 import { MatePostAllType } from "@/types/mate.type";
 import { EmblaOptionsType } from "embla-carousel";
+import { queryKeys } from "@/lib/queryKeys";
 
 type PropType = {
   post: MatePostAllType;
@@ -29,7 +30,7 @@ const PetCarousel: React.FC<PropType> = (props) => {
     isPending,
     error
   } = useQuery<UsersPetType[]>({
-    queryKey: ["usersPets", petIds],
+    queryKey: queryKeys.usersPets(petIds),
     queryFn: async () => {
       const response = await fetch(`/api/mate/pets?ids=${petIds}`);
       const data = await response.json();
