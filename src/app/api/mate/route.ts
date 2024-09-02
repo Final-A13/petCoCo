@@ -144,11 +144,9 @@ export const GET = async (request: NextRequest) => {
   }
 };
 
-export const POST = async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const POST = async (request: NextRequest) => {
   const supabase = createClient();
   const { post_data }: CreateMatePostWithPetsData = await request.json();
-
-  //console.log("Received Data:", post_data, pets_data);
 
   // location 필드에 값 추출에서 추가, 따로 넣어주지 않아도
   const postDataWithLocation = {
