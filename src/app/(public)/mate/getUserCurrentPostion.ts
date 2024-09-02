@@ -1,17 +1,17 @@
-import { Position } from "@/types/position.type";
+import { Position, PositionData } from "@/types/position.type";
 
 interface getUserCurrentPositionProps {
   setGeoData: (geoData: Omit<Position, "errMsg">) => void;
   setIsUseGeo: (isUseGeo: boolean) => void;
 }
-export const getUserCurrentPosition = ({setGeoData, setIsUseGeo}: getUserCurrentPositionProps): Promise<Position | null> => {
+export const getUserCurrentPosition = ({setGeoData, setIsUseGeo}: getUserCurrentPositionProps): Promise<PositionData | null> => {
 
   return new Promise((resolve) => {
     if (!navigator.geolocation) {
       // console.error('위치 정보 사용 거부:', error);
       const defaultPosition = {
         center: { lat: 37.5556236021213, lng: 126.992199507869 },
-        errMsg: "Geolocation is not supported",
+        errMsg: "위치 정보 사용 거부",
         isLoading: false
       };
       setIsUseGeo(false);

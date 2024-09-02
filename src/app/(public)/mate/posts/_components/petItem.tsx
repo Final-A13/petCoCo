@@ -10,7 +10,6 @@ interface PetItemProps {
 const PetItem = ({ pet }: PetItemProps) => {
   // 값이 없을 때 빈 문자열로 처리
   const petName = pet.petName ? `${pet.petName}` : "익명";
-  const age = pet.age ? `${pet.age}살` : "";
   const gender = pet.male_female === "수" ? "남" : "여";
   const weight = pet.weight ? `${pet.weight}kg` : "";
   const neutralized = pet.neutralized === "TRUE" ? "했어요" : "안했어요";
@@ -43,7 +42,6 @@ const PetItem = ({ pet }: PetItemProps) => {
           <p className="text-[#939396]">몸무게</p>
           <p>{weight}</p>
         </div>
-        {/* </div> */}
         <div className="flex gap-x-[0.5rem] text-[1rem]">
           <p className="text-[#939396]">중성화 여부</p>
           <p>{neutralized}</p>

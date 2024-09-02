@@ -14,7 +14,7 @@ type UseLocationStore = {
   isUseGeo: boolean;
   setPosition: (position: Partial<Position>) => void;
   setAddress: (address: string) => void;
-  setGeoData: (geoData: Omit<Position, "errMsg">) => void;
+  setGeoData: (geoData: Partial<Position>) => void;
   setIsUseGeo: (isUseGeo: boolean) => void;
 };
 

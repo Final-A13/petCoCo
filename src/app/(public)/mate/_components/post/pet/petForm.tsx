@@ -1,44 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { UsersPetType } from "@/types/usersPet.type";
-import { Pets, MateNextPostType } from "@/types/mate.type";
+import { MateNextPostType } from "@/types/mate.type";
 import { PetFormSkeleton } from "../../Skeleton_UI/petFormSkeleton";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
+import { useUserPetsData } from "@/hooks/useUserPetsData";
 
 interface handlePetSelect {
   setFormPosts: React.Dispatch<React.SetStateAction<Omit<MateNextPostType, "user_id">>>;
-  userId: string;
 }
 
-const PetForm = ({ setFormPosts, userId }: handlePetSelect) => {
+const PetForm = ({ setFormPosts }: handlePetSelect) => {
   const [selectedPetIds, setSelectedPetIds] = useState<string[]>([]);
-
-  const {
-    data: userPets,
-    isPending: isPetPending,
-    error: petError
-  } = useQuery<UsersPetType[]>({
-    queryKey: ["userPets", userId],
-    queryFn: async () => {
-      const response = await fetch(`/api/mypage/${userId}/mypetprofile`);
-      return response.json();
-    },
-    enabled: !!userId
-  });
-
-  // const handlePetSelect = (value: string[]) => {
-  //   setSelectedPetIds(value);
-
-  //   setFormPosts(formPosts => {
-  //     const updatedPosts = formPosts.map(post => ({
-  //       ...post,
-  //       pet_id: value
-  //     }));
-  //     return updatedPosts;
-  //   });
-  // };
+  const { userPets, isPetPending, petError  } = useUserPetsData();
 
   const handlePetSelect = (value: string[]) => {
     setSelectedPetIds(value);

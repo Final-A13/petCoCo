@@ -1,6 +1,3 @@
-"use client";
-
-// import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 interface NeuteredFilterProps {
@@ -10,7 +7,7 @@ interface NeuteredFilterProps {
 }
 
 const NeuteredFilter = ({ onSelect, selectedNeutered, setSelectedNeutered }: NeuteredFilterProps) => {
- 
+
   const handleSelect = (neutered: string) => {
     setSelectedNeutered(neutered);
     onSelect(neutered);

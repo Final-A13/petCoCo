@@ -15,7 +15,6 @@ interface DetailEditProps {
   handleResetEditPost: () => void;
   formPosts: Omit<MateNextPostType, "position" | "user_id">;
   setFormPosts: Dispatch<SetStateAction<Omit<MateNextPostType, "position" | "user_id">>>;
-  userId: string;
 }
 
 const DetailEdit = ({
@@ -24,7 +23,6 @@ const DetailEdit = ({
   handleResetEditPost,
   formPosts,
   setFormPosts,
-  userId
 }: DetailEditProps) => {
   const { isPending, error, roadAddress } = useAddressData();
 
@@ -84,10 +82,10 @@ const DetailEdit = ({
           <label className="text-[1rem] font-[500]">산책 장소</label>
           <div>
             <DynamicMapEditComponent
-              center={{
-                lat: Number(post.position?.center?.lat),
-                lng: Number(post.position?.center?.lng)
-              }}
+              // center={{
+              //   lat: Number(post.position?.center?.lat),
+              //   lng: Number(post.position?.center?.lng)
+              // }}
               isEditing={true}
               dbPosition={{
                 lat: Number(post.position?.center?.lat),
@@ -137,7 +135,7 @@ const DetailEdit = ({
           ></textarea>
           <p className="flex justify-end text-subTitle2">{formPosts.content?.length}/200</p>
         </div>
-        <PetEdit post={post} setFormPosts={setFormPosts} userId={userId} />
+        <PetEdit post={post} setFormPosts={setFormPosts} />
         <div className="mb-[2rem] mt-[2rem] flex flex-col gap-y-[0.5rem]">
           <div className="flex w-full items-center justify-center px-[1.5rem]">
             <button

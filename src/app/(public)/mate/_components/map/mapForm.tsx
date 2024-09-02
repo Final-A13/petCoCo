@@ -17,11 +17,11 @@ const MapForm = ({ center }: MapComponentProps) => {
         (position) => {
           setPosition({
             center: {
-              lat: position.coords.latitude, // 위도
-              lng: position.coords.longitude, // 경도
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
             },
-            isLoading: false,
-          })
+            isLoading: false
+          });
         },
         (error) => {
           setPosition({
@@ -30,23 +30,21 @@ const MapForm = ({ center }: MapComponentProps) => {
             isLoading: false
           });
         }
-      )
+      );
     } else {
-      // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
       setPosition({
         center: center,
         errMsg: "geolocation을 사용할수 없어요..",
-        isLoading: false,
-      })
+        isLoading: false
+      });
     }
-  }, [])
-
+  }, []);
 
   return (
     <>
       <Map
         center={position.center}
-        style={{ width: "100%", height: "19.3125rem", borderRadius:"0.5rem" }}
+        style={{ width: "100%", height: "19.3125rem", borderRadius: "0.5rem" }}
         level={5}
         onClick={(_, mouseEvent) => {
           const latlng = mouseEvent.latLng;
@@ -68,15 +66,16 @@ const MapForm = ({ center }: MapComponentProps) => {
             },
             options: {
               offset: {
-                x: 15, 
-                y: 30}}
+                x: 15,
+                y: 30
+              }
+            }
           }}
-        >
-        </MapMarker>
+        ></MapMarker>
         <CustomOverlayMap position={position.center} yAnchor={1} xAnchor={0}>
-        <div className="bg-[#61646B] text-white py-[0.5rem] px-[1rem] rounded-[1rem] relative -translate-y-10 before:content-[''] before:absolute before:left-[10px] before:bottom-[-10px] before:w-0 before:h-0 before:border-t-[0.5rem] before:border-t-[#61646B] before:border-r-[0.5rem] before:border-r-transparent before:border-b-[0.5rem] before:border-b-transparent before:border-l-[0.5rem] before:border-l-[#61646B]">
-  <span>산책 장소</span>
-</div>
+          <div className="relative -translate-y-10 rounded-[1rem] bg-[#61646B] px-[1rem] py-[0.5rem] text-white before:absolute before:bottom-[-10px] before:left-[10px] before:h-0 before:w-0 before:border-b-[0.5rem] before:border-l-[0.5rem] before:border-r-[0.5rem] before:border-t-[0.5rem] before:border-b-transparent before:border-l-[#61646B] before:border-r-transparent before:border-t-[#61646B] before:content-['']">
+            <span>산책 장소</span>
+          </div>
         </CustomOverlayMap>
         <MapTypeControl position={"BOTTOMLEFT"} />
         <ZoomControl position={"RIGHT"} />

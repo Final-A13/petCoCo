@@ -1,15 +1,15 @@
 "use client";
 
-import FilterDateChip from "../_components/chip/filterDateChip";
-import FilterWeightChip from "../_components/chip/filterWeightChip";
-import FilterSelectChip from "../_components/chip/filterSelectChip";
+import FilterDateSelect from "../_components/filter/select/filterDateSelect";
+import FilterWeightSelect from "../_components/filter/select/filterWeightSelect";
+import FilterOptionSelect from "../_components/filter/select/filterOptionSelect";
 import Button from "@/components/Button";
 import { gender, age, regions, times, male_female } from "../selectOptionArray";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Male_femaleFilter from "../_components/button/male_femaleFilter";
-import NeuteredFilter from "../_components/button/neuteredFilter";
-import { useFilterStore } from '@/zustand/useFilterStore';
+import Male_femaleFilter from "../_components/filter/button/male_femaleFilter";
+import NeuteredFilter from "../_components/filter/button/neuteredFilter";
+import { useFilterStore } from "@/zustand/useFilterStore";
 
 export type Filters = {
   gender: string | null;
@@ -46,7 +46,6 @@ const FilterPage = () => {
     });
 
     router.push(`/mate?${queryParams.toString()}`);
-    // router.replace(`/mate?${queryParams.toString()}`);
   };
 
   const handleResetFilter = () => {
@@ -63,40 +62,39 @@ const FilterPage = () => {
     setSelectedGender(null);
     setSelectedNeutered(null);
 
-    router.push('/mate');
+    router.push("/mate");
   };
 
-  // console.log(filters);
 
   return (
     <div>
-      <div className="mx-auto max-w-[420px] ">
+      <div className="mx-auto max-w-[420px]">
         <p className="ml-[1rem] mt-[1rem] text-[1.5rem] font-[600]">산책 메이트 상세 필터</p>
         <div className="w-full px-[1.5rem]">
-          <FilterSelectChip
+          <FilterOptionSelect
             label="성별"
             array={gender}
             selected={filters.gender}
             onSelect={(items) => updateFilter("gender", items)}
           />
-          <FilterSelectChip
+          <FilterOptionSelect
             label="연령대"
             array={age}
             selected={filters.age}
             onSelect={(items) => updateFilter("age", items)}
           />
-          <FilterSelectChip
+          <FilterOptionSelect
             label="지역별"
             array={regions}
             selected={filters.regions}
             onSelect={(items) => updateFilter("regions", items)}
           />
-          <FilterDateChip
+          <FilterDateSelect
             label="산책일"
             selected={filters.date_time}
             onSelect={(items) => updateFilter("date_time", items)}
           />
-          <FilterSelectChip
+          <FilterOptionSelect
             label="시간대"
             array={times}
             selected={filters.times}
@@ -115,11 +113,11 @@ const FilterPage = () => {
             setSelectedNeutered={setSelectedNeutered}
             onSelect={(items) => updateFilter("neutralized", items)}
           />
-          <FilterWeightChip
+          <FilterWeightSelect
             label="몸무게"
             selected={filters.weight}
             onSelect={(items) => updateFilter("weight", items)}
-          /> 
+          />
         </div>
         <div className="mb-[6.63rem] mt-[3.63rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
           <Button

@@ -155,7 +155,6 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
                 />
               </div>
               <p className="ml-[0.5rem] text-[1rem] font-[400]">
-                {/* {post.date_time?.split("T")[0]} | {getConvertTime({ date_time: post.date_time || "" })} */}
                 {formatDateTimeContent(post.date_time)}
               </p>
             </div>
