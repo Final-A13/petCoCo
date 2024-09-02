@@ -6,4 +6,5 @@ export const queryKeys = {
   address: (center: { lat: number; lng: number }) => ["address", center],
   geoData: ["geoData"],
   usersPets: (petIds: Json) => ["usersPets", petIds],
+  userPets: (userId: string) => ["userPets", userId],
 };
