@@ -1,13 +1,13 @@
 "use client";
 import { useCallback, useRef, useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { locationStore } from "@/zustand/locationStore";
 import { useGeoData } from "@/hooks/useGeoData";
 import MatePostItem from "./matePostItem";
 import LoadingComponent from "@/components/loadingComponents/Loading";
 import MatePostListSkeleton from "../Skeleton_UI/matePostItemSkeleton";
 // Type
 import { PostsResponse } from "@/types/mate.type";
+import { useMatePosts } from "@/hooks/useMatePosts";
 
 interface MatePostListProps {
   activeSearchTerm: string;
@@ -25,42 +25,13 @@ interface MatePostListProps {
 }
 
 const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) => {
-  const { geoData } = locationStore();
   const { geolocationData, isGeoPending, geoError } = useGeoData();
   const observerTarget = useRef<HTMLDivElement>(null);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteQuery<
-    PostsResponse,
-    Error
-  >({
-    queryKey: ["matePosts", activeSearchTerm, sortBy, filters, geoData],
-    queryFn: async ({ pageParam = 1 }) => {
-      const getValidFilters = Object.fromEntries(
-        Object.entries(filters).filter(([_, value]) => value !== null && value !== "" && value !== undefined)
-      );
-
-      let query = "";
-      query = Object.keys(getValidFilters)
-        .map((key) => {
-          const value = getValidFilters[key];
-          return value != null ? `${encodeURIComponent(key)}=${encodeURIComponent(value)}` : "";
-        })
-        .join("&");
-
-      const userLat = geoData?.center.lat || 0;
-      const userLng = geoData?.center.lng || 0;
-
-      const defaultSortBy = sortBy && sortBy !== "all" ? sortBy : "all";
-      const response = await fetch(
-        `/api/mate?page=${pageParam}&limit=4&search=${activeSearchTerm}&sort=${defaultSortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
-      );
-      return response.json();
-    },
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.data.length === 4 ? allPages.length + 1 : undefined;
-    },
-    initialPageParam: 1,
-    enabled: !!geolocationData
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useMatePosts({
+    activeSearchTerm,
+    sortBy,
+    filters,
   });
 
   const handleObserver = useCallback(
