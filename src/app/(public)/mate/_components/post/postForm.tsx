@@ -1,18 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { locationStore } from "@/zustand/locationStore";
-import { useRouter } from "next/navigation";
-
-import { getConvertAddress } from "../../getConvertAddress";
 import { useAuthStore } from "@/zustand/useAuth";
-import { MateNextPostType, Pets } from "@/types/mate.type";
-
+import { getConvertDate } from "../../../../utils/getConvertDate";
 import Swal from "sweetalert2";
 import PetForm from "./pet/petForm";
-import { getConvertDate } from "../getConvertDate";
+// Type
+import { MateNextPostType } from "@/types/mate.type";
+import { useAddressData } from "@/hooks/useAddressData";
 
 // 동적 로딩 설정
 const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_components/map/mapForm"), { ssr: false });
@@ -23,6 +22,7 @@ const PostForm = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { position } = locationStore();
+  const { isPending, error, roadAddress, address } = useAddressData();
 
   const initialState: Omit<MateNextPostType, "user_id"> = {
     title: "",
@@ -37,19 +37,10 @@ const PostForm = () => {
     pet_id: []
   };
 
-  // const initialPetState: Pets = {
-  //   userId,
-  //   pet_id: []
-  // };
-
   const [formPosts, setFormPosts] = useState<Omit<MateNextPostType, "user_id">>(initialState);
-  // const [formPets, setFormPets] = useState<Pets[]>([initialPetState]);
-
-  // console.log(formPets);
 
   // 게시물 등록
   const addPost = async (formAllData: { post: MateNextPostType }) => {
-    // console.log("데이터 넘어오는 거 확인", formAllData);
     try {
       const response = await fetch(`/api/mate`, {
         method: "POST",
@@ -58,18 +49,14 @@ const PostForm = () => {
         },
         body: JSON.stringify({
           post_data: formAllData.post
-          // pets_data: formAllData.pets
         })
       });
-
-      // console.log("Response status:", response.status); // 응답 상태 로그
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-      // console.log("Response data:", data);
 
       return data;
     } catch (error) {
@@ -90,27 +77,6 @@ const PostForm = () => {
     }
   });
 
-  const {
-    data: addressData,
-    isPending,
-    error
-  } = useQuery({
-    queryKey: ["address", position.center],
-    queryFn: async () => {
-      const response = await getConvertAddress(position.center);
-      return response;
-    },
-    enabled: !!position.center
-  });
-
-  const roadAddress =
-    (addressData && addressData?.documents[0]?.road_address?.address_name) ||
-    addressData?.documents[0]?.address?.address_name ||
-    "주소 정보를 찾을 수 없어요";
-  //  console.log(addressData)
-
-  const address = (addressData && addressData?.documents[0]?.address?.address_name) || "주소 정보를 찾을 수 없어요";
-
   // 폼 유효성 검사
   const isFormValid = () => {
     const { title, date_time, members, place_name, content, pet_id } = formPosts;
@@ -123,7 +89,6 @@ const PostForm = () => {
     e.preventDefault();
 
     if (!isFormValid()) {
-      // alert("모든 항목을 입력해 주세요!");
       Swal.fire({
         title: "모든 항목을 입력해 주세요!",
         text: "빠진 부분이 있는지 확인해 주세요.",
@@ -148,8 +113,6 @@ const PostForm = () => {
       console.error(err);
     }
   };
-
-  // console.log(userPets)
 
   return (
     <div className="min-h-screen">
@@ -217,7 +180,13 @@ const PostForm = () => {
           <div className="mb-[2rem] flex flex-col gap-y-[0.5rem]">
             <p className="text-[1rem] font-[600]">주소</p>
             <div className="border-b border-subTitle2 p-[0.75rem]">
-              <p className="text-subTitle1">{roadAddress}</p>
+              {isPending ? (
+                <p>주소 정보를 찾는 중입니다...</p>
+              ) : error ? (
+                <p>주소 정보를 가져오는 데 실패했습니다.</p>
+              ) : (
+                <p>{roadAddress}</p>
+              )}
             </div>
           </div>
           <div className="flex flex-col gap-y-[0.5rem]">
@@ -247,7 +216,7 @@ const PostForm = () => {
           <p className="flex justify-end text-subTitle2">{formPosts.content?.length}/200</p>
         </div>
         {/* 반려동물 정보 등록 */}
-        <PetForm setFormPosts={setFormPosts} userId={userId} />
+        <PetForm setFormPosts={setFormPosts} />
         {/* 작성하기 버튼 */}
         <div className="mb-[7.5rem] mt-[1.5rem] flex w-full items-center justify-center px-[1.5rem]">
           <button

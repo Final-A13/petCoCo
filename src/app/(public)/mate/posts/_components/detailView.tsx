@@ -155,7 +155,6 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
                 />
               </div>
               <p className="ml-[0.5rem] text-[1rem] font-[400]">
-                {/* {post.date_time?.split("T")[0]} | {getConvertTime({ date_time: post.date_time || "" })} */}
                 {formatDateTimeContent(post.date_time)}
               </p>
             </div>
@@ -195,12 +194,8 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
             <p className="flex pt-[0.75rem] font-[400]">{post.content}</p>
           </div>
 
-          {/* <div className="flex gap-x-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide "> 
-        {post.matepostpets?.map((pet) => <PetItem key={pet.id} pet={pet} />)}
-        </div> */}
           <div className="mb-[5.95rem] mt-[0.75rem]">
             {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
-            {/* <p className="ml-[0.75rem] text-gray-500">기능 구현 중입니다-!</p> */}
           </div>
         </div>
       </div>

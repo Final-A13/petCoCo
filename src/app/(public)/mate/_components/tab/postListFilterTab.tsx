@@ -1,8 +1,6 @@
-import { Switch } from "@nextui-org/react";
 import Chip from "@/components/Chip";
 
 interface PostListFilterTabProps {
-  // isCurrentPosts: boolean;
   handleAllPosts: () => void;
   handleRecruiting: () => void;
   handleDateSort: () => void;

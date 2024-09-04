@@ -1,8 +1,6 @@
-"use client";
-
-import FilterSelectChip from "../chip/filterSelectChip";
-import FilterDateChip from "../chip/filterDateChip";
-import FilterWeightChip from "../chip/filterWeightChip";
+import FilterOptionSelect from "../filter/select/filterOptionSelect";
+import FilterDateSelect from "../filter/select/filterDateSelect";
+import FilterWeightSelect from "../filter/select/filterWeightSelect";
 import { gender, age, male_female, regions, times } from "../../selectOptionArray";
 import Button from "@/components/Button";
 
@@ -26,30 +24,30 @@ const PostItemFilterTab = ({ updateFilter, filters, onClick }: PostItemFilterTab
     <div className="w-full">
       <div className="w-full">
         <p className="text-lg text-gray-500">메이트 상세 필터</p>
-        <FilterSelectChip
+        <FilterOptionSelect
           label="성별"
           array={gender}
           selected={filters.gender}
           onSelect={(items) => updateFilter("gender", items)}
         />
-        <FilterSelectChip
+        <FilterOptionSelect
           label="연령대"
           array={age}
           selected={filters.age}
           onSelect={(items) => updateFilter("age", items)}
         />
-        <FilterSelectChip
+        <FilterOptionSelect
           label="지역별"
           array={regions}
           selected={filters.regions}
           onSelect={(items) => updateFilter("regions", items)}
         />
-        <FilterDateChip
+        <FilterDateSelect
           label="산책일"
           selected={filters.date_time}
           onSelect={(items) => updateFilter("date_time", items)}
         />
-        <FilterSelectChip
+        <FilterOptionSelect
           label="시간대"
           array={times}
           selected={filters.times}
@@ -58,12 +56,12 @@ const PostItemFilterTab = ({ updateFilter, filters, onClick }: PostItemFilterTab
       </div>
       <div className="mt-5">
         <p className="text-lg text-gray-500">반려견 정보 필터</p>
-        <FilterWeightChip
+        <FilterWeightSelect
           label="반려견 몸무게"
           selected={filters.weight}
           onSelect={(items) => updateFilter("weight", items)}
         />
-        <FilterSelectChip
+        <FilterOptionSelect
           label="성별"
           array={male_female}
           selected={filters.male_female}
@@ -71,7 +69,11 @@ const PostItemFilterTab = ({ updateFilter, filters, onClick }: PostItemFilterTab
         />
       </div>
       <div className="mt-7 flex">
-        <Button className="flex mb-4 h-12 w-full cursor-pointer items-center rounded-lg border-2 border-mainColor p-2 justify-center" text="초기화" onClick={onClick} />
+        <Button
+          className="mb-4 flex h-12 w-full cursor-pointer items-center justify-center rounded-lg border-2 border-mainColor p-2"
+          text="초기화"
+          onClick={onClick}
+        />
       </div>
     </div>
   );

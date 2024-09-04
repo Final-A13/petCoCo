@@ -10,20 +10,11 @@ import { Filters } from "../filter/page";
 import { useFilterStore } from '@/zustand/useFilterStore';
 import PlusIcon from "@/app/utils/plusIcon";
 
-
-export type PositionData = {
-  center: {
-    lat: number;
-    lng: number;
-  };
-  errMsg?: string;
-  isLoading: boolean;
-} | null;
-
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeSearchTerm, setActiveSearchTerm] = useState<string>("");
   const [sortBy, setSortBy] = useState("");
+  // 디폴트 값 어떻게 하나로 할껀지, 지금 이중처리된 상태라고 생각함
   const defaultSort = "all";
 
   const { user } = useAuthStore();
@@ -31,12 +22,12 @@ const MateContent = () => {
   const searchParams = useSearchParams();
   const { filters, setFilters } = useFilterStore();
 
+  // 검색 및 필터링
   const handleSearchPosts = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setActiveSearchTerm(searchTerm);
     setSearchTerm("");
   };
-
   const handleAllPosts = () => setSortBy("all");
   const handleRecruiting = () => setSortBy("recruiting");
   const handleDateSort = () => setSortBy("recruitment_end");
@@ -65,7 +56,6 @@ const MateContent = () => {
   return (
     <div className="relative mx-auto min-h-screen max-w-[420px]">
       <div className="flex w-full">
-        {/* 왼쪽 메인 컨텐츠 영역 */}
         <div className="w-full">
           <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide">
             <PostListFilterTab
@@ -87,24 +77,7 @@ const MateContent = () => {
             </div>
           </div>
         </div>
-        {/* 오른쪽 사이드바 영역 */}
-        {/* <div className="mr-0 w-full pl-0 lg:mr-8 lg:w-1/4 lg:pl-5"> */}
-        {/* 글쓰기 버튼 영역 */}
-        {/* <Button onClick={handleLoginCheck} text="글쓰기" className="mb-4 flex h-12 w-full items-center justify-center rounded-lg bg-mainColor p-2" /> */}
-        {/* 검색 영역 */}
-        {/* <SearchBar onSubmit={handleSearchPosts} value={searchTerm} setSearchTerm={setSearchTerm}  /> */}
-        {/* <PostItemFilterTab updateFilter={updateFilter} filters={filters} onClick={handleResetFilter} /> */}
-        {/* </div> */}
       </div>
-      {/* <div
-        className="fixed bottom-[6.815rem] z-50 cursor-pointer rounded-full bg-mainColor p-[0.81rem] shadow-plusBtn"
-        style={{
-          right: "calc(50% - 187.5px + 0.56rem)"
-        }}
-        onClick={handleLoginCheck}
-      > 
-        <img src="/assets/svg/plus-01.svg" alt="plus icon" />
-      </div> */}
       <PlusIcon handleLoginCheck={handleLoginCheck} />
     </div>
   );
