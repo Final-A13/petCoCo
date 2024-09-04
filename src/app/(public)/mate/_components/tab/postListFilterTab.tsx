@@ -7,12 +7,12 @@ interface PostListFilterTabProps {
   handleDistanceSort: () => void;
   handleNewSort: () => void;
   sortBy: string;
-  defaultSort: string;
+  // defaultSort: string;
 }
 
 const PostListFilterTab = ({
   sortBy,
-  defaultSort,
+  // defaultSort,
   handleAllPosts,
   handleRecruiting,
   handleDateSort,
@@ -20,7 +20,7 @@ const PostListFilterTab = ({
   handleNewSort
 }: PostListFilterTabProps) => {
   const isSelected = (chipSortBy: string) => {
-    return sortBy === chipSortBy || (sortBy === "" && chipSortBy === defaultSort);
+    return sortBy === chipSortBy || (sortBy === "" && chipSortBy === "all");
   };
 
   return (
