@@ -2,13 +2,14 @@
 
 import { PostsResponse } from "@/types/mate.type";
 import { locationStore } from "@/zustand/locationStore";
+import { Filters } from "@/zustand/useFilterStore";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 
 interface UseMatePostsProps {
   activeSearchTerm: string;
   sortBy: string;
-  filters: Record<string, any>;
+  filters: Filters;
 }
 
 export const useMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePostsProps) => {

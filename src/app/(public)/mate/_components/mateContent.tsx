@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthStore } from "@/zustand/useAuth";
+import { useFilterStore } from '@/zustand/useFilterStore';
 import SearchBar from "@/components/SearchBar";
 import PostListFilterTab from "./tab/postListFilterTab";
 import MatePostList from "./post/matePostList";
-import { Filters } from "../filter/page";
-import { useFilterStore } from '@/zustand/useFilterStore';
 import PlusIcon from "@/app/utils/plusIcon";
+//Type 
+import { Filters } from "@/zustand/useFilterStore";
 
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");

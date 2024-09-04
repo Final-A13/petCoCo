@@ -1,26 +1,17 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import FilterDateSelect from "../_components/filter/select/filterDateSelect";
 import FilterWeightSelect from "../_components/filter/select/filterWeightSelect";
 import FilterOptionSelect from "../_components/filter/select/filterOptionSelect";
-import Button from "@/components/Button";
-import { gender, age, regions, times, male_female } from "../selectOptionArray";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Male_femaleFilter from "../_components/filter/button/male_femaleFilter";
 import NeuteredFilter from "../_components/filter/button/neuteredFilter";
+import Button from "@/components/Button";
+import { gender, age, regions, times } from "../selectOptionArray";
 import { useFilterStore } from "@/zustand/useFilterStore";
-
-export type Filters = {
-  gender: string | null;
-  age: string | null;
-  date_time: string | undefined;
-  male_female: string | null;
-  weight: string | null;
-  regions: string | null;
-  times: string | null;
-  neutralized: string | null;
-};
+// Type
+import { Filters } from "@/zustand/useFilterStore";
 
 const FilterPage = () => {
   const { filters, setFilters } = useFilterStore();
