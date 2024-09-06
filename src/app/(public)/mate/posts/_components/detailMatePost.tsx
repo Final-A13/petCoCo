@@ -17,7 +17,6 @@ interface DetailMatePostProps {
   post: MatePostAllType;
 }
 
-
 const DetailMatePost = ({ post }: DetailMatePostProps) => {
   const queryClient = useQueryClient();
   const { user } = useAuthStore();

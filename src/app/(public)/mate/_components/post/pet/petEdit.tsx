@@ -5,6 +5,7 @@ import { MateNextPostType, MatePostAllType } from "@/types/mate.type";
 import { PetFormSkeleton } from "../../Skeleton_UI/petFormSkeleton";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
 import { useUserPetsData } from "@/hooks/useUserPetsData";
+import { Json } from "@/types/supabase";
 
 interface handlePetSelect {
   post: MatePostAllType;
@@ -12,14 +13,16 @@ interface handlePetSelect {
 }
 
 const PetEdit = ({ post, setFormPosts }: handlePetSelect) => {
-  // TODO: 초기값 부분 다시 생각해보기
-  const [selectedPetIds, setSelectedPetIds] = useState<string[]>(() => {
-    if (post.pet_id) {
-      const petIds = Array.isArray(post.pet_id) ? post.pet_id : [post.pet_id];
-      return petIds.map(id => String(id)).filter(id => id !== null && id !== undefined);
+  const getInitialSelectedPetIds = (petId: Json): string[] => {
+    if (!petId) return [];
+    
+    if (Array.isArray(petId)) {
+      return petId.map(String);
     }
-    return [];
-  });
+  
+    return [String(petId)];
+  };
+  const [selectedPetIds, setSelectedPetIds] = useState<string[]>(() => getInitialSelectedPetIds(post.pet_id));
   const { userPets, isPetPending, petError  } = useUserPetsData();
 
   const handlePetSelect = (value: string[]) => {

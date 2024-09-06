@@ -1,27 +1,17 @@
 "use client";
 import { useCallback, useRef, useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useGeoData } from "@/hooks/useGeoData";
 import MatePostItem from "./matePostItem";
 import LoadingComponent from "@/components/loadingComponents/Loading";
 import MatePostListSkeleton from "../Skeleton_UI/matePostItemSkeleton";
 // Type
-import { PostsResponse } from "@/types/mate.type";
 import { useMatePosts } from "@/hooks/useMatePosts";
+import { Filters } from "@/zustand/useFilterStore";
 
 interface MatePostListProps {
   activeSearchTerm: string;
   sortBy: string;
-  filters: {
-    gender: string | null;
-    date_time: string | undefined;
-    male_female: string | null;
-    age: string | null;
-    weight: string | null;
-    regions: string | null;
-    times: string | null;
-    neutralized: string | null;
-  };
+  filters: Filters;
 }
 
 const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) => {

@@ -1,21 +1,14 @@
 import FilterOptionSelect from "../filter/select/filterOptionSelect";
 import FilterDateSelect from "../filter/select/filterDateSelect";
 import FilterWeightSelect from "../filter/select/filterWeightSelect";
-import { gender, age, male_female, regions, times } from "../../selectOptionArray";
 import Button from "@/components/Button";
+import { gender, age, male_female, regions, times } from "../../selectOptionArray";
+// Type
+import { Filters } from "@/zustand/useFilterStore";
 
 interface PostItemFilterTabProps {
   updateFilter: (filterName: string, value: any) => void;
-  filters: {
-    gender: string | null;
-    date_time: string | undefined;
-    male_female: string | null;
-    age: string | null;
-    weight: string | null;
-    regions: string | null;
-    times: string | null;
-    neutralized: string | null;
-  };
+  filters: Filters;
   onClick: () => void;
 }
 
