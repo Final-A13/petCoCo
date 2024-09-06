@@ -28,15 +28,23 @@ const initialFilters: Filters = {
   neutralized: null,
 };
 
-export const useFilterStore = create(persist<FilterStore>(
-  (set) => ({
+// export const useFilterStore = create(persist<FilterStore>(
+//   (set) => ({
+//     filters: initialFilters,
+//     setFilters: (newFilters) => set((state) => ({
+//       filters: typeof newFilters === 'function' ? newFilters(state.filters) : newFilters
+//     })),
+//   }),
+//     {
+//       name: 'filter-storage',
+//     }
+//   )
+// );
+
+export const useFilterStore = create<FilterStore>((set) => ({
     filters: initialFilters,
     setFilters: (newFilters) => set((state) => ({
       filters: typeof newFilters === 'function' ? newFilters(state.filters) : newFilters
     })),
-  }),
-    {
-      name: 'filter-storage',
-    }
-  )
+  })
 );
