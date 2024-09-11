@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Map,
   MapMarker,
@@ -8,7 +9,7 @@ import {
   Roadview,
   CustomOverlayRoadview
 } from "react-kakao-maps-sdk";
-import { useState } from "react";
+import ToggleButton from "./toggleButton";
 
 interface MapDetailProps {
   center: { lat: number; lng: number };
@@ -22,7 +23,7 @@ const MapDetail = ({ center, tag }: MapDetailProps) => {
   return (
     <div className="relative">
       {toggle === "map" ? (
-        <Map center={center} style={{ width: "100%", height: "15.875rem", borderRadius: "1rem" }} level={5}>
+        <Map center={center} style={{ width: "100%", height: "15.875rem", borderRadius: "1rem" }} level={4}>
           <MapMarker
             position={center}
             image={{
@@ -79,15 +80,7 @@ const MapDetail = ({ center, tag }: MapDetailProps) => {
           </CustomOverlayRoadview>
         </Roadview>
       )}
-      <div className="absolute left-2 top-2 z-10">
-        <button
-          type="button"
-          onClick={() => setToggle(toggle === "map" ? "roadview" : "map")}
-          className={`rounded-md ${toggle === "roadview" ? "bg-blue-500 text-white" : "bg-white text-black"} px-2 py-1.5 text-sm shadow-md`}
-        >
-          {toggle === "map" ? "로드뷰" : " 지도 "}
-        </button>
-      </div>
+      <ToggleButton toggle={toggle} setToggle={setToggle}/>
     </div>
   );
 };
