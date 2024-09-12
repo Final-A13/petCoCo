@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/zustand/useAuth";
-import { formatDateTimeContent } from "@/app/utils/getConvertTime";
 import Button from "@/components/Button";
 import startChat from "@/app/utils/startChat";
 import MateInfoItem from "../../_components/mateInfoItem";
@@ -74,52 +73,6 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
                   {post.title}
                 </p>
                 <div className="flex flex-col gap-y-[0.25rem]">
-                  {/* <div className="mt-[0.37rem] flex gap-[0.5rem]">
-                    <div className="h-[1.25rem] w-[1.25rem]">
-                      <Image
-                        src="/assets/svg/ic_location2.svg"
-                        alt="위치 아이콘"
-                        width={20}
-                        height={20}
-                        priority
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <p className="text-4 w-[170px] overflow-hidden text-ellipsis whitespace-nowrap text-[#444447]">
-                      {post.place_name || ""}
-                    </p>
-                  </div>
-                  <div className="text-4 flex gap-[0.5rem] text-[#444447]">
-                    <div className="h-[1.25rem] w-[1.25rem]">
-                      <Image
-                        src="/assets/svg/ic_calendar2.svg"
-                        alt="달력 아이콘"
-                        width={20}
-                        height={20}
-                        priority
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <p className=""> {formatDateTimeContent(post.date_time)} </p>
-                  </div>
-                  <div className="flex gap-[0.5rem]">
-                    <div className="h-[1.25rem] w-[1.25rem]">
-                      <Image
-                        src="/assets/svg/ic_user2.svg"
-                        alt="사용자 아이콘"
-                        width={20}
-                        height={20}
-                        priority
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <p className="">{post.members}명 모집</p>
-                    <div className={`${post.recruiting ? "bg-[#11BBB0]" : "bg-bgGray400"} rounded-full`}>
-                      <p className="px-[0.62rem] py-[0.12rem] text-[0.875rem] text-white">
-                        {post.recruiting ? "모집중" : "모집 완료"}
-                      </p>
-                    </div>
-                  </div> */}
                   <div className="mt-1">
                     <MateInfoItem post={post} />
                   </div>
