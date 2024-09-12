@@ -3,16 +3,18 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
-import Button from "@/components/Button";
-import { formatDateTimeTitle, formatDateTimeContent } from "@/app/utils/getConvertTime";
-import { EmblaOptionsType } from "embla-carousel";
+
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/zustand/useAuth";
+import { EmblaOptionsType } from "embla-carousel";
+import { formatDateTimeTitle } from "@/app/utils/getConvertTime";
+import startChat from "@/app/utils/startChat";
+import PetCarousel from "../../_components/petCarousel/petCarousel";
+import MateInfoItem from "../../_components/mateInfoItem";
+import DetailUserCard from "./detailUserCard";
+
 
 import { MatePostAllType } from "@/types/mate.type";
-import PetCarousel from "../../_components/petCarousel/petCarousel";
-import startChat from "@/app/utils/startChat";
-import { useAuthStore } from "@/zustand/useAuth";
 
 interface DetailViewProps {
   post: MatePostAllType;
@@ -21,7 +23,10 @@ interface DetailViewProps {
   handleDeletePost: (id: string) => void;
   handleTogglePost: (id: string) => void;
 }
-const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_components/map/mapDetail"), { ssr: false });
+const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_components/map/mapDetail"), {
+  ssr: false,
+  loading: () => <div className="h-[15.875rem] w-full rounded-2xl"></div>
+});
 
 const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogglePost }: DetailViewProps) => {
   const router = useRouter();
@@ -88,94 +93,9 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
             <p className="ml-[0.5rem] text-[0.75rem] text-gray-400">상세 위치는 채팅을 통해 추후 확정할 수 있어요</p>
           </div>
           {/* 프로필 영역 */}
-          <div className="mb-[0.79rem] flex gap-x-[1rem] rounded-[0.75rem] border border-[#C2C0BD] px-[0.69rem] py-[0.75rem]">
-            <div className="my-auto flex flex-col items-center gap-y-[0.5rem] px-[1rem]">
-              <div className="mx-auto flex h-[3.75rem] w-[3.75rem]">
-                <Image
-                  src={
-                    post.users && post.users?.profile_img
-                      ? post.users?.profile_img
-                      : "https://eoxrihspempkfnxziwzd.supabase.co/storage/v1/object/public/post_image/1722324396777_xo2ka9.jpg"
-                  }
-                  alt="사용자 프로필 이미지"
-                  width={60}
-                  height={60}
-                  className="h-full w-full rounded-full object-cover"
-                />
-              </div>
-              <Button
-                className=" flex flex-shrink-0 cursor-pointer flex-col items-center justify-center whitespace-nowrap rounded-full bg-mainColor px-[0.71rem] py-[0.19rem] text-[0.85rem] text-white"
-                onClick={handleStartChat}
-                text="채팅하기"
-              ></Button>
-            </div>
-            <div className="flex flex-col justify-center ml-1">
-              <Link href={`/userInfo/${post.user_id}`} className="flex cursor-pointer font-semibold">
-                {post.users?.nickname}
-              </Link>
-              <div className="flex flex-col">
-                <div className="flex gap-x-[0.5rem]">
-                  <p className="text-[1rem] text-[#939396] text-[400]">성별 / 연령대 </p>
-                  {post.users?.gender || post.users?.age ? (
-                    <p>
-                      {post.users?.gender || "미등록"} / {post.users?.age || "미등록"}
-                    </p>
-                  ) : (
-                    <p>미등록</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <DetailUserCard post={post} handleStartChat={handleStartChat} />
           <div className="border-b border-t border-gray-200 pb-[0.94rem] pl-[0.75rem] pt-[0.87rem]">
-            <div className="mb-[0.25rem] flex">
-              <div className="h-[1.25rem] w-[1.25rem]">
-                <Image
-                  src="/assets/svg/ic_location2.svg"
-                  alt="위치 아이콘"
-                  width={20}
-                  height={20}
-                  priority
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <p className="ml-[0.5rem] w-[170px] overflow-hidden text-ellipsis whitespace-nowrap text-[1rem] font-[400]">
-                {post.place_name || ""}
-              </p>
-            </div>
-            <div className="mb-[0.25rem] flex">
-              <div className="h-[1.25rem] w-[1.25rem]">
-                <Image
-                  src="/assets/svg/ic_calendar2.svg"
-                  alt="달력 아이콘"
-                  width={20}
-                  height={20}
-                  priority
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <p className="ml-[0.5rem] text-[1rem] font-[400]">
-                {formatDateTimeContent(post.date_time)}
-              </p>
-            </div>
-            <div className="flex items-center">
-              <div className="h-[1.25rem] w-[1.25rem]">
-                <Image
-                  src="/assets/svg/ic_user2.svg"
-                  alt="사용자 아이콘"
-                  width={20}
-                  height={20}
-                  priority
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <p className="ml-[0.5rem] flex text-[1rem] font-[400]">{post.members}명 모집</p>
-              <div
-                className={`${post.recruiting ? "bg-[#11BBB0]" : "bg-bgGray400"} flex items-center justify-center rounded-full px-[0.62rem] py-[0.12rem] ml-[0.5rem] text-white`}
-              >
-                <p className="text-[0.875rem] font-[400]">{post.recruiting ? "모집중" : "모집 완료"}</p>
-              </div>
-            </div>
+            <MateInfoItem post={post} />
           </div>
           <div className="mb-[0.87rem] ml-[0.75rem] mt-[0.37rem] flex items-center">
             <div className="h-[1rem] w-[1rem]">
@@ -193,7 +113,6 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
           <div className="w-full border-b border-t border-[#EFEFF0] px-[0.75rem] pb-[0.75rem]">
             <p className="flex pt-[0.75rem] font-[400]">{post.content}</p>
           </div>
-
           <div className="mb-[5.95rem] mt-[0.75rem]">
             {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
           </div>
