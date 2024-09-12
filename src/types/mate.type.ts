@@ -37,7 +37,7 @@ export type MatePostAllTypeForItem = MatePostType & {
     errMsg: string | null;
     isLoading: boolean;
   };
-  users: UserType[];
+  users: UserType;
   distance: number;
 };
 
@@ -100,12 +100,8 @@ export type valiMatePostAllTypeForItem = {
   address: string;
   place_name: string;
   location: unknown;
-  users: Json;
+  users: UserType;
   distance: number;
   usersPet: Json | null;
   pet_id: Json;
 };
-
-export type PetId = {
-  pet_id: Json;
-}
