@@ -7,7 +7,7 @@ import { gender, age, male_female, regions, times } from "../../selectOptionArra
 import { Filters } from "@/zustand/useFilterStore";
 
 interface PostItemFilterTabProps {
-  updateFilter: (filterName: string, value: any) => void;
+  updateFilter: (filterName: string, value: string) => void;
   filters: Filters;
   onClick: () => void;
 }
