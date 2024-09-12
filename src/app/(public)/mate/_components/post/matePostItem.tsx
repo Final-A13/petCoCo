@@ -47,7 +47,7 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
             <div className="h-[3.75rem] w-[3.75rem] shrink">
               <Image
                 src={
-                  post.users[0]?.profile_img ||
+                  post.users.profile_img ||
                   "https://eoxrihspempkfnxziwzd.supabase.co/storage/v1/object/public/post_image/1722324396777_xo2ka9.jpg"
                 }
                 alt="사용자 프로필 이미지"
@@ -61,7 +61,7 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
               href={`/userInfo/${post.user_id}`}
               className="cursor-pointer whitespace-nowrap rounded-full border border-mainColor bg-[#EAE3FC] px-[0.62rem] py-[0.12rem] text-center text-[0.625rem] text-mainColor"
             >
-              {post.users[0]?.nickname}
+              {post.users.nickname}
             </Link>
           </div>
 
