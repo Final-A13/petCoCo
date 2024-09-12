@@ -510,7 +510,17 @@ export type Database = {
           place_name: string
           location: unknown
           pet_id: Json
-          users: Json
+          users: {
+            age: string | null
+            created_at: string
+            email: string | null
+            gender: string | null
+            id: string
+            introduction: string | null
+            mbti: string | null
+            nickname: string | null
+            profile_img: string | null
+          }
           usersPet: Json
           distance: number
         }[]
