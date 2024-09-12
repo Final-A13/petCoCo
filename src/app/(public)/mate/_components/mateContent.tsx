@@ -14,7 +14,7 @@ import { Filters } from "@/zustand/useFilterStore";
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeSearchTerm, setActiveSearchTerm] = useState<string>("");
-  const [sortBy, setSortBy] = useState("");
+  const [sortBy, setSortBy] = useState<string>("");
 
   const { user } = useAuthStore();
   const router = useRouter();
@@ -63,7 +63,7 @@ const MateContent = () => {
               handleDateSort={handleDateSort}
               handleDistanceSort={handleDistanceSort}
               handleNewSort={handleNewSort}
-              sortBy={sortBy || "all"}
+              sortBy={sortBy || "all"} // 정렬 기본 값 all로 설정
             />
           </div>
           <div>
@@ -71,7 +71,7 @@ const MateContent = () => {
               <div className="mx-auto w-full px-[1.5rem] mb-[1.5rem]">
                 <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
               </div>
-              <MatePostList activeSearchTerm={activeSearchTerm} sortBy={sortBy} filters={filters} />
+              <MatePostList activeSearchTerm={activeSearchTerm} sortBy={sortBy || "all"} filters={filters} />
             </div>
           </div>
         </div>

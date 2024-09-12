@@ -66,9 +66,8 @@ export const useMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePosts
       const userLat = geoData?.center.lat || 0;
       const userLng = geoData?.center.lng || 0;
 
-      const defaultSortBy = sortBy && sortBy !== "all" ? sortBy : "all";
       const response = await fetch(
-        `/api/mate?page=${pageParam}&limit=4&search=${activeSearchTerm}&sort=${defaultSortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
+        `/api/mate?page=${pageParam}&limit=4&search=${activeSearchTerm}&sort=${sortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
       );
       return response.json();
     },
@@ -78,6 +77,7 @@ export const useMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePosts
     initialPageParam: 1,
     enabled: !!geoData // 지오데이터가 있는 경우에만 쿼리를 활성화
   });
+
 
   return { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error };
 };
