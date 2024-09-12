@@ -5,6 +5,7 @@ import { useAuthStore } from "@/zustand/useAuth";
 import { formatDateTimeContent } from "@/app/utils/getConvertTime";
 import Button from "@/components/Button";
 import startChat from "@/app/utils/startChat";
+import MateInfoItem from "../../_components/mateInfoItem";
 // Type
 import { MatePostAllTypeForItem } from "@/types/mate.type";
 
@@ -65,15 +66,15 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
             </Link>
           </div>
 
+          {/* 본문 내용 */}
           <div className="flex flex-col" onClick={handleLoginCheck}>
-            {/* 본문 내용 */}
             <div className="cursor-pointer">
               <div className="flex flex-col">
                 <p className="w-[170px] overflow-hidden text-ellipsis whitespace-nowrap text-[1.125rem] font-semibold">
                   {post.title}
                 </p>
                 <div className="flex flex-col gap-y-[0.25rem]">
-                  <div className="mt-[0.37rem] flex gap-[0.5rem]">
+                  {/* <div className="mt-[0.37rem] flex gap-[0.5rem]">
                     <div className="h-[1.25rem] w-[1.25rem]">
                       <Image
                         src="/assets/svg/ic_location2.svg"
@@ -118,18 +119,23 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
                         {post.recruiting ? "모집중" : "모집 완료"}
                       </p>
                     </div>
+                  </div> */}
+                  <div className="mt-1">
+                    <MateInfoItem post={post} />
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className="mt-[0.69rem] flex">
-              <Button
-                className="w-full cursor-pointer rounded-full bg-mainColor px-4 py-[0.5rem] text-center font-semibold text-white"
-                onClick={handleStartChat}
-                text="채팅하기"
-              ></Button>
-            </div>
+          
+          {/* 세번째 줄 */}
+          {/* 채팅하기 버튼 */}
+          <div className="mt-[0.69rem] flex">
+            <Button
+              className="w-full cursor-pointer rounded-full bg-mainColor px-4 py-[0.5rem] text-center font-semibold text-white"
+              onClick={handleStartChat}
+              text="채팅하기"
+            ></Button>
+          </div>
           </div>
         </div>
       </div>
