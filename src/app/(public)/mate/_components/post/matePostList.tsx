@@ -5,7 +5,7 @@ import MatePostItem from "./matePostItem";
 import LoadingComponent from "@/components/loadingComponents/Loading";
 import MatePostListSkeleton from "../Skeleton_UI/matePostItemSkeleton";
 // Type
-import { useMatePosts } from "@/hooks/useMatePosts";
+import { useInfiniteMatePosts } from "@/hooks/useInfiniteMatePosts";
 import { Filters } from "@/zustand/useFilterStore";
 
 interface MatePostListProps {
@@ -18,7 +18,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
   const { geolocationData, isGeoPending, geoError } = useGeoData();
   const observerTarget = useRef<HTMLDivElement>(null);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useMatePosts({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteMatePosts({
     activeSearchTerm,
     sortBy,
     filters,
