@@ -12,7 +12,7 @@ import startChat from "@/app/utils/startChat";
 import PetCarousel from "../../_components/petCarousel/petCarousel";
 import MateInfoItem from "../../_components/mateInfoItem";
 import DetailUserCard from "./detailUserCard";
-
+import Button from "@/components/Button";
 
 import { MatePostAllType } from "@/types/mate.type";
 
@@ -45,30 +45,42 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
       {/* 제목 및 버튼 영역 */}
       <div className="flex flex-col">
         <div className="flex flex-col">
+          {/* 수정, 삭제, 상태변경 버튼 */}
           <div className="flex flex-col">
             {userId === post.user_id && (
               <div className="mb-[0.5rem] flex justify-end gap-x-[0.625rem]">
-                <button onClick={handleEditPost} className="text-sm text-editBtnColor hover:text-mainColor">
-                  수정
-                </button>
-                <button
+                <Button
+                  onClick={handleEditPost}
+                  className="cursor-pointer text-sm text-editBtnColor hover:text-mainColor"
+                  text="수정"
+                />
+                <Button
                   onClick={() => handleDeletePost(post.id)}
-                  className="text-sm text-delBtnColor hover:text-mainColor"
-                >
-                  삭제
-                </button>
-                <button
+                  className="cursor-pointer text-sm text-delBtnColor hover:text-mainColor"
+                  text="삭제"
+                />
+                <Button
+                  onClick={() => handleTogglePost(post.id)}
+                  className="cursor-pointer text-sm text-gray-700 hover:text-mainColor"
+                  text={post.recruiting === true ? "모집완료" : "모집중"}
+                />
+                {/* <button
                   onClick={() => handleTogglePost(post.id)}
                   className="text-sm text-gray-700 hover:text-mainColor"
                 >
                   {post.recruiting === true ? "모집완료" : "모집중"}
-                </button>
+                </button> */}
               </div>
             )}
+
+            {/* 제목, 일시 */}
             <h1 className="mx-auto break-words text-center text-[1.125rem] font-[600]">
               [{post.date_time ? formatDateTimeTitle(post.date_time) : ""}] {post.title}
             </h1>
           </div>
+
+          {/* 본문 내용 */}
+          {/* 산책 위치 지도 */}
           <div className="mt-[1.5rem]">
             <DynamicMapComponent
               center={{
@@ -94,9 +106,13 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
           </div>
           {/* 프로필 영역 */}
           <DetailUserCard post={post} handleStartChat={handleStartChat} />
+
+          {/* 산책 메이트 정보 */}
           <div className="border-b border-t border-gray-200 pb-[0.94rem] pl-[0.75rem] pt-[0.87rem]">
             <MateInfoItem post={post} />
           </div>
+
+          {/* 우천 취소 안내 */}
           <div className="mb-[0.87rem] ml-[0.75rem] mt-[0.37rem] flex items-center">
             <div className="h-[1rem] w-[1rem]">
               <Image
@@ -110,9 +126,13 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
             </div>
             <p className="ml-[0.5rem] text-[0.75rem] text-gray-400">우천 시 일정이 변경되거나 취소될 수 있어요.</p>
           </div>
+
+          {/* 내용, 본문 */}
           <div className="w-full border-b border-t border-[#EFEFF0] px-[0.75rem] pb-[0.75rem]">
             <p className="flex pt-[0.75rem] font-[400]">{post.content}</p>
           </div>
+
+          {/* 동물 정보 카드 */}
           <div className="mb-[5.95rem] mt-[0.75rem]">
             {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
           </div>
