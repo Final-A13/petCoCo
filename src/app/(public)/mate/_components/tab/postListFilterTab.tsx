@@ -20,7 +20,8 @@ const PostListFilterTab = ({
   handleNewSort
 }: PostListFilterTabProps) => {
   const isSelected = (chipSortBy: string) => {
-    return sortBy === chipSortBy || (sortBy === "" && chipSortBy === "all");
+    return sortBy === chipSortBy 
+    // || (sortBy === "" && chipSortBy === "all"); // 기본 값 all로 -> 중복 처리 제거
   };
 
   return (

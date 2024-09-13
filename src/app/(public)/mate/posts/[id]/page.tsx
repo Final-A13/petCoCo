@@ -8,7 +8,6 @@ const MatePost = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const { post, isPending, error} = useMatePost(id);
 
-
   if (!post) {
     return;
   }

@@ -13,7 +13,7 @@ interface UseMatePostsProps {
 }
 
 /**
- * @file useMatePosts.ts
+ * @file useInfiniteMatePosts.ts
  * @brief 현재 사용자의 위치와 필터를 기반으로 모든 사용자의 게시글을 무한 스크롤로 가져오는 훅
  * 
  * @param props.activeSearchTerm - 검색어
@@ -31,14 +31,14 @@ interface UseMatePostsProps {
  * * 산책 메이트의 메인 페이지에서 전체 게시글을 출력할 때 사용
  * * 검색과 필터링이 연관되어 있음
  * 
- * 사용 ) const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useMatePosts({
+ * 사용 ) const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteMatePosts({
  *  activeSearchTerm,
     sortBy,
     filters
   });
  */
 
-export const useMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePostsProps) => {
+export const useInfiniteMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePostsProps) => {
   const { geoData } = locationStore();
 
   const {
@@ -66,9 +66,8 @@ export const useMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePosts
       const userLat = geoData?.center.lat || 0;
       const userLng = geoData?.center.lng || 0;
 
-      const defaultSortBy = sortBy && sortBy !== "all" ? sortBy : "all";
       const response = await fetch(
-        `/api/mate?page=${pageParam}&limit=4&search=${activeSearchTerm}&sort=${defaultSortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
+        `/api/mate?page=${pageParam}&limit=4&search=${activeSearchTerm}&sort=${sortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
       );
       return response.json();
     },
@@ -76,8 +75,10 @@ export const useMatePosts = ({ activeSearchTerm, sortBy, filters }: UseMatePosts
       return lastPage.data.length === 4 ? allPages.length + 1 : undefined;
     },
     initialPageParam: 1,
-    enabled: !!geoData // 지오데이터가 있는 경우에만 쿼리를 활성화
+    enabled: !!geoData, // 지오데이터가 있는 경우에만 쿼리를 활성화
+    staleTime: 5 * 60 * 1000, 
   });
+
 
   return { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error };
 };
