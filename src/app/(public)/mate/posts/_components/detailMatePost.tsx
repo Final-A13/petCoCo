@@ -1,9 +1,6 @@
 "use client";
 
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-
 import { useAuthStore } from "@/zustand/useAuth";
 import { locationStore } from "@/zustand/locationStore";
 import Swal from "sweetalert2";
@@ -19,10 +16,8 @@ interface DetailMatePostProps {
 }
 
 const DetailMatePost = ({ post }: DetailMatePostProps) => {
-  const queryClient = useQueryClient();
   const { user } = useAuthStore();
   const userId = user && user.id;
-  const router = useRouter();
   // const [isMapLoading, setIsMapLoading] = useState(true);
   const initialState: Omit<MateNextPostType, "user_id" | "position"> = {
     title: post.title || "",
@@ -39,7 +34,7 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
   const [formPosts, setFormPosts] = useState<Omit<MateNextPostType, "user_id" | "position">>(initialState);
   const { position, setPosition } = locationStore();
   const { address } = useAddressData();
-  const [isEditing, setIstEditting] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const updatePost = {
     ...formPosts,
@@ -47,7 +42,11 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
     position,
     location: `POINT(${position.center.lng} ${position.center.lat})`
   };
-  const { deleteMutation, editMutation, toggleMutation } = usePostMutation({ updatePost, post });
+  const { deleteMutation, editMutation, toggleMutation } = usePostMutation({
+    updatePost,
+    post,
+    setIsEditing
+  });
 
   const handleDeletePost = (id: string) => {
     Swal.fire({
@@ -78,18 +77,18 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
       cancelButtonText: "취소"
     }).then((result) => {
       if (result.isConfirmed) {
-        setIstEditting(true);
+        setIsEditing(true);
       }
     });
   };
 
   const handleTogglePost = (id: string) => {
     toggleMutation.mutate(id);
-    setIstEditting(false);
+    setIsEditing(false);
   };
 
   const handleResetEditPost = () => {
-    setIstEditting(false);
+    setIsEditing(false);
     setPosition({
       center: {
         lat: Number(post.position?.center?.lat),

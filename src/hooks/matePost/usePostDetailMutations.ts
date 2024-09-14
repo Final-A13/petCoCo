@@ -1,20 +1,20 @@
 "use client";
 
+import { Dispatch, SetStateAction } from 'react';
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { MatePostAllType, PostUpdate } from "@/types/mate.type";
-import { useState } from "react";
 
 interface UserPostMutationProps {
   updatePost: PostUpdate;
   post: MatePostAllType;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
 }
 
-const usePostMutation = ({ updatePost, post }: UserPostMutationProps) => {
+const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProps) => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const [isEditing, setIstEditting] = useState<boolean>(false);
 
   // 게시물 수정, 삭제, 상태 변경
   const deletePost = async (id: string) => {
@@ -45,7 +45,7 @@ const usePostMutation = ({ updatePost, post }: UserPostMutationProps) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      setIstEditting(true);
+      setIsEditing(true);
     } catch (error) {
       console.error(error);
     }
@@ -116,7 +116,7 @@ const usePostMutation = ({ updatePost, post }: UserPostMutationProps) => {
         text: "게시글 수정이 완료되었습니다.",
         icon: "success"
       });
-      setIstEditting(false);
+      setIsEditing(false);
     },
     onError: (error) => {
       console.error("수정 중 오류 발생:", error);
