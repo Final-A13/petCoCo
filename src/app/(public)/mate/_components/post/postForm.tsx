@@ -44,6 +44,8 @@ const PostForm = () => {
   const handleUploadPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+   
+
     if (!isFormValid(formPosts)) {
       Swal.fire({
         title: "모든 항목을 입력해 주세요!",
@@ -52,6 +54,16 @@ const PostForm = () => {
       });
       return;
     }
+
+    // if ((new Date(formPosts.date_time) > new Date())) {
+    //   Swal.fire({
+    //     title: "유효하지 않은 날짜입니다!",
+    //     text: "선택한 날짜가 오늘보다 이후여야 합니다.",
+    //     icon: "error"
+    //   });
+    //   return;
+    // }
+  
 
     const formAllData = {
       post: {
