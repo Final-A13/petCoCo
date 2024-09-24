@@ -89,7 +89,7 @@ const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProp
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deletePost(id),
     onSuccess: () => {
-      queryClient.removeQueries({ queryKey: ["matePosts", post.id] });
+      queryClient.removeQueries({ queryKey: ["matePosts"] });
       Swal.fire({
         title: "완료!",
         text: "게시글 삭제가 완료되었습니다.",
