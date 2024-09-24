@@ -77,10 +77,6 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
           <label className="text-[1rem] font-[500]">산책 장소</label>
           <div>
             <DynamicMapEditComponent
-              // center={{
-              //   lat: Number(post.position?.center?.lat),
-              //   lng: Number(post.position?.center?.lng)
-              // }}
               isEditing={true}
               dbPosition={{
                 lat: Number(post.position?.center?.lat),
