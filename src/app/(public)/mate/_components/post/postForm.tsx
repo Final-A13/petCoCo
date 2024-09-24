@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { locationStore } from "@/zustand/locationStore";
 import { useAuthStore } from "@/zustand/useAuth";
 import { getConvertDate } from "../../../../utils/getConvertDate";
+import { isFormValid } from "../../isFormValid";
 import Swal from "sweetalert2";
 import PetForm from "./pet/petForm";
 // Type
@@ -38,17 +39,12 @@ const PostForm = () => {
   const { addMutation } = usePostAddMutation();
 
   // 폼 유효성 검사
-  const isFormValid = () => {
-    const { title, date_time, members, place_name, content, pet_id } = formPosts;
-    // pet_id가 배열인지 확인하고, 배열일 경우에만 길이를 체크
-    const isPetSelected = Array.isArray(pet_id) && pet_id.length > 0;
-    return !!(title && date_time && members && place_name && content && isPetSelected);
-  };
+
 
   const handleUploadPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!isFormValid()) {
+    if (!isFormValid(formPosts)) {
       Swal.fire({
         title: "모든 항목을 입력해 주세요!",
         text: "빠진 부분이 있는지 확인해 주세요.",
@@ -182,9 +178,9 @@ const PostForm = () => {
           <button
             type="submit"
             className={`w-full cursor-pointer rounded-full px-[1.5rem] py-[0.75rem] text-white ${
-              !isFormValid() ? "cursor-not-allowed bg-gray-400 opacity-50" : "bg-mainColor"
+              !isFormValid(formPosts) ? "cursor-not-allowed bg-gray-400 opacity-50" : "bg-mainColor"
             }`}
-            disabled={!isFormValid()}
+            disabled={!isFormValid(formPosts)}
           >
             작성완료
           </button>
