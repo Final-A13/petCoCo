@@ -1,13 +1,12 @@
-import React, { useCallback, useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import styles from "./styles/AnimalCarousel.module.css";
-import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
-import { usePrevNextButtons } from "./components/AnimalCarouselArrowButtons";
-import { DotButton, useDotButton } from "./components/AnimalCarouselDotButtons";
+import { EmblaOptionsType } from "embla-carousel";
 import { useQuery } from "@tanstack/react-query";
 import LoadingComponent from "../loadingComponents/Loading";
 import Image from "next/image";
+import useStopAutoplayOnInteraction from "@/hooks/useStopAutoplayOnInteraction";
 type AnimalData = {
   age: string;
   careAddr: string;
@@ -84,17 +83,7 @@ const AnimalCarousel: React.FC<AnimalCarouselProps> = ({ slides, options }) => {
   const autoplay = Autoplay({ delay: 3000, stopOnInteraction: false });
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [autoplay]);
 
-  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
-
-  useEffect(() => {
-    if (emblaApi) {
-      emblaApi.on("pointerDown", () => {
-        const autoplay = emblaApi?.plugins()?.autoplay;
-        if (!autoplay) return;
-        autoplay.stop();
-      });
-    }
-  }, [emblaApi]);
+  useStopAutoplayOnInteraction(emblaApi);
 
   if (isLoading) return <LoadingComponent />;
   if (error) return <div className="py-8 text-center text-red-500">Error: {(error as Error).message}</div>;
@@ -146,11 +135,11 @@ const AnimalCarousel: React.FC<AnimalCarouselProps> = ({ slides, options }) => {
               {randomAnimals.map((animal, index) => (
                 <div className={`${styles.embla__slide} w-full flex-shrink-0`} key={index}>
                   <div className="m-2 rounded-lg bg-white p-2 shadow-md">
-                    <h2 className="text-14 mb-1 text-base font-semibold">
+                    <h2 className="text-14 mb-1 text-base font-semibold lg:text-center">
                       {animal.careNm}(📞{animal.officetel})
                     </h2>
-                    <p className="text-12 mb-4 truncate font-normal">{animal.careAddr}</p>
-                    <div className="flex">
+                    <p className="text-12 mb-4 truncate font-normal lg:text-center">{animal.careAddr}</p>
+                    <div className="flex lg:items-center lg:justify-center">
                       <Image
                         src={animal.popfile}
                         alt={animal.kindCd}

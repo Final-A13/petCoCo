@@ -28,7 +28,7 @@ export default function Home() {
       </div>
 
       {/* 게시글 영역 */}
-      <div className="mb-4 flex w-full flex-col bg-background px-2">
+      <div className="mb-4 flex w-full flex-col bg-background px-2 lg:grid lg:grid-cols-2 lg:gap-16 lg:px-28 lg:pb-10">
         {/* 인기글 */}
         <div className="mt-6 w-full rounded-xl bg-white p-4">
           <div>
@@ -62,12 +62,14 @@ export default function Home() {
         {/* 산책메이트 */}
         <div className="mt-6 w-full rounded-xl bg-white p-4">
           <h2 className="pb-2 text-xl font-bold text-[#11BBB0] hover:underline">산책메이트를 찾아요!</h2>
-          <MateCarousel slides={MateSLIDES} options={MateOPTIONS} />
+          <div className="mb-16 mt-1 w-full rounded-lg bg-white">
+            <MateCarousel slides={MateSLIDES} options={MateOPTIONS} />
+          </div>
         </div>
 
         {/* 유기견 배너+캐러셀*/}
         <div className="mt-6 flex w-auto flex-col items-center justify-center">
-          <div className="mb-16 mt-1 w-full rounded-lg bg-white">
+          <div className="mb-16 mt-1 w-full rounded-lg bg-white lg:mb-0">
             <AnimalCarousel slides={AnimalSLIDES} options={AnimalOPTIONS} />
           </div>
         </div>
