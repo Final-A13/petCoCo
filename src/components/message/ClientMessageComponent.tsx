@@ -9,36 +9,9 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { GroupedMessages } from "./Type_MessageComponents";
 
 const supabase = createClient();
-
-interface Message {
-  id: string;
-  sender_id: string;
-  receiver_id: string;
-  content: string;
-  created_at: string;
-  read: boolean;
-  sender_nickname: string;
-  receiver_nickname: string;
-  nickname: string;
-  profile_img: string;
-  image_url: string;
-  sender_profile?: {
-    id: string;
-    nickname: string;
-    profile_img: string;
-  };
-  receiver_profile?: {
-    id: string;
-    nickname: string;
-    profile_img: string;
-  };
-}
-
-interface GroupedMessages {
-  [userId: string]: Message[];
-}
 
 export default function ClientMessageComponent() {
   const router = useRouter();
