@@ -18,11 +18,10 @@ const SearchBar = ({ onSubmit, value, setSearchTerm }: SearchBarProps) => {
           value={value}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        {/* setSearchTerm */}
+
         <button type="submit" className="">
           <div className="w-[1.5rem] h-[1.5rem]">
             <Image src="/assets/svg/search.svg" alt="검색 아이콘" width={24} height={24} className="w-full h-full object-cover" />
-          {/* <img src="/assets/svg/search.svg" /> */}
           </div>
         </button>
       </form>

@@ -1,6 +1,6 @@
 import { createClient } from "@/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
-import { MateNextPostType, Pets, UsersPetType } from "@/types/mate.type";
+import { MateNextPostType, UsersPetType } from "@/types/mate.type";
 import { UserType } from "@/types/auth.type";
 import { getTimeRange } from "@/app/(public)/mate/getTimeRange";
 
@@ -41,14 +41,15 @@ export const GET = async (request: NextRequest) => {
         (post) =>
           post.content.toLowerCase().includes(search.toLowerCase()) ||
           post.title.toLowerCase().includes(search.toLowerCase()) ||
-          post.place_name.toLowerCase().includes(search.toLowerCase())
+          post.place_name.toLowerCase().includes(search.toLowerCase()) ||
+          (post.users && post.users?.nickname?.toLowerCase().includes(search.toLowerCase()))
       );
     }
 
     // 정렬 조건 적용
     if (filter.sort === "recruitment_end") {
       validPosts = validPosts.filter((post) => {
-        return new Date(post.date_time).getTime() >= new Date().getTime() + (2 * 60 * 60 * 1000); // 모집 기간 : 산책 시간까지 2시간 이내로 남았을 경우 보여주지 않음
+        return new Date(post.date_time).getTime() >= new Date().getTime() + 2 * 60 * 60 * 1000; // 모집 기간 : 산책 시간까지 2시간 이내로 남았을 경우 보여주지 않음
       });
 
       validPosts = validPosts

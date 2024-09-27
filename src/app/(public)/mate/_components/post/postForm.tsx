@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { locationStore } from "@/zustand/locationStore";
 import { useAuthStore } from "@/zustand/useAuth";
@@ -12,6 +10,7 @@ import PetForm from "./pet/petForm";
 // Type
 import { MateNextPostType } from "@/types/mate.type";
 import { useAddressData } from "@/hooks/useAddressData";
+import usePostAddMutation from "@/hooks/matePost/usePostAddMutation";
 
 // 동적 로딩 설정
 const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_components/map/mapForm"), { ssr: false });
@@ -19,8 +18,6 @@ const DynamicMapComponent = dynamic(() => import("@/app/(public)/mate/_component
 const PostForm = () => {
   const { user } = useAuthStore();
   const userId: string = user && user.id;
-  const queryClient = useQueryClient();
-  const router = useRouter();
   const { position } = locationStore();
   const { isPending, error, roadAddress, address } = useAddressData();
 
@@ -38,44 +35,7 @@ const PostForm = () => {
   };
 
   const [formPosts, setFormPosts] = useState<Omit<MateNextPostType, "user_id">>(initialState);
-
-  // 게시물 등록
-  const addPost = async (formAllData: { post: MateNextPostType }) => {
-    try {
-      const response = await fetch(`/api/mate`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          post_data: formAllData.post
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const addMutation = useMutation({
-    mutationFn: async (formAllData: { post: MateNextPostType }) => await addPost(formAllData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["matePosts"] });
-      Swal.fire({
-        title: "완료!",
-        text: "게시글이 등록되었습니다!",
-        icon: "success"
-      });
-      router.replace("/mate");
-    }
-  });
+  const { addMutation } = usePostAddMutation();
 
   // 폼 유효성 검사
   const isFormValid = () => {
@@ -166,7 +126,7 @@ const PostForm = () => {
               className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
               value={formPosts.members || ""}
               onChange={(e) => setFormPosts({ ...formPosts, members: e.target.value })}
-              min="0"
+              min="1"
             />
           </div>
         </div>

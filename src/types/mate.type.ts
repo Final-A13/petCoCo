@@ -1,4 +1,5 @@
 import { UserType } from "./auth.type";
+import { Position } from "./position.type";
 import { Json, Tables } from "./supabase";
 export type MatePostType = Tables<"matePosts">;
 export type matepostpetsType = Tables<"matepostpets">;
@@ -37,7 +38,7 @@ export type MatePostAllTypeForItem = MatePostType & {
     errMsg: string | null;
     isLoading: boolean;
   };
-  users: UserType[];
+  users: UserType;
   distance: number;
 };
 
@@ -87,7 +88,7 @@ export type PostsResponse = {
   totalPages: number;
 };
 
-export type valiMatePostAllTypeForItem = {
+export type ValiMatePostAllTypeForItem = {
   id: string;
   created_at: string;
   title: string;
@@ -100,12 +101,21 @@ export type valiMatePostAllTypeForItem = {
   address: string;
   place_name: string;
   location: unknown;
-  users: Json;
+  users: UserType;
   distance: number;
   usersPet: Json | null;
   pet_id: Json;
 };
 
-export type PetId = {
+export type PostUpdate = {
+  address: any;
+  position: Position;
+  location: string;
+  content: string | null;
+  date_time: string | null;
+  members: string | null;
   pet_id: Json;
+  place_name: string | null;
+  recruiting: boolean | null;
+  title: string | null;
 }

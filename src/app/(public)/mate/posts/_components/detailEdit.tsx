@@ -17,13 +17,7 @@ interface DetailEditProps {
   setFormPosts: Dispatch<SetStateAction<Omit<MateNextPostType, "position" | "user_id">>>;
 }
 
-const DetailEdit = ({
-  post,
-  handleUpdatePost,
-  handleResetEditPost,
-  formPosts,
-  setFormPosts,
-}: DetailEditProps) => {
+const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, setFormPosts }: DetailEditProps) => {
   const { isPending, error, roadAddress } = useAddressData();
 
   return (
@@ -74,6 +68,7 @@ const DetailEdit = ({
               className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
               value={formPosts.members || ""}
               onChange={(e) => setFormPosts({ ...formPosts, members: e.target.value })}
+              min="1"
             />
           </div>
         </div>
@@ -98,7 +93,7 @@ const DetailEdit = ({
           <div className="mb-[2rem] flex flex-col gap-y-[0.5rem]">
             <p className="text-[1rem] font-[500]">주소</p>
             <div className="border-b border-subTitle2 p-[0.75rem]">
-              <p className="text-subTitle1">
+              <div className="text-subTitle1">
                 {isPending ? (
                   <p>주소 정보를 찾는 중입니다...</p>
                 ) : error ? (
@@ -106,7 +101,7 @@ const DetailEdit = ({
                 ) : (
                   <p>{roadAddress}</p>
                 )}
-              </p>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-y-[0.5rem]">
