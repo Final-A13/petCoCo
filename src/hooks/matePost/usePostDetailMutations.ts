@@ -64,8 +64,7 @@ const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProp
       });
 
       if (result.isConfirmed) {
-        Swal.fire("완료!", "모집 상태가 변경되었습니다!", "success");
-
+        
         const response = await fetch(`/api/mate/post/${post.id}`, {
           method: "PUT",
           headers: {
@@ -73,13 +72,13 @@ const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProp
           },
           body: JSON.stringify({ recruiting: !post.recruiting })
         });
-
+        
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-      } else if (result.isDenied) {
-        Swal.fire("오류!", "모집상태가 변경되지 않았습니다.", "error");
-      }
+        
+        Swal.fire("완료!", "모집 상태가 변경되었습니다!", "success");
+      } 
     } catch (error) {
       console.error(error);
       Swal.fire("오류!", "모집상태가 변경되지 않았습니다.", "error");
@@ -88,6 +87,7 @@ const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProp
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deletePost(id),
+    retry: 1,
     onSuccess: () => {
       queryClient.removeQueries({ queryKey: ["matePosts"] });
       Swal.fire({
@@ -109,6 +109,7 @@ const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProp
 
   const editMutation = useMutation({
     mutationFn: (id: string) => editPost(id),
+    retry: 1,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["matePosts"] });
       Swal.fire({
@@ -130,6 +131,7 @@ const usePostMutation = ({ updatePost, post, setIsEditing}: UserPostMutationProp
 
   const toggleMutation = useMutation({
     mutationFn: (id: string) => togglePost(id),
+    retry: 1,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["matePosts"] });
     }
