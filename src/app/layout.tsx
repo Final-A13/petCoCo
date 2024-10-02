@@ -37,7 +37,7 @@ export default function RootLayout({
       <Head>
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <body className={`mx-auto flex min-h-screen max-w-[420px] flex-col bg-white`}>
+      <body className={`mx-auto flex min-h-screen max-w-[420px] flex-col bg-white lg:max-w-full`}>
         <QueryProvider>
           <Header />
           <main className="mx-auto w-full flex-grow">{children}</main>

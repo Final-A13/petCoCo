@@ -11,10 +11,10 @@ import useEmblaCarousel from "embla-carousel-react";
 import styles from "../petCarousel/styles/css/petCarousel.module.css";
 
 import { UsersPetType } from "@/types/usersPet.type";
-import useEmblaSelect from "@/hooks/useEmblaSelect";
 import { MatePostAllType } from "@/types/mate.type";
 import { EmblaOptionsType } from "embla-carousel";
 import { queryKeys } from "@/lib/queryKeys";
+import useEmblaSelect from "@/hooks/useEmblaSelect";
 
 type PropType = {
   post: MatePostAllType;
@@ -48,6 +48,14 @@ const PetCarousel: React.FC<PropType> = (props) => {
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   useEmblaSelect(emblaApi);
+
+  if (isPending)
+    return (
+      <div>
+        {" "}
+        <LoadingComponent />
+      </div>
+    );
 
   if (isPending)
     return (
