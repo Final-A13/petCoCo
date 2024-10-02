@@ -11,6 +11,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import styles from "../petCarousel/styles/css/petCarousel.module.css";
 
 import { UsersPetType } from "@/types/usersPet.type";
+import useEmblaSelect from "@/hooks/useEmblaSelect";
 import { MatePostAllType } from "@/types/mate.type";
 import { EmblaOptionsType } from "embla-carousel";
 import { queryKeys } from "@/lib/queryKeys";
@@ -46,18 +47,7 @@ const PetCarousel: React.FC<PropType> = (props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay(autoplayOptions)]);
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
-  const handleSelect = useCallback(() => {
-    if (emblaApi) {
-      const selectedIndex = emblaApi.selectedScrollSnap();
-      emblaApi.scrollTo(selectedIndex);
-    }
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (emblaApi) {
-      emblaApi.on("select", handleSelect);
-    }
-  }, [emblaApi, handleSelect]);
+  useEmblaSelect(emblaApi);
 
   if (isPending)
     return (
