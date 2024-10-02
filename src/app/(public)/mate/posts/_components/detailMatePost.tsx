@@ -10,6 +10,7 @@ import { useAddressData } from "@/hooks/useAddressData";
 import usePostMutation from "@/hooks/matePost/usePostDetailMutations";
 // Type
 import { MateNextPostType, MatePostAllType } from "@/types/mate.type";
+import { isFormValid } from "../../isFormValid";
 
 interface DetailMatePostProps {
   post: MatePostAllType;
@@ -100,6 +101,16 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
 
   const handleUpdatePost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!isFormValid(formPosts)) {
+      Swal.fire({
+        title: "모든 항목을 입력해 주세요!",
+        text: "빠진 부분이 있는지 확인해 주세요.",
+        icon: "warning"
+      });
+      return;
+    }
+
     editMutation.mutate(post.id);
   };
 
