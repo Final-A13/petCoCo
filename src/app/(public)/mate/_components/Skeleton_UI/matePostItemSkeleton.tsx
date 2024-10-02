@@ -15,7 +15,7 @@ const MatePostItemSkeleton = () => {
             {/* 두번째 줄 */}
             <div className="mt-[0.5rem] flex justify-around">
               {/* 사용자 프로필 */}
-              <div className="mt-4 flex flex-col items-center gap-[0.5rem]">
+              <div className="mr-[2px] mt-4 flex flex-col items-center gap-[0.5rem]">
                 <div className="h-[3.75rem] w-[3.75rem] rounded-full bg-gray-200"></div>
                 <div className="h-5 w-20 rounded-full bg-gray-200 px-[0.62rem] py-[0.12rem]"></div>
               </div>
