@@ -1,6 +1,7 @@
 import { MateNextPostType } from "@/types/mate.type";
+import { FormPostsType } from "./_components/common/addressInfoField";
 
-export const isFormValid = (formPosts: Omit<MateNextPostType, "user_id">) => {
+export const isFormValid = (formPosts: FormPostsType) => {
 
   const { title, date_time, members, place_name, content, pet_id } = formPosts;
   // pet_id가 배열인지 확인하고, 배열일 경우에만 길이를 체크
