@@ -56,7 +56,7 @@ const PetCarousel: React.FC<PropType> = (props) => {
         <LoadingComponent />
       </div>
     );
-
+  
   if (isPending)
     return (
       <div>
