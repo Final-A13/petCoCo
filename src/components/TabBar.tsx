@@ -47,12 +47,14 @@ const TabBar: React.FC = () => {
     }
   ];
 
-  if (pathname === "/message" || pathname === "/message/list") {
-    return null;
-  }
+  // if (pathname === "/message" || pathname === "/message/list") {
+  //   return null;
+  // }
+
+  const isMessagePath = pathname.startsWith("/message");
 
   return (
-    <nav className="fixed bottom-0 z-40 w-full max-w-[420px] border border-t-bgGray500 bg-white bg-opacity-80 px-2 pb-[0.7rem] pt-[0.3rem] lg:left-0 lg:top-0 lg:h-full lg:w-[180px] lg:max-w-none lg:flex-col lg:justify-start lg:pt-[5rem]">
+    <nav className="${isMessagePath ? 'hidden lg:flex' : 'flex'} fixed bottom-0 z-40 w-full max-w-[420px] border border-t-bgGray500 bg-white bg-opacity-80 px-2 pb-[0.7rem] pt-[0.3rem] lg:left-0 lg:top-0 lg:h-full lg:w-[180px] lg:max-w-none lg:flex-col lg:justify-start lg:border-r lg:border-t-0 lg:pt-[5rem]">
       <div className="flex justify-between gap-x-[1.2rem] px-[0.8rem] py-[0.2rem] lg:flex-col lg:items-start lg:gap-y-[2rem]">
         {menuItems.map((item) => (
           <Link key={item.path} href={item.path} passHref>
