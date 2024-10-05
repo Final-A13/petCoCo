@@ -32,7 +32,7 @@ export const useUserPetsData = () => {
   } = useQuery<UsersPetType[]>({
     queryKey: queryKeys.userPets(userId),
     queryFn: async () => {
-      const response = await fetch(`/api/mypage/${userId}/mypetprofile`);
+      const response = await fetch(`/api/usersPetInfo/${userId}`);
       return response.json();
     },
     enabled: !!userId
