@@ -8,28 +8,41 @@ interface TextAreaFieldProps {
   handleInputChange: (
     fieldName: keyof FormPostsType
   ) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  labelName?: string;
   placeholder?: string;
-  className?: string;
+  labelClassName?: string;
+  textareaClassName?: string;
   maxLength?: number;
   id: string;
 }
 
-const TextAreaField = ({ formPosts, handleInputChange, value, fieldName, placeholder, className, maxLength, id}: TextAreaFieldProps) => {
+const TextAreaField = ({
+  formPosts,
+  handleInputChange,
+  value,
+  fieldName,
+  labelName,
+  placeholder,
+  labelClassName,
+  textareaClassName,
+  maxLength,
+  id
+}: TextAreaFieldProps) => {
   return (
-    <div className="mb-[1rem] mt-[1.06rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
-      <label htmlFor="content" className="text-[1rem] font-[600]">
-        내용
+    <>
+      <label htmlFor={id} className={labelClassName}>
+        {labelName}
       </label>
       <textarea
         value={value}
         onChange={handleInputChange(fieldName)}
         placeholder={placeholder}
-        className={className}
+        className={textareaClassName}
         maxLength={maxLength}
         id={id}
       ></textarea>
       <p className="flex justify-end text-subTitle2">{formPosts.content?.length}/200</p>
-    </div>
+    </>
   );
 };
 
