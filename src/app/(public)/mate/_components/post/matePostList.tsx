@@ -3,7 +3,7 @@ import { useCallback, useRef, useEffect } from "react";
 import { useGeoData } from "@/hooks/useGeoData";
 import MatePostItem from "./matePostItem";
 import LoadingComponent from "@/components/loadingComponents/Loading";
-import MatePostListSkeleton from "../Skeleton_UI/matePostItemSkeleton";
+import MatePostItemSkeleton from "../Skeleton_UI/matePostItemSkeleton";
 // Type
 import { useInfiniteMatePosts } from "@/hooks/useInfiniteMatePosts";
 import { Filters } from "@/zustand/useFilterStore";
@@ -21,7 +21,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteMatePosts({
     activeSearchTerm,
     sortBy,
-    filters,
+    filters
   });
 
   const handleObserver = useCallback(
@@ -56,10 +56,10 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   if (isPending) {
     return (
-      <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
+      <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem] ">
         <div className="flex w-full flex-col gap-y-[1.5rem]">
-        <div className="w-full">
-          <MatePostListSkeleton />
+          <div className="w-full">
+            <MatePostItemSkeleton />
           </div>
         </div>
       </div>
@@ -69,15 +69,15 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
   if (isGeoPending) {
     return (
       <div className="mt-[30%] flex h-full w-full flex-col items-center justify-center">
-      <div className="text-mainColor">사용자의 위치를 계산하는 중입니다 🐶</div>
-      <LoadingComponent />
-    </div>
+        <div className="text-mainColor">사용자의 위치를 계산하는 중입니다 🐶</div>
+        <LoadingComponent />
+      </div>
     );
   }
 
   return (
     <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
-      <div className="flex w-full flex-col gap-y-[1.5rem]">
+      <div className="flex w-full flex-col gap-y-[1.5rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 3xl:grid-cols-4 3xl:gap-4">
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post.id} className="w-full">
@@ -97,7 +97,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
       <div ref={observerTarget} className="h-10 w-full">
         {isFetchingNextPage && (
           <div className="flex justify-center">
-            <div className="h-8 w-8 mt-10 animate-spin rounded-full border-t-4 border-solid border-mainColor"></div>
+            <div className="mt-10 h-8 w-8 animate-spin rounded-full border-t-4 border-solid border-mainColor"></div>
           </div>
         )}
       </div>
