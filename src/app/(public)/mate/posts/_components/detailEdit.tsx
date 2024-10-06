@@ -47,17 +47,6 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
         {/* 제목, 산책 일시, 모집 인원 수 */}
         <div className="mt-[2.69rem] flex flex-col justify-center px-[1.5rem]">
           <div className="mb-[1rem] flex flex-col gap-y-[0.5rem]">
-            <label htmlFor="title" className="w-full text-[1rem] font-[500]">
-              제목
-            </label>
-            {/* <input
-              type="text"
-              value={formPosts.title || ""}
-              onChange={handleInputChange("title")}
-              placeholder="제목을 입력해 주세요"
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-              id="title"
-            /> */}
             <TextInputField
               type="text"
               value={formPosts.title || ""}
@@ -65,52 +54,36 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
               fieldName="title"
               handleInputChange={handleInputChange}
               placeholder="제목을 입력해 주세요"
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              labelName="제목"
+              labelClassName="w-full text-[1rem] font-[500]"
               id="title"
             />
           </div>
           <div className="mb-[1rem] flex w-full flex-col gap-y-[0.5rem]">
-            <label htmlFor="date_time" className="w-fulltext-[1rem] font-[500]">
-              산책 일시
-            </label>
-            {/* <input
-              type="datetime-local"
-              value={formPosts.date_time || ""}
-              onChange={handleInputChange("date_time")}
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem] text-subTitle1"
-              id="date_time"
-            /> */}
             <TextInputField
               type="datetime-local"
               value={formPosts.date_time || ""}
               formPosts={formPosts}
               fieldName="date_time"
               handleInputChange={handleInputChange}
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              labelName="산책 일시"
+              labelClassName="w-full text-[1rem] font-[500]"
               id="date_time"
             />
           </div>
           <div className="flex flex-col gap-y-[0.5rem]">
-            <label htmlFor="members" className="text-[1rem] font-[500]">
-              모집 인원 수
-            </label>
-            {/* <input
-              type="number"
-              value={formPosts.members || ""}
-              onChange={handleInputChange("members")}
-              placeholder="0명"
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-              min="1"
-              id="members"
-            /> */}
             <TextInputField
               type="number"
               value={formPosts.members || ""}
               formPosts={formPosts}
               fieldName="members"
               handleInputChange={handleInputChange}
-              placeholder="0명"
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              placeholder="0"
+              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              labelName="모집 인원 수"
+              labelClassName="w-full text-[1rem] font-[500]"
               min={1}
               id="members"
             />
@@ -145,14 +118,6 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
             </div>
           </div>
           <div className="flex flex-col gap-y-[0.5rem]">
-            <label>장소 정보</label>
-            {/* <input
-              type="text"
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-              value={formPosts.place_name || ""}
-              onChange={(e) => setFormPosts({ ...formPosts, place_name: e.target.value })}
-              placeholder="장소 정보를 추가로 기입해 주세요"
-            /> */}
             <TextInputField
               type="text"
               value={formPosts.place_name || ""}
@@ -160,37 +125,28 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
               fieldName="place_name"
               handleInputChange={handleInputChange}
               placeholder="장소 정보를 추가로 기입해 주세요. ex) 00공원 등"
-              className="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+              labelName="장소 정보"
+              labelClassName="w-full text-[1rem] font-[500]"
               id="place_name"
             />
-          </div>
+          </div>  
         </div>
         {/* 내용 */}
-        <label htmlFor="content" className="text-[1rem] font-[600]">
-            내용
-          </label>
-        {/* <div className="mb-[1rem] mt-[1.06rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
-          
-          <textarea
+        <div className="mb-[1rem] mt-[1.06rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
+          <TextAreaField
             value={formPosts.content || ""}
-            onChange={(e) => setFormPosts({ ...formPosts, content: e.target.value })}
+            formPosts={formPosts}
+            fieldName="content"
+            handleInputChange={handleInputChange}
+            labelName="내용"
             placeholder="선호하는 산책 동선이나 총 예상 산책 시간, 혹은 특별한 요구 사항이 있다면 적어주세요."
-            className="h-[6.0625rem] w-full resize-none rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-            id="content"
+            labelClassName="text-[1rem] font-[600]"
+            textareaClassName="h-[6.0625rem] w-full resize-none overflow-x-scroll rounded-[0.5rem] border border-subTitle2 p-[0.75rem] scrollbar-hide"
             maxLength={199}
-          ></textarea>
-          <p className="flex justify-end text-subTitle2">{formPosts.content?.length}/200</p>
-        </div> */}
-        <TextAreaField
-          value={formPosts.content || ""}
-          formPosts={formPosts}
-          fieldName="content"
-          handleInputChange={handleInputChange}
-          placeholder="선호하는 산책 동선이나 총 예상 산책 시간, 혹은 특별한 요구 사항이 있다면 적어주세요."
-          className="h-[6.0625rem] w-full resize-none overflow-x-scroll rounded-[0.5rem] border border-subTitle2 p-[0.75rem] scrollbar-hide"
-          maxLength={199}
-          id="content"
-        />
+            id="content"
+          />
+        </div>
 
         <PetEdit post={post} setFormPosts={setFormPosts} />
         <div className="mb-[2rem] mt-[2rem] flex flex-col gap-y-[0.5rem]">
