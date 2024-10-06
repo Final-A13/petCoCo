@@ -10,6 +10,7 @@ import MatePostList from "./post/matePostList";
 import PlusIcon from "@/app/utils/plusIcon";
 //Type 
 import { Filters } from "@/zustand/useFilterStore";
+import FloatingButton from "./filter/floatingButton";
 
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -42,6 +43,10 @@ const MateContent = () => {
       };
     };
 
+  const handleMovePage = () => {
+    router.push("/mate/filter"); 
+  } 
+
   useEffect(() => {
     const newFilters = { ...filters };
     searchParams.forEach((value, key) => {
@@ -53,8 +58,8 @@ const MateContent = () => {
   }, [searchParams]);
 
   return (
-    <div className="relative mx-auto min-h-screen max-w-[420px]">
-      <div className="flex w-full">
+    <div className="relative mx-auto min-h-screen max-w-[420px] lg:max-w-none">
+      <div className="flex w-full ">
         <div className="w-full">
           <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide">
             <PostListFilterTab
@@ -76,7 +81,16 @@ const MateContent = () => {
           </div>
         </div>
       </div>
+      <FloatingButton 
+        img_src="/assets/svg/filter-lines-color.svg" 
+        alt="filter icon" 
+        buttonClassName="lg:hidden fixed bottom-[10.815rem] z-50 cursor-pointer rounded-full bg-gray-200 p-[0.81rem] shadow-plusBtn"
+        buttonStyle={{right: "calc(50% - 187.5px + 0.56rem)"}}
+        onClick={handleMovePage}
+      />
+      <div className="lg:hidden">
       <PlusIcon handleLoginCheck={handleLoginCheck} />
+      </div>
     </div>
   );
 }
