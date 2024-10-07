@@ -116,7 +116,7 @@ const PostForm = () => {
             />
           </div>
           {/* 반응형 div */}
-          <div className="">
+          <div>
             <div className="flex flex-col lg:flex-row lg:gap-x-20">
               {/* 산책 일시 */}
               <div className="lg:w-50% mb-[1rem] flex w-full flex-col gap-y-[0.5rem]">
@@ -207,8 +207,8 @@ const PostForm = () => {
 
         {/* 반려동물 정보 등록 */}
         <PetForm setFormPosts={setFormPosts} />
-        {/* 취소하기 버튼 */}
         <div className="lg:flex lg:flex-row lg:justify-center lg:gap-x-[1.5rem] lg:mt-10">
+        {/* 취소하기 버튼 */}
           <div className="hidden lg:w-[20.4375rem] lg:flex lg:items-center lg:justify-center lg:h-full">
             <Link
               href="/mate"

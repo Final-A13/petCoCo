@@ -60,77 +60,84 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
               id="title"
             />
           </div>
-          <div className="mb-[1rem] flex w-full flex-col gap-y-[0.5rem]">
-            <TextInputField
-              type="datetime-local"
-              value={formPosts.date_time || ""}
-              formPosts={formPosts}
-              fieldName="date_time"
-              handleInputChange={handleInputChange}
-              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-              labelName="산책 일시"
-              labelClassName="w-full text-[1rem] font-[500]"
-              id="date_time"
-            />
-          </div>
-          <div className="flex flex-col gap-y-[0.5rem]">
-            <TextInputField
-              type="number"
-              value={formPosts.members || ""}
-              formPosts={formPosts}
-              fieldName="members"
-              handleInputChange={handleInputChange}
-              placeholder="0"
-              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-              labelName="모집 인원 수"
-              labelClassName="w-full text-[1rem] font-[500]"
-              min={1}
-              id="members"
-            />
-          </div>
-        </div>
-        {/* 산책 장소 */}
-        <div className="mb-[1rem] mt-[1.94rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
-          <label className="text-[1rem] font-[500]">산책 장소</label>
+          {/* 반응형 div */}
           <div>
-            <DynamicMapEditComponent
-              isEditing={true}
-              dbPosition={{
-                lat: Number(post.position?.center?.lat),
-                lng: Number(post.position?.center?.lng)
-              }}
-            />
-          </div>
-        </div>
-        <div className="px-[1.5rem]">
-          <div className="mb-[2rem] flex flex-col gap-y-[0.5rem]">
-            <p className="text-[1rem] font-[500]">주소</p>
-            <div className="border-b border-subTitle2 p-[0.75rem]">
-              <div className="text-subTitle1">
-                {isPending ? (
-                  <p>주소 정보를 찾는 중입니다...</p>
-                ) : error ? (
-                  <p>주소 정보를 가져오는 데 실패했습니다.</p>
-                ) : (
-                  <p>{roadAddress}</p>
-                )}
+            <div className="flex flex-col lg:flex-row lg:gap-x-20">
+              {/* 산책 일시 */}
+              <div className="lg:w-50% mb-[1rem] flex w-full flex-col gap-y-[0.5rem]">
+                <TextInputField
+                  type="datetime-local"
+                  value={formPosts.date_time || ""}
+                  formPosts={formPosts}
+                  fieldName="date_time"
+                  handleInputChange={handleInputChange}
+                  textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+                  labelName="산책 일시"
+                  labelClassName="w-full text-[1rem] font-[500]"
+                  id="date_time"
+                />
+              </div>
+              {/* 모집 인원 수 */}
+              <div className="lg:w-50% flex w-full flex-col gap-y-[0.5rem]">
+                <TextInputField
+                  type="number"
+                  value={formPosts.members || ""}
+                  formPosts={formPosts}
+                  fieldName="members"
+                  handleInputChange={handleInputChange}
+                  placeholder="0"
+                  textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+                  labelName="모집 인원 수"
+                  labelClassName="w-full text-[1rem] font-[500]"
+                  min={1}
+                  id="members"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col lg:flex-row lg:gap-x-20">
+              {/* 산책 장소 */}
+              <div className="lg:w-50% mb-[1rem] mt-[1.94rem] flex w-full flex-col gap-y-[0.5rem]">
+                <label className="text-[1rem] font-[500]">산책 장소</label>
+                <div>
+                  <DynamicMapEditComponent
+                    isEditing={true}
+                    dbPosition={{
+                      lat: Number(post.position?.center?.lat),
+                      lng: Number(post.position?.center?.lng)
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="lg:w-50% w-full lg:mt-8">
+                <div className="mb-[2rem] flex flex-col gap-y-[0.5rem]">
+                  <p className="text-[1rem] font-[500]">주소</p>
+                  <div className="border-b border-subTitle2 p-[0.75rem] text-subTitle1">
+                    {isPending ? (
+                      <p>주소 정보를 찾는 중입니다...</p>
+                    ) : error ? (
+                      <p>주소 정보를 가져오는 데 실패했습니다.</p>
+                    ) : (
+                      <p>{roadAddress}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-y-[0.5rem]">
+                  <TextInputField
+                    type="text"
+                    value={formPosts.place_name || ""}
+                    formPosts={formPosts}
+                    fieldName="place_name"
+                    handleInputChange={handleInputChange}
+                    placeholder="장소 정보를 추가로 기입해 주세요. ex) 00공원 등"
+                    textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
+                    labelName="장소 정보"
+                    labelClassName="w-full text-[1rem] font-[500]"
+                    id="place_name"
+                  />
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-y-[0.5rem]">
-            <TextInputField
-              type="text"
-              value={formPosts.place_name || ""}
-              formPosts={formPosts}
-              fieldName="place_name"
-              handleInputChange={handleInputChange}
-              placeholder="장소 정보를 추가로 기입해 주세요. ex) 00공원 등"
-              textareaClassName="rounded-[0.5rem] border border-subTitle2 p-[0.75rem]"
-              labelName="장소 정보"
-              labelClassName="w-full text-[1rem] font-[500]"
-              id="place_name"
-            />
-          </div>  
         </div>
         {/* 내용 */}
         <div className="mb-[1rem] mt-[1.06rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
@@ -149,8 +156,8 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
         </div>
 
         <PetEdit post={post} setFormPosts={setFormPosts} />
-        <div className="mb-[2rem] mt-[2rem] flex flex-col gap-y-[0.5rem]">
-          <div className="flex w-full items-center justify-center px-[1.5rem]">
+        <div className="lg:flex lg:flex-row lg:justify-center lg:gap-x-[1.5rem] lg:mt-10 mb-[2rem] mt-[2rem] flex flex-col gap-y-[0.5rem]">
+          <div className="flex w-full items-center justify-center px-[1.5rem] lg:w-[20.4375rem] lg:px-0">
             <button
               className={`w-full cursor-pointer rounded-full px-[1.5rem] py-[0.75rem] text-white ${
                 !isFormValid(formPosts) ? "cursor-not-allowed bg-gray-400 opacity-50" : "bg-mainColor"
@@ -160,7 +167,7 @@ const DetailEdit = ({ post, handleUpdatePost, handleResetEditPost, formPosts, se
               수정 완료
             </button>
           </div>
-          <div className="mb-[5.5rem] flex w-full items-center justify-center px-[1.5rem]">
+          <div className="lg:mb-0 mb-[5.5rem] flex w-full items-center justify-center px-[1.5rem] lg:w-[20.4375rem] lg:px-0">
             <button
               className="w-full cursor-pointer rounded-full border border-mainColor px-[1.5rem] py-[0.75rem] text-mainColor"
               type="button"
