@@ -1,8 +1,8 @@
 export const PetFormSkeleton = () => (
   <div className="animate-pulse">
-    <div className="mt-[1.63rem] flex items-center justify-between px-[1.5rem]">
+    <div className="mt-[1.63rem] flex items-center justify-between px-[1.5rem] lg:justify-start">
       <div className="h-6 w-40 bg-gray-200 rounded"></div>
-      <div className="h-4 w-32 bg-gray-200 rounded"></div>
+      <div className="h-4 w-32 bg-gray-200 rounded lg:mb-0 lg:ml-10"></div>
     </div>
     <div className="mt-[0.81rem] flex w-full">
       <div className="mx-[1.5rem] w-full">
