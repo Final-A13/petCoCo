@@ -77,7 +77,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   return (
     <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
-      <div className="flex w-full flex-col gap-y-[1.5rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 3xl:grid-cols-4 3xl:gap-4">
+      <div className="flex w-full flex-col gap-y-[1.5rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 3xl:grid 3xl:grid-cols-4 3xl:gap-4">
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post.id} className="w-full">
