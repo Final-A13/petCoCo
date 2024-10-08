@@ -56,68 +56,73 @@ const FilterPage = () => {
     // router.push("/mate");
   };
 
-
   return (
     <div>
-      <div className="mx-auto max-w-[420px]">
-        <p className="ml-[1rem] mt-[1rem] text-[1.5rem] font-[600]">산책 메이트 상세 필터</p>
-        <div className="w-full px-[1.5rem]">
-          <FilterOptionSelect
-            label="성별"
-            array={gender}
-            selected={filters.gender}
-            onSelect={(items) => updateFilter("gender", items)}
-          />
-          <FilterOptionSelect
-            label="연령대"
-            array={age}
-            selected={filters.age}
-            onSelect={(items) => updateFilter("age", items)}
-          />
-          <FilterOptionSelect
-            label="지역별"
-            array={regions}
-            selected={filters.regions}
-            onSelect={(items) => updateFilter("regions", items)}
-          />
-          <FilterDateSelect
-            label="산책일"
-            selected={filters.date_time}
-            onSelect={(items) => updateFilter("date_time", items)}
-          />
-          <FilterOptionSelect
-            label="시간대"
-            array={times}
-            selected={filters.times}
-            onSelect={(items) => updateFilter("times", items)}
-          />
+      <div className="mx-auto max-w-[420px] lg:max-w-none">
+        <div className="lg:flex lg:flex-row lg:mt-14">
+          <div className="w-full lg:w-50%">
+            <p className="ml-[1rem] mt-[1rem] text-[1.5rem] font-[600]">산책 메이트 상세 필터</p>
+            <div className="w-full px-[1.5rem]">
+              <FilterOptionSelect
+                label="성별"
+                array={gender}
+                selected={filters.gender}
+                onSelect={(items) => updateFilter("gender", items)}
+              />
+              <FilterOptionSelect
+                label="연령대"
+                array={age}
+                selected={filters.age}
+                onSelect={(items) => updateFilter("age", items)}
+              />
+              <FilterOptionSelect
+                label="지역별"
+                array={regions}
+                selected={filters.regions}
+                onSelect={(items) => updateFilter("regions", items)}
+              />
+              <FilterDateSelect
+                label="산책일"
+                selected={filters.date_time}
+                onSelect={(items) => updateFilter("date_time", items)}
+              />
+              <FilterOptionSelect
+                label="시간대"
+                array={times}
+                selected={filters.times}
+                onSelect={(items) => updateFilter("times", items)}
+              />
+            </div>
+          </div>
+          <div className="w-full lg:w-50%">
+            <p className="ml-[1rem] mt-[3.38rem] lg:mt-[1rem] text-[1.5rem] font-[600]">반려견 정보 필터</p>
+            <div className="mt-5 px-[1.5rem]">
+              <Male_femaleFilter
+                selectedGender={selectedGender || filters.male_female}
+                setSelectedGender={setSelectedGender}
+                onSelect={(items) => updateFilter("male_female", items)}
+              />
+              <NeuteredFilter
+                selectedNeutered={selectedNeutered || filters.neutralized}
+                setSelectedNeutered={setSelectedNeutered}
+                onSelect={(items) => updateFilter("neutralized", items)}
+              />
+              <FilterWeightSelect
+                label="몸무게"
+                selected={filters.weight}
+                onSelect={(items) => updateFilter("weight", items)}
+              />
+            </div>
+          </div>
         </div>
-        <p className="ml-[1rem] mt-[3.38rem] text-[1.5rem] font-[600]">반려견 정보 필터</p>
-        <div className="mt-5 px-[1.5rem]">
-          <Male_femaleFilter
-            selectedGender={selectedGender || filters.male_female}
-            setSelectedGender={setSelectedGender}
-            onSelect={(items) => updateFilter("male_female", items)}
-          />
-          <NeuteredFilter
-            selectedNeutered={selectedNeutered || filters.neutralized}
-            setSelectedNeutered={setSelectedNeutered}
-            onSelect={(items) => updateFilter("neutralized", items)}
-          />
-          <FilterWeightSelect
-            label="몸무게"
-            selected={filters.weight}
-            onSelect={(items) => updateFilter("weight", items)}
-          />
-        </div>
-        <div className="mb-[6.63rem] mt-[3.63rem] flex flex-col gap-y-[0.5rem] px-[1.5rem]">
+        <div className="mb-[6.63rem] mt-[3.63rem] flex flex-col gap-y-[0.5rem] px-[1.5rem] lg:flex-row lg:justify-center lg:gap-x-[1.5rem] lg:mt-[6rem]">
           <Button
-            className="flex w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.5rem] bg-mainColor px-[8.53rem] py-[0.75rem] text-[0.9375rem] font-[590] text-white"
+            className="flex w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.5rem] bg-mainColor px-[8.53rem] py-[0.75rem] text-[0.9375rem] font-[590] text-white lg:w-[20.4375rem]"
             text="저장하기"
             onClick={handleSaveFilter}
           />
           <Button
-            className="mb-[2rem] flex w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.5rem] border-1 border-mainColor px-[8rem] py-[0.75rem] text-[0.9375rem] font-[590] text-mainColor"
+            className="mb-[2rem] flex w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.5rem] border-1 border-mainColor px-[8rem] py-[0.75rem] text-[0.9375rem] font-[590] text-mainColor lg:w-[20.4375rem] lg:mb-0"
             text="초기화 하기"
             onClick={handleResetFilter}
           />

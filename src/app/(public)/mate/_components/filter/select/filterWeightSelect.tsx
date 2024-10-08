@@ -19,7 +19,7 @@ const FilterWeightSelect = ({ label, selected, onSelect }: FilterWeightSelectPro
   };
 
   return (
-    <div className="mt-5 flex w-full flex-col gap-6">
+    <div className="mt-5 w-full">
       <Slider
         color="primary"
         step={1}
@@ -32,7 +32,6 @@ const FilterWeightSelect = ({ label, selected, onSelect }: FilterWeightSelectPro
         onChange={handleChange}
         getValue={(weight) => `${weight}kg 이상`}
         classNames={{
-          base: "max-w-md",
           filler: "bg-mainColor",
           label: "text-[1rem] font-[400]",
           value: "text-sm font-[400] text-gray-500",
