@@ -85,8 +85,8 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
             </div>
           ))
         ) : (
-          <div className="flex h-screen w-full items-center justify-center">
-            <div className="flex flex-col items-center">
+          <div className="flex w-full min-h-screen items-center justify-center bg-red-100">
+            <div className="w-full flex flex-col items-center h-50%">
               <span className="mr-2 text-3xl">🐶</span>
               <p className="py-4 text-center">현재 모집 중인 산책 메이트가 없습니다.</p>
             </div>

@@ -25,7 +25,7 @@ const PostListFilterTab = ({
   };
 
   return (
-    <div className="z-40 ml-[1.5rem] flex w-max gap-x-[0.62rem]">
+    <div className="z-40 ml-[1.5rem] flex w-max gap-x-[0.62rem] lg:ml-0">
       <Chip
         text="전체"
         className={`cursor-pointer rounded-[2.25rem] px-[0.75rem] py-[0.2rem] text-[1.125rem] ${
