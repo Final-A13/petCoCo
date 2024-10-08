@@ -15,13 +15,14 @@ import { Filters } from "@/zustand/useFilterStore";
 
 const FilterPage = () => {
   const { filters, setFilters } = useFilterStore();
+  const [localFilters, setLocalFilters] = useState<Filters>(filters);
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
   const [selectedNeutered, setSelectedNeutered] = useState<string | null>(null);
 
   const router = useRouter();
 
   const updateFilter = (filterName: keyof Filters, value: string) => {
-    setFilters((prevFilters) => ({
+    setLocalFilters((prevFilters) => ({
       ...prevFilters,
       [filterName]: value
     }));
@@ -30,7 +31,7 @@ const FilterPage = () => {
   const handleSaveFilter = () => {
     const queryParams = new URLSearchParams();
 
-    Object.entries(filters).forEach(([key, value]) => {
+    Object.entries(localFilters).forEach(([key, value]) => {
       if (value !== null && value !== undefined) {
         queryParams.append(key, value);
       }
@@ -40,7 +41,7 @@ const FilterPage = () => {
   };
 
   const handleResetFilter = () => {
-    setFilters({
+    const resetFilters = {
       gender: null,
       age: null,
       date_time: undefined,
@@ -49,7 +50,10 @@ const FilterPage = () => {
       regions: null,
       times: null,
       neutralized: null
-    });
+    };
+
+    setLocalFilters(resetFilters);
+    setFilters(resetFilters);
     setSelectedGender(null);
     setSelectedNeutered(null);
 
@@ -59,6 +63,7 @@ const FilterPage = () => {
   return (
     <div>
       <div className="mx-auto max-w-[420px] lg:max-w-none">
+        <Button className="hidden lg:block cursor-pointer" text="뒤로가기" />
         <div className="lg:flex lg:flex-row lg:mt-14">
           <div className="w-full lg:w-50%">
             <p className="ml-[1rem] mt-[1rem] text-[1.5rem] font-[600]">산책 메이트 상세 필터</p>
@@ -66,30 +71,30 @@ const FilterPage = () => {
               <FilterOptionSelect
                 label="성별"
                 array={gender}
-                selected={filters.gender}
+                selected={localFilters.gender}
                 onSelect={(items) => updateFilter("gender", items)}
               />
               <FilterOptionSelect
                 label="연령대"
                 array={age}
-                selected={filters.age}
+                selected={localFilters.age}
                 onSelect={(items) => updateFilter("age", items)}
               />
               <FilterOptionSelect
                 label="지역별"
                 array={regions}
-                selected={filters.regions}
+                selected={localFilters.regions}
                 onSelect={(items) => updateFilter("regions", items)}
               />
               <FilterDateSelect
                 label="산책일"
-                selected={filters.date_time}
+                selected={localFilters.date_time}
                 onSelect={(items) => updateFilter("date_time", items)}
               />
               <FilterOptionSelect
                 label="시간대"
                 array={times}
-                selected={filters.times}
+                selected={localFilters.times}
                 onSelect={(items) => updateFilter("times", items)}
               />
             </div>
@@ -98,18 +103,18 @@ const FilterPage = () => {
             <p className="ml-[1rem] mt-[3.38rem] lg:mt-[1rem] text-[1.5rem] font-[600]">반려견 정보 필터</p>
             <div className="mt-5 px-[1.5rem]">
               <Male_femaleFilter
-                selectedGender={selectedGender || filters.male_female}
+                selectedGender={selectedGender || localFilters.male_female}
                 setSelectedGender={setSelectedGender}
                 onSelect={(items) => updateFilter("male_female", items)}
               />
               <NeuteredFilter
-                selectedNeutered={selectedNeutered || filters.neutralized}
+                selectedNeutered={selectedNeutered || localFilters.neutralized}
                 setSelectedNeutered={setSelectedNeutered}
                 onSelect={(items) => updateFilter("neutralized", items)}
               />
               <FilterWeightSelect
                 label="몸무게"
-                selected={filters.weight}
+                selected={localFilters.weight}
                 onSelect={(items) => updateFilter("weight", items)}
               />
             </div>
