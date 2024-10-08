@@ -61,10 +61,13 @@ const MateContent = () => {
     <div className="relative mx-auto min-h-screen max-w-[420px] lg:max-w-none">
       <div className="w-full lg:flex lg:flex-col lg: gap-y-[1.9375rem]">
         {/* 웹사이트 메인 부분 */}
-        <div className="w-full h-full lg:bg-[url('/assets/svg/web_bg.svg')] lg:bg-cover lg:bg-center lg:flex lg:flex-col lg:items-center">
+        <div className="w-full h-full lg:bg-[url('/assets/svg/web_bg.svg')] lg:bg-cover lg:bg-center lg:flex lg:flex-col lg:items-center lg:bg-gray-100">
           <h1 className="hidden lg:block lg:text-[2rem] lg:font-[600] lg:w-[28.25rem] lg:mt-[3.13rem]">산책 메이트</h1>
           <p className="hidden lg:block lg:text-[1rem] lg:font-[400] lg:w-[28.25rem] lg:mt-[1rem]">여러분의 소중한 반려견의 산책 친구를 만들어 주세요.</p>
-          <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide lg:mt-[2.12rem] lg:mr-8">
+          <div className="hidden mx-auto mb-[1.5rem] mt-[1.5rem] w-full px-[1.5rem] lg:flex lg:justify-center lg:mt-[2.12rem] lg:mb-0">
+            <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
+          </div>
+          <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide lg:mt-[1.37rem] lg:mr-8 lg:mb-[3.12rem]">
             <PostListFilterTab
               handleAllPosts={handleAllPosts}
               handleRecruiting={handleRecruiting}
@@ -74,7 +77,7 @@ const MateContent = () => {
               sortBy={sortBy || "all"} // 정렬 기본 값 all로 설정
             />
           </div>
-          <div className="mx-auto mb-[1.5rem] mt-[1.5rem] w-full px-[1.5rem] lg:flex lg:justify-center lg:mb-[3.12rem] lg:mt-[2.12rem]">
+          <div className="mx-auto mb-[1.5rem] mt-[1.5rem] w-full px-[1.5rem] lg:hidden">
             <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
           </div>
         </div>

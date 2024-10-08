@@ -29,35 +29,35 @@ const PostListFilterTab = ({
       <Chip
         text="전체"
         className={`cursor-pointer rounded-[2.25rem] px-[0.75rem] py-[0.2rem] text-[1.125rem] ${
-          isSelected("all") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor"
+          isSelected("all") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor lg:bg-gray-200"
         }`}
         onClick={handleAllPosts}
       ></Chip>
       <Chip
         text="거리순"
         className={`cursor-pointer rounded-[2.25rem] px-[0.75rem] py-[0.2rem] text-[1.125rem] ${
-          isSelected("distance") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor"
+          isSelected("distance") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor lg:bg-gray-200"
         }`}
         onClick={handleDistanceSort}
       ></Chip>
       <Chip
         text="모집중"
         className={`cursor-pointer rounded-full px-[0.75rem] py-[0.2rem] text-[1.125rem] ${
-          isSelected("recruiting") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor"
+          isSelected("recruiting") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor lg:bg-gray-200"
         }`}
         onClick={handleRecruiting}
       ></Chip>
       <Chip
         text="최신순"
         className={`cursor-pointer rounded-full px-[0.75rem] py-[0.2rem] text-[1.125rem] ${
-          isSelected("new") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor"
+          isSelected("new") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor lg:bg-gray-200"
         }`}
         onClick={handleNewSort}
       ></Chip>
       <Chip
         text="마감 임박순"
         className={`cursor-pointer rounded-full px-[0.75rem] py-[0.2rem] text-[1.125rem] ${
-          isSelected("recruitment_end") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor"
+          isSelected("recruitment_end") ? "bg-mainColor text-white" : "border border-mainColor text-mainColor lg:bg-gray-200"
         }`}
         onClick={handleDateSort}
       ></Chip>
