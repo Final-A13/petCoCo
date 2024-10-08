@@ -19,9 +19,9 @@ const FilterWeightSelect = ({ label, selected, onSelect }: FilterWeightSelectPro
   };
 
   return (
-    <div className="mt-5 flex w-full flex-col gap-6">
+    <div className="mt-5 w-full">
       <Slider
-        // color="foreground"
+        color="primary"
         step={1}
         maxValue={20}
         minValue={0}
@@ -31,14 +31,12 @@ const FilterWeightSelect = ({ label, selected, onSelect }: FilterWeightSelectPro
         aria-label={label}
         onChange={handleChange}
         getValue={(weight) => `${weight}kg 이상`}
-        showTooltip={true}
         classNames={{
-          base: "max-w-md",
           filler: "bg-mainColor",
           label: "text-[1rem] font-[400]",
-          value: "text-sm  font-[400] text-gray-500",
-          thumb: ["bg-mainColor", "border border-mainColor", "shadow-md"],
-          track: "bg-gray-200"
+          value: "text-sm font-[400] text-gray-500",
+          thumb: ["bg-none", "shadow-md"],
+          track: "bg-gray-200",
         }}
       />
     </div>

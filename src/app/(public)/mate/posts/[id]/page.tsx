@@ -23,7 +23,7 @@ const MatePost = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="mx-auto max-w-[420px]">
+    <div className="mx-auto max-w-[420px] lg:max-w-none ">
       <DetailMatePost post={post} />
     </div>
   );
