@@ -9,36 +9,9 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { GroupedMessages } from "./Type_MessageComponents";
 
 const supabase = createClient();
-
-interface Message {
-  id: string;
-  sender_id: string;
-  receiver_id: string;
-  content: string;
-  created_at: string;
-  read: boolean;
-  sender_nickname: string;
-  receiver_nickname: string;
-  nickname: string;
-  profile_img: string;
-  image_url: string;
-  sender_profile?: {
-    id: string;
-    nickname: string;
-    profile_img: string;
-  };
-  receiver_profile?: {
-    id: string;
-    nickname: string;
-    profile_img: string;
-  };
-}
-
-interface GroupedMessages {
-  [userId: string]: Message[];
-}
 
 export default function ClientMessageComponent() {
   const router = useRouter();
@@ -188,7 +161,7 @@ export default function ClientMessageComponent() {
     <div className="flex h-screen w-full flex-col bg-white">
       <div className="flex h-full flex-col">
         {/* 상단 바 */}
-        <div className="fixed z-10 flex h-16 w-full max-w-[420px] items-center justify-between border-b border-[#CDCDCD] bg-white px-4">
+        <div className="fixed z-10 flex h-16 w-full max-w-[420px] items-center justify-between border-b border-[#CDCDCD] bg-white px-4 lg:w-[calc(100%-180px)] lg:max-w-none">
           <button onClick={handleGoBack} className="text-xl font-bold">
             <Image src="/assets/svg/Arrow - Left 2.svg" alt="Back" width={24} height={24} />
           </button>

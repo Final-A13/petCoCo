@@ -1,5 +1,6 @@
 import { UserType } from "./auth.type";
-import { Database, Json, Tables } from "./supabase";
+import { Position } from "./position.type";
+import { Json, Tables } from "./supabase";
 export type MatePostType = Tables<"matePosts">;
 export type matepostpetsType = Tables<"matepostpets">;
 export type UsersPetType = Tables<"usersPet">;
@@ -37,8 +38,7 @@ export type MatePostAllTypeForItem = MatePostType & {
     errMsg: string | null;
     isLoading: boolean;
   };
-  users: UserType[];
-  // matepostpets: matepostpetsType[];
+  users: UserType;
   distance: number;
 };
 
@@ -52,7 +52,6 @@ export type MatePostAllType = MatePostType & {
     isLoading: boolean;
   };
   users: UserType;
-  // matepostpets: matepostpetsType[];
 };
 
 export type MateNextPostType = Omit<MatePostFullType, "id" | "created_at" | "users">;
@@ -89,7 +88,7 @@ export type PostsResponse = {
   totalPages: number;
 };
 
-export type valiMatePostAllTypeForItem = {
+export type ValiMatePostAllTypeForItem = {
   id: string;
   created_at: string;
   title: string;
@@ -102,12 +101,21 @@ export type valiMatePostAllTypeForItem = {
   address: string;
   place_name: string;
   location: unknown;
-  users: Json;
+  users: UserType;
   distance: number;
   usersPet: Json | null;
   pet_id: Json;
 };
 
-export type PetId = {
+export type PostUpdate = {
+  address: any;
+  position: Position;
+  location: string;
+  content: string | null;
+  date_time: string | null;
+  members: string | null;
   pet_id: Json;
+  place_name: string | null;
+  recruiting: boolean | null;
+  title: string | null;
 }

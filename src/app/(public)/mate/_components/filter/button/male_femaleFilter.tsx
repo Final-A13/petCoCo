@@ -1,6 +1,3 @@
-"use client";
-
-// import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 interface Male_femaleFilterProps {
@@ -10,7 +7,6 @@ interface Male_femaleFilterProps {
 }
 
 const Male_femaleFilter = ({onSelect, selectedGender, setSelectedGender }: Male_femaleFilterProps) => {
-
 
   const handleSelect = (value: string) => {
     setSelectedGender(value);

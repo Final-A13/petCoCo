@@ -1,4 +1,4 @@
-import { valiMatePostAllTypeForItem } from "@/types/mate.type";
+import { ValiMatePostAllTypeForItem } from "@/types/mate.type";
 
 const isInTimeRange = (date: Date, timeRange: string): boolean => {
   const hours = date.getHours();
@@ -16,7 +16,7 @@ const isInTimeRange = (date: Date, timeRange: string): boolean => {
   }
 };
 
-export const getTimeRange = (posts: valiMatePostAllTypeForItem[], timeRange: string): valiMatePostAllTypeForItem[] => {
+export const getTimeRange = (posts: ValiMatePostAllTypeForItem[], timeRange: string): ValiMatePostAllTypeForItem[] => {
   return posts.filter(post => {
     if (!post.date_time) {
       return false;

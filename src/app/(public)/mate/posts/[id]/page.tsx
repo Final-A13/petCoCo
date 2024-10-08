@@ -1,30 +1,21 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import DetailMatePost from "../_components/detailMatePost";
 import LoadingComponent from "@/components/loadingComponents/Loading";
+import { useMatePost } from "@/hooks/useMatePost";
 
 const MatePost = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  const { post, isPending, error} = useMatePost(id);
 
-  const {
-    data: post,
-    isPending,
-    error
-  } = useQuery({
-    queryKey: ["matePosts", id],
-    queryFn: async () => {
-      const response = await fetch(`/api/mate/post/${id}`);
-      const data = response.json();
+  if (!post) {
+    return;
+  }
 
-      return data;
-    }
-  });
-  if (!post) return;
   if (isPending) {
     <div className="mt-[30%] flex h-full w-full items-center justify-center">
       <LoadingComponent />
-    </div>;
+    </div>
   }
 
   if (error) {

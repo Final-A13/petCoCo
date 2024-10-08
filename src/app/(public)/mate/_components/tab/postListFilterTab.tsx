@@ -1,20 +1,18 @@
-import { Switch } from "@nextui-org/react";
 import Chip from "@/components/Chip";
 
 interface PostListFilterTabProps {
-  // isCurrentPosts: boolean;
   handleAllPosts: () => void;
   handleRecruiting: () => void;
   handleDateSort: () => void;
   handleDistanceSort: () => void;
   handleNewSort: () => void;
   sortBy: string;
-  defaultSort: string;
+  // defaultSort: string;
 }
 
 const PostListFilterTab = ({
   sortBy,
-  defaultSort,
+  // defaultSort,
   handleAllPosts,
   handleRecruiting,
   handleDateSort,
@@ -22,7 +20,8 @@ const PostListFilterTab = ({
   handleNewSort
 }: PostListFilterTabProps) => {
   const isSelected = (chipSortBy: string) => {
-    return sortBy === chipSortBy || (sortBy === "" && chipSortBy === defaultSort);
+    return sortBy === chipSortBy 
+    // || (sortBy === "" && chipSortBy === "all"); // 기본 값 all로 -> 중복 처리 제거
   };
 
   return (

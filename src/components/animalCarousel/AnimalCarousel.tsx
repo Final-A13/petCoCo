@@ -135,11 +135,11 @@ const AnimalCarousel: React.FC<AnimalCarouselProps> = ({ slides, options }) => {
               {randomAnimals.map((animal, index) => (
                 <div className={`${styles.embla__slide} w-full flex-shrink-0`} key={index}>
                   <div className="m-2 rounded-lg bg-white p-2 shadow-md">
-                    <h2 className="text-14 mb-1 text-base font-semibold">
+                    <h2 className="text-14 mb-1 text-base font-semibold lg:text-center">
                       {animal.careNm}(📞{animal.officetel})
                     </h2>
-                    <p className="text-12 mb-4 truncate font-normal">{animal.careAddr}</p>
-                    <div className="flex">
+                    <p className="text-12 mb-4 truncate font-normal lg:text-center">{animal.careAddr}</p>
+                    <div className="flex lg:items-center lg:justify-center">
                       <Image
                         src={animal.popfile}
                         alt={animal.kindCd}

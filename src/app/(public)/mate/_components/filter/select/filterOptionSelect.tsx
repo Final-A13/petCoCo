@@ -1,13 +1,13 @@
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 
-interface FilterSelectChipProps {
+interface FilterOptionSelectChipProps {
   label: string;
   array: Array<{ key: string; label: string }>;
   onSelect: (value: string) => void;
   selected: string | null;
 }
 
-const FilterSelectChip = ({ label, array, onSelect, selected }: FilterSelectChipProps) => {
+const FilterOptionSelect = ({ label, array, onSelect, selected }: FilterOptionSelectChipProps) => {
   return (
     <div className="mt-5 w-full">
       <Select
@@ -30,4 +30,4 @@ const FilterSelectChip = ({ label, array, onSelect, selected }: FilterSelectChip
   );
 };
 
-export default FilterSelectChip;
+export default FilterOptionSelect;

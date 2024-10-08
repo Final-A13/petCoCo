@@ -44,7 +44,7 @@ const BannerCarousel: React.FC<PropType> = (props) => {
         <div className={styles.embla__container}>
           {slides.map((index) => (
             <div className={styles.embla__slide} key={index}>
-              <div style={{ position: "relative", width: "100%", height: "180px" }}>
+              <div className="relative h-[180px] w-full lg:mx-auto lg:h-[480px] lg:w-[85%]">
                 <Image
                   src={BannerImages[index]}
                   alt={`Banner ${index + 1}`}
