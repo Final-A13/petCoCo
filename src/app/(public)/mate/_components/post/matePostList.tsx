@@ -56,7 +56,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   if (isPending) {
     return (
-      <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem] ">
+      <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
         <div className="flex w-full flex-col gap-y-[1.5rem]">
           <div className="w-full">
             <MatePostItemSkeleton />
@@ -85,12 +85,14 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
             </div>
           ))
         ) : (
-          <div className="flex w-full min-h-screen items-center justify-center bg-red-100">
-            <div className="w-full flex flex-col items-center h-50%">
-              <span className="mr-2 text-3xl">🐶</span>
-              <p className="py-4 text-center">현재 모집 중인 산책 메이트가 없습니다.</p>
+          <>
+            <div className="col-span-full flex min-h-[calc(100vh-220px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 3xl:min-h-[calc(100vh-500px)]">
+              <div className="flex flex-col items-center justify-start">
+                <span className="mr-2 text-3xl">🐶</span>
+                <p className="py-4 text-center">현재 모집 중인 산책 메이트가 없습니다.</p>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
 
