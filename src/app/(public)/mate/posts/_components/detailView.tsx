@@ -51,24 +51,24 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
               <div className="mb-[0.5rem] flex justify-end gap-x-[0.625rem]">
                 <Button
                   onClick={handleEditPost}
-                  className="cursor-pointer text-sm text-editBtnColor hover:text-mainColor"
+                  className="lg:text-md cursor-pointer text-sm text-editBtnColor hover:text-mainColor lg:font-bold"
                   text="수정"
                 />
                 <Button
                   onClick={() => handleDeletePost(post.id)}
-                  className="cursor-pointer text-sm text-delBtnColor hover:text-mainColor"
+                  className="lg:text-md cursor-pointer text-sm text-delBtnColor hover:text-mainColor lg:font-bold"
                   text="삭제"
                 />
                 <Button
                   onClick={() => handleTogglePost(post.id)}
-                  className="cursor-pointer text-sm text-gray-700 hover:text-mainColor"
+                  className="lg:text-md cursor-pointer text-sm text-gray-700 hover:text-mainColor lg:font-bold"
                   text={post.recruiting === true ? "모집완료" : "모집중"}
                 />
               </div>
             )}
 
             {/* 제목, 일시 */}
-            <h1 className="mx-auto break-words text-center text-[1.125rem] font-[600] sm:w-full sm:text-left sm:text-[1.5rem]">
+            <h1 className="mx-auto break-words text-center text-[1.125rem] font-[600] lg:w-full lg:text-left lg:text-[1.5rem]">
               [{post.date_time ? formatDateTimeTitle(post.date_time) : ""}] {post.title}
             </h1>
           </div>
@@ -105,13 +105,13 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
               </div>
             </div>
             {/* 프로필 영역 */}
-            <div className="w-full  lg:mt-5 lg:w-[30%]">
-            <div className="w-full">
-              <DetailUserCard post={post} handleStartChat={handleStartChat} />
-            </div>
-            <div className="mb-[5.95rem] mt-[0.75rem] w-full hidden lg:block">
-            {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
-          </div>
+            <div className="w-full lg:mt-5 lg:w-[30%]">
+              <div className="w-full">
+                <DetailUserCard post={post} handleStartChat={handleStartChat} />
+              </div>
+              <div className="mb-[5.95rem] mt-[0.75rem] hidden w-full lg:block">
+                {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
+              </div>
             </div>
           </div>
 

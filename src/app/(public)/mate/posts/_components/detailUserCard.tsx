@@ -40,11 +40,26 @@ const DetailUserCard = ({ post, handleStartChat }: DetailUserCardProps) => {
         </Link>
         <div className="flex flex-col">
           <div className="flex gap-x-[0.5rem]">
-            <p className="text-[1rem] text-[#939396] text-[400]">성별 / 연령대 </p>
+            <p className="text-[1rem] text-[#939396] text-[400] lg:hidden xl:block">성별 / 연령대 </p>
             {post.users?.gender || post.users?.age ? (
-              <p>
+              <p className="lg:hidden xl:block">
                 {post.users?.gender || "미등록"} / {post.users?.age || "미등록"}
               </p>
+            ) : (
+              <p>미등록</p>
+            )}
+
+            {post.users?.gender || post.users?.age ? (
+              <div className="lg:flex lg:flex-col xl:hidden">
+                <div className="lg:flex lg:gap-x-4 xl:hidden">
+                  <p className="lg:flex lg:text-[1rem] lg:text-[#939396] lg:text-[400] xl:hidden">연령대 </p>
+                  <p>{post.users?.gender || "미등록"}</p>
+                </div>
+                <div className="lg:flex lg:gap-x-4 xl:hidden">
+                  <p className="lg:flex lg:text-[1rem] lg:text-[#939396] lg:text-[400] xl:hidden">성별</p>
+                  <p>{post.users?.age || "미등록"}</p>
+                </div>
+              </div>
             ) : (
               <p>미등록</p>
             )}
