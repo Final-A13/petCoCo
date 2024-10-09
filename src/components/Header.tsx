@@ -101,7 +101,7 @@ const Header = () => {
         </div>
       )}
       <div className="absolute left-1/2 -translate-x-1/2 transform text-lg font-bold">{getHeaderTitle()}</div>
-      <div className="flex items-center">
+      {/* <div className="flex items-center">
         {pathname === "/mate" && (
           <Link href="/mate/filter" className="ml-2">
             <div className="h-[1.7rem] w-[1.7rem]">
@@ -116,7 +116,7 @@ const Header = () => {
             </div>
           </Link>
         )}
-      </div>
+      </div> */}
     </header>
   );
 };
