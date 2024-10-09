@@ -115,7 +115,7 @@ const DetailMatePost = ({ post }: DetailMatePostProps) => {
   };
 
   return (
-    <div className="container min-h-screen">
+    <div className="min-h-screen lg:min-h-0">
       {isEditing ? (
         <DetailEdit
           post={post}
