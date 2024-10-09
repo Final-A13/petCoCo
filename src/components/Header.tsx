@@ -84,38 +84,38 @@ const Header = () => {
   return pathname === "/message" ? (
     <></>
   ) : (
-    <header className="z-50 flex min-h-[4rem] w-full items-center justify-between bg-gray-50 px-4 py-2 text-black">
+    <header className="z-50 flex min-h-[4rem] w-full items-center justify-between bg-gray-50 px-4 py-2 text-black lg:hidden fixed top-0 left-0 right-0">
       {pathname !== "/" && (
         <div className="flex items-center">
           <button onClick={handleGoBack} className="ml-2">
-             <div className="h-[2rem] w-[2rem]">
-            <Image
-              src="/assets/svg/Arrow - Left 2.svg"
-              alt="뒤로가기 이미지"
-              width={32}
-              height={32}
-              className="h-full w-full object-cover"
-            />
-          </div>
+            <div className="h-[2rem] w-[2rem]">
+              <Image
+                src="/assets/svg/Arrow - Left 2.svg"
+                alt="뒤로가기 이미지"
+                width={32}
+                height={32}
+                className="h-full w-full object-cover"
+              />
+            </div>
           </button>
         </div>
       )}
       <div className="absolute left-1/2 -translate-x-1/2 transform text-lg font-bold">{getHeaderTitle()}</div>
       <div className="flex items-center">
-      {pathname === "/mate" && (
-        <Link href="/mate/filter" className="ml-2">
-          <div className="h-[1.7rem] w-[1.7rem]">
-            <Image
-              src="/assets/svg/filter-lines.svg"
-              alt="filter 이미지"
-              width={32}
-              height={32}
-              className="h-full w-full object-cover"
-              priority
-            />
-          </div>
-        </Link>
-      )}
+        {pathname === "/mate" && (
+          <Link href="/mate/filter" className="ml-2">
+            <div className="h-[1.7rem] w-[1.7rem]">
+              <Image
+                src="/assets/svg/filter-lines.svg"
+                alt="filter 이미지"
+                width={32}
+                height={32}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
+          </Link>
+        )}
       </div>
     </header>
   );
