@@ -58,7 +58,7 @@ const MateContent = () => {
   }, [searchParams]);
 
   return (
-    <div className="relative mx-auto min-h-screen max-w-[420px] lg:max-w-none">
+    <div className="relative mx-auto min-h-screen max-w-[420px] lg:max-w-none mt-[5rem] lg:mt-0">
       <div className="w-full lg:flex lg:flex-col lg: gap-y-[1.9375rem]">
         {/* 웹사이트 메인 부분 */}
         <div className="w-full h-full lg:bg-[url('/assets/svg/web_bg.svg')] lg:bg-cover lg:bg-center lg:flex lg:flex-col lg:items-center lg:bg-gray-100">
