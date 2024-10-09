@@ -11,13 +11,26 @@ const TabBar: React.FC = () => {
   }));
   const pathname = usePathname();
 
+  const isPathActive = (path: string): boolean => {
+    if (path === '/') return pathname === '/';
+    return pathname.startsWith(path);
+  };
+
   const getImageSrc = (path: string, defaultSrc: string, activeSrc: string): string => {
-    return pathname === path ? activeSrc : defaultSrc;
+    return isPathActive(path) ? activeSrc : defaultSrc;
   };
 
   const getTextColor = (path: string): string => {
-    return pathname === path ? "#8E6EE8" : "#292826";
+    return isPathActive(path) ? "#8E6EE8" : "#292826";
   };
+
+  // const getImageSrc = (path: string, defaultSrc: string, activeSrc: string): string => {
+  //   return pathname === path ? activeSrc : defaultSrc;
+  // };
+
+  // const getTextColor = (path: string): string => {
+  //   return pathname === path ? "#8E6EE8" : "#292826";
+  // };
 
   const menuItems = [
     { path: "/", label: "홈", defaultIcon: "/assets/svg/Kenner.svg", activeIcon: "/assets/svg/ActiveKenner.svg" },
