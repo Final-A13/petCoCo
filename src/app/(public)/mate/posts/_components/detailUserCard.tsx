@@ -48,9 +48,8 @@ const DetailUserCard = ({ post, handleStartChat }: DetailUserCardProps) => {
             ) : (
               <p>미등록</p>
             )}
-
             {post.users?.gender || post.users?.age ? (
-              <div className="lg:flex lg:flex-col xl:hidden">
+              <div className="lg:flex lg:flex-col hidden">
                 <div className="lg:flex lg:gap-x-4 xl:hidden">
                   <p className="lg:flex lg:text-[1rem] lg:text-[#939396] lg:text-[400] xl:hidden">연령대 </p>
                   <p>{post.users?.gender || "미등록"}</p>
