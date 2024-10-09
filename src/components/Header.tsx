@@ -84,7 +84,7 @@ const Header = () => {
   return pathname === "/message" ? (
     <></>
   ) : (
-    <header className="z-50 flex min-h-[4rem] w-full items-center justify-between bg-gray-50 px-4 py-2 text-black lg:hidden fixed top-0 left-0 right-0">
+    <header className="z-50 flex min-h-[4rem] w-full items-center justify-between bg-gray-50 px-4 py-2 text-black lg:hidden fixed top-0 max-w-[420px]">
       {pathname !== "/" && (
         <div className="flex items-center">
           <button onClick={handleGoBack} className="ml-2">
