@@ -68,9 +68,11 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   if (isGeoPending) {
     return (
-      <div className="mt-[30%] flex h-full w-full flex-col items-center justify-center">
-        <div className="text-mainColor">사용자의 위치를 계산하는 중입니다 🐶</div>
-        <LoadingComponent />
+      <div className="col-span-full flex min-h-[calc(100vh-240px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 3xl:min-h-[calc(100vh-500px)]">
+        <div className="flex flex-col items-center justify-start">
+          <div className="text-mainColor">사용자의 위치를 계산하는 중입니다 🐶</div>
+          <LoadingComponent />
+        </div>
       </div>
     );
   }
@@ -86,7 +88,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
           ))
         ) : (
           <>
-            <div className="col-span-full flex min-h-[calc(100vh-220px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 3xl:min-h-[calc(100vh-500px)]">
+            <div className="col-span-full flex min-h-[calc(100vh-240px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 3xl:min-h-[calc(100vh-500px)]">
               <div className="flex flex-col items-center justify-start">
                 <span className="mr-2 text-3xl">🐶</span>
                 <p className="py-4 text-center">현재 모집 중인 산책 메이트가 없습니다.</p>
