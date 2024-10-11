@@ -56,15 +56,8 @@ const PetCarousel: React.FC<PropType> = (props) => {
         <LoadingComponent />
       </div>
     );
-  
-  if (isPending)
-    return (
-      <div>
-        {" "}
-        <LoadingComponent />
-      </div>
-    );
-  if (error) return <div>An error occurred</div>;
+
+  if (error) return <div>동물 데이터를 불러오지 못했어요</div>;
 
   return (
     <section className={`${styles.embla}`}>

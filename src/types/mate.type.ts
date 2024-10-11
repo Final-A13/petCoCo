@@ -119,3 +119,5 @@ export type PostUpdate = {
   recruiting: boolean | null;
   title: string | null;
 }
+
+export type FormPostsType = Omit<MateNextPostType, "user_id"> | Omit<MateNextPostType, "position" | "user_id">;

@@ -15,15 +15,16 @@ interface MapDetailProps {
   center: { lat: number; lng: number };
   // onMapLoad: () => void;
   tag: string;
+  className: string;
 }
 
-const MapDetail = ({ center, tag }: MapDetailProps) => {
+const MapDetail = ({ center, tag, className }: MapDetailProps) => {
   const [toggle, setToggle] = useState<"map" | "roadview">("map");
   //  console.log(center)
   return (
     <div className="relative">
       {toggle === "map" ? (
-        <Map center={center} style={{ width: "100%", height: "15.875rem", borderRadius: "1rem" }} level={4}>
+        <Map center={center} className={className} level={4}>
           <MapMarker
             position={center}
             image={{

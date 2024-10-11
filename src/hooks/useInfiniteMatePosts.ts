@@ -67,12 +67,12 @@ export const useInfiniteMatePosts = ({ activeSearchTerm, sortBy, filters }: UseM
       const userLng = geoData?.center.lng || 0;
 
       const response = await fetch(
-        `/api/mate?page=${pageParam}&limit=4&search=${activeSearchTerm}&sort=${sortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
+        `/api/mate?page=${pageParam}&limit=6&search=${activeSearchTerm}&sort=${sortBy}&${query}&userLat=${userLat}&userLng=${userLng}`
       );
       return response.json();
     },
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.data.length === 4 ? allPages.length + 1 : undefined;
+      return lastPage.data.length === 6 ? allPages.length + 1 : undefined;
     },
     initialPageParam: 1,
     enabled: !!geoData, // 지오데이터가 있는 경우에만 쿼리를 활성화

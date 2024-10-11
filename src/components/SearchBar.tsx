@@ -9,7 +9,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ onSubmit, value, setSearchTerm }: SearchBarProps) => {
   return (
-    <div className="mb-[0.75rem] w-full rounded-full border border-mainColor">
+    <div className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:bg-white lg:w-[28.25rem]">
       <form onSubmit={onSubmit} className="flex px-[1.5rem] py-[0.75rem]">
         <input
           type="text"

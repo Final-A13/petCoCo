@@ -14,7 +14,8 @@ export type Filters = {
 
 type FilterStore = {
   filters: Filters;
-  setFilters:  (filters: Filters | ((prevFilters: Filters) => Filters)) => void;
+  setFilters: (filters: Filters) => void;
+
 };
 
 const initialFilters: Filters = {
@@ -43,8 +44,9 @@ const initialFilters: Filters = {
 
 export const useFilterStore = create<FilterStore>((set) => ({
     filters: initialFilters,
-    setFilters: (newFilters) => set((state) => ({
-      filters: typeof newFilters === 'function' ? newFilters(state.filters) : newFilters
-    })),
+    // setFilters: (newFilters) => set((state) => ({
+    //   filters: typeof newFilters === 'function' ? newFilters(state.filters) : newFilters
+    // })),
+    setFilters: (filters) => set({ filters: filters }),
   })
 );

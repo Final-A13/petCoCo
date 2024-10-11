@@ -2,8 +2,8 @@ import React from "react";
 
 const MatePostItemSkeleton = () => {
   return (
-    <div className="w-full animate-pulse space-y-4">
-      {[...Array(4)].map((_, index) => (
+    <div className="w-full animate-pulse space-y-4 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0 xl:grid xl:grid-cols-3 xl:gap-4 xl:space-y-0 3xl:grid 3xl:grid-cols-4 3xl:gap-4 3xl:space-y-0">
+      {[...Array(9)].map((_, index) => (
         <div key={index} className="w-full rounded-[0.75rem] border px-4 py-[0.75rem] shadow-custom">
           <div className="flex flex-col">
             {/* 첫번째 줄 */}
@@ -15,7 +15,7 @@ const MatePostItemSkeleton = () => {
             {/* 두번째 줄 */}
             <div className="mt-[0.5rem] flex justify-around">
               {/* 사용자 프로필 */}
-              <div className="mt-4 flex flex-col items-center gap-[0.5rem]">
+              <div className="mr-[2px] mt-4 flex flex-col items-center gap-[0.5rem]">
                 <div className="h-[3.75rem] w-[3.75rem] rounded-full bg-gray-200"></div>
                 <div className="h-5 w-20 rounded-full bg-gray-200 px-[0.62rem] py-[0.12rem]"></div>
               </div>
