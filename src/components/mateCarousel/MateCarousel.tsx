@@ -5,7 +5,7 @@ import { DotButton, useDotButton } from "./components/MateCarouselDotButtons";
 import carouselStyles from "./styles/css/mateCarouselStyle.module.css";
 import { useAuthStore } from "@/zustand/useAuth";
 import { useRouter } from "next/navigation";
-import { MatePostsAndUsersResponse } from "@/types/mainPageTypes/MainPageTypes";
+import { MatePostsResponse } from "@/types/mainPageTypes/MainPageTypes";
 import { fetchPostsMate } from "@/app/utils/mainPageFetch";
 import { useQuery } from "@tanstack/react-query";
 import startChat from "@/app/utils/startChat";
@@ -30,7 +30,7 @@ const MateCarousel: React.FC<PropType> = (props) => {
     data: mateResponse,
     isLoading: isMateLoading,
     error: mateError
-  } = useQuery<MatePostsAndUsersResponse, Error>({
+  } = useQuery<MatePostsResponse, Error>({
     queryKey: ["matePosts"],
     queryFn: fetchPostsMate
   });
@@ -46,7 +46,7 @@ const MateCarousel: React.FC<PropType> = (props) => {
       <div className={carouselStyles.embla__viewport} ref={emblaRef}>
         <div className={carouselStyles.embla__container}>
           {mateResponse?.data.map((post, index) => {
-            const users = post.users[0];
+            const users = post.users;
             const formattedDateTime = post.date_time
               ? format(parseISO(post.date_time), "yyyy.MM.dd | h:mm a")
               : "날짜 정보 없음";
@@ -64,7 +64,7 @@ const MateCarousel: React.FC<PropType> = (props) => {
                         <div className="relative mb-2 mt-5 h-24 w-24">
                           <Image
                             src={
-                              users?.profile_img ||
+                              users.profile_img ||
                               "https://eoxrihspempkfnxziwzd.supabase.co/storage/v1/object/public/profile_img/default-profile.jpg"
                             }
                             alt="User Profile"
@@ -77,7 +77,7 @@ const MateCarousel: React.FC<PropType> = (props) => {
                         {/* 닉네임&좋아요 */}
                         <div className="mb-4 flex flex-col items-center">
                           <p className="bg-rgba(210, 205, 246, 0.30) mb-1 rounded-2xl border border-[#8E6EE8] px-2 py-1 text-sm text-[#8E6EE8]">
-                            {users?.nickname || "닉네임"}
+                            {users.nickname || "닉네임"}
                           </p>
                         </div>
                       </div>
