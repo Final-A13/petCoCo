@@ -51,32 +51,33 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
               <div className="mb-[0.5rem] flex justify-end gap-x-[0.625rem]">
                 <Button
                   onClick={handleEditPost}
-                  className="cursor-pointer text-sm text-editBtnColor hover:text-mainColor"
+                  className="lg:text-md cursor-pointer text-sm text-editBtnColor hover:text-mainColor lg:font-bold"
                   text="수정"
                 />
                 <Button
                   onClick={() => handleDeletePost(post.id)}
-                  className="cursor-pointer text-sm text-delBtnColor hover:text-mainColor"
+                  className="lg:text-md cursor-pointer text-sm text-delBtnColor hover:text-mainColor lg:font-bold"
                   text="삭제"
                 />
                 <Button
                   onClick={() => handleTogglePost(post.id)}
-                  className="cursor-pointer text-sm text-gray-700 hover:text-mainColor"
+                  className="lg:text-md cursor-pointer text-sm text-gray-700 hover:text-mainColor lg:font-bold"
                   text={post.recruiting === true ? "모집완료" : "모집중"}
                 />
               </div>
             )}
 
             {/* 제목, 일시 */}
-            <h1 className="mx-auto break-words text-center text-[1.125rem] font-[600] sm:w-full sm:text-left sm:text-[1.5rem]">
+            <h1 className="mx-auto break-words text-center text-[1.125rem] font-[600] lg:w-full lg:text-left lg:text-[1.5rem]">
               [{post.date_time ? formatDateTimeTitle(post.date_time) : ""}] {post.title}
             </h1>
           </div>
 
-          {/* 본문 내용 */}
-          {/* 산책 위치 지도 */}
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-4">
-            <div className="w-full lg:w-[70%]">
+          {/* 반응형 div */}
+          <div className="lg:flex lg:gap-x-4 ">
+            <div className="lg:w-[70%]">
+              {/* 본문 내용 */}
+              {/* 산책 위치 지도 */}
               <div className="mt-[1.5rem]">
                 <DynamicMapComponent
                   center={{
@@ -84,7 +85,7 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
                     lng: Number(post.position?.center?.lng)
                   }}
                   tag={post.place_name || ""}
-                  className="lg:w-70% h-[15.875rem] w-full rounded-[1rem] lg:h-[19.75rem]"
+                  className="h-[15.875rem] w-full rounded-[1rem] lg:h-[19.75rem]"
                   // onMapLoad={() => setIsMapLoading(false)}
                 />
               </div>
@@ -103,46 +104,52 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
                   상세 위치는 채팅을 통해 추후 확정할 수 있어요
                 </p>
               </div>
-            </div>
-            {/* 프로필 영역 */}
-            <div className="w-full  lg:mt-5 lg:w-[30%]">
-            <div className="w-full">
-              <DetailUserCard post={post} handleStartChat={handleStartChat} />
-            </div>
-            <div className="mb-[5.95rem] mt-[0.75rem] w-full hidden lg:block">
-            {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
-          </div>
-            </div>
-          </div>
+              {/* 프로필 영역 */}
 
-          {/* 산책 메이트 정보 */}
-          <div className="w-full border-b border-t border-[#EFEFF0] pb-[0.94rem] pl-[0.75rem] pt-[0.87rem] lg:w-[70%]">
-            <MateInfoItem post={post} />
-          </div>
+              <div className="lg:hidden xl:hidden">
+                <DetailUserCard post={post} handleStartChat={handleStartChat} />
+              </div>
 
-          {/* 우천 취소 안내 */}
-          <div className="mb-[0.87rem] ml-[0.75rem] mt-[0.37rem] flex w-full items-center lg:w-[70%]">
-            <div className="h-[1rem] w-[1rem]">
-              <Image
-                src="/assets/svg/ic_info.svg"
-                alt="설명 아이콘"
-                width={16}
-                height={16}
-                priority
-                className="h-full w-full object-cover"
-              />
+              {/* 산책 메이트 정보 */}
+              <div className="border-b border-t border-gray-200 pb-[0.94rem] pl-[0.75rem] pt-[0.87rem]">
+                <MateInfoItem post={post} />
+              </div>
+
+              {/* 우천 취소 안내 */}
+              <div className="mb-[0.87rem] ml-[0.75rem] mt-[0.37rem] flex items-center">
+                <div className="h-[1rem] w-[1rem]">
+                  <Image
+                    src="/assets/svg/ic_info.svg"
+                    alt="설명 아이콘"
+                    width={16}
+                    height={16}
+                    priority
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <p className="ml-[0.5rem] text-[0.75rem] text-gray-400">우천 시 일정이 변경되거나 취소될 수 있어요.</p>
+              </div>
+
+              {/* 내용, 본문 */}
+              <div className="w-full border-b border-t border-[#EFEFF0] px-[0.75rem] pb-[0.75rem]">
+                <p className="flex pt-[0.75rem] font-[400]">{post.content}</p>
+              </div>
+
+              {/* 동물 정보 카드 */}
+              <div className="mb-[5.95rem] mt-[0.75rem] w-full lg:hidden">
+                {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
+              </div>
             </div>
-            <p className="ml-[0.5rem] text-[0.75rem] text-gray-400">우천 시 일정이 변경되거나 취소될 수 있어요.</p>
-          </div>
 
-          {/* 내용, 본문 */}
-          <div className="w-full border-b border-t border-[#EFEFF0] px-[0.75rem] pb-[0.75rem] lg:w-[70%]">
-            <p className="flex pt-[0.75rem] font-[400]">{post.content}</p>
-          </div>
+            <div className="hidden w-full lg:mt-[1.5rem] lg:flex lg:w-[30%] lg:flex-col xl:flex xl:flex-col">
+              <div className="w-full">
+                <DetailUserCard post={post} handleStartChat={handleStartChat} />
+              </div>
+              <div className="mb-[5.95rem] mt-[0.75rem] hidden w-full lg:block">
+                {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
+              </div>
+            </div>
 
-          {/* 동물 정보 카드 */}
-          <div className="mb-[5.95rem] mt-[0.75rem] w-full lg:hidden">
-            {post.pet_id && <PetCarousel post={post} slides={SLIDES} options={OPTIONS} />}
           </div>
         </div>
       </div>

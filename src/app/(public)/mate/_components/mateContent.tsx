@@ -58,34 +58,31 @@ const MateContent = () => {
   }, [searchParams]);
 
   return (
-    <div className="relative mx-auto min-h-screen max-w-[420px] lg:max-w-none">
-      <div className="w-full lg:flex lg:flex-col lg: gap-y-[1.9375rem]">
+    <div className="relative mx-auto mt-[4rem] min-h-screen max-w-[420px] lg:mt-0 lg:max-w-none">
+      <div className="lg: w-full gap-y-[1.9375rem] lg:flex lg:flex-col">
         {/* 웹사이트 메인 부분 */}
-        <div className="w-full h-full lg:bg-[url('/assets/svg/web_bg.svg')] lg:bg-cover lg:bg-center lg:flex lg:flex-col lg:items-center">
-          <h1 className="hidden lg:block lg:text-[2rem] lg:font-[600] lg:w-[28.25rem] lg:mt-[3.13rem]">산책 메이트</h1>
-          <p className="hidden lg:block lg:text-[1rem] lg:font-[400] lg:w-[28.25rem] lg:mt-[1rem]">여러분의 소중한 반려견의 산책 친구를 만들어 주세요.</p>
-          <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide lg:mt-[2.12rem] lg:mr-8">
-            <PostListFilterTab
-              handleAllPosts={handleAllPosts}
-              handleRecruiting={handleRecruiting}
-              handleDateSort={handleDateSort}
-              handleDistanceSort={handleDistanceSort}
-              handleNewSort={handleNewSort}
-              sortBy={sortBy || "all"} // 정렬 기본 값 all로 설정
-            />
-          </div>
-          <div className="mx-auto mb-[1.5rem] mt-[1.5rem] w-full px-[1.5rem] lg:flex lg:justify-center lg:mb-[3.12rem] lg:mt-[2.12rem]">
-            <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
-          </div>
-        </div>
-        <div>
-          <div className="mx-auto mt-[1.5rem] min-h-screen">
-            {/* <div className="mx-auto w-full px-[1.5rem] mb-[1.5rem]">
-                <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
-              </div> */}
-            <MatePostList activeSearchTerm={activeSearchTerm} sortBy={sortBy || "all"} filters={filters} />
+        <div className="h-full w-full lg:flex lg:flex-col lg:items-center lg:bg-gray-100 lg:bg-[url('/assets/svg/web_bg.svg')] lg:bg-cover lg:bg-center">
+          <h1 className="hidden lg:mt-[3.13rem] lg:block lg:w-[28.25rem] lg:text-[2rem] lg:font-[600]">산책 메이트</h1>
+          <p className="hidden lg:mt-[1rem] lg:block lg:w-[28.25rem] lg:text-[1rem] lg:font-[400]">
+            여러분의 소중한 반려견의 산책 친구를 만들어 주세요.
+          </p>
+          <div className="flex flex-col lg:flex lg:flex-col-reverse xl:flex xl:flex-col-reverse">
+            <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide lg:mb-[3.12rem] lg:ml-6 lg:mt-0">
+              <PostListFilterTab
+                handleAllPosts={handleAllPosts}
+                handleRecruiting={handleRecruiting}
+                handleDateSort={handleDateSort}
+                handleDistanceSort={handleDistanceSort}
+                handleNewSort={handleNewSort}
+                sortBy={sortBy || "all"} // 정렬 기본 값 all로 설정
+              />
+            </div>
+            <div className="mx-auto mb-[0.75rem] mt-[1.5rem] w-full px-[1.5rem] lg:mb-[1.37rem] lg:mt-[2.12rem]">
+              <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
+            </div>
           </div>
         </div>
+        <MatePostList activeSearchTerm={activeSearchTerm} sortBy={sortBy || "all"} filters={filters} />
       </div>
       <FloatingButton
         img_src="/assets/svg/filter-lines-color.svg"

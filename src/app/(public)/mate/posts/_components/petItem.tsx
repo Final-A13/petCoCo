@@ -16,8 +16,8 @@ const PetItem = ({ pet }: PetItemProps) => {
   const introduction = pet.introduction || "";
 
   return (
-    <div className="mb-[0.44rem] flex gap-x-[1rem] rounded-lg border border-[#C2C0BD] px-[0.69rem] py-[0.79rem]">
-      <div className="my-auto flex flex-col items-center gap-y-[0.5rem] px-[1rem]">
+    <div className="mb-[0.44rem] flex gap-x-[1rem] rounded-lg border border-[#C2C0BD] px-[0.69rem] py-[0.79rem] lg:flex-col xl:flex-row">
+      <div className="my-auto flex flex-col items-center gap-y-[0.5rem] px-[1rem] lg:px-[0.5rem] xl:px-[1rem]">
         <div className="h-[3.75rem] w-[3.75rem]">
           <Image
             className="h-full w-full rounded-full object-cover"
@@ -48,7 +48,7 @@ const PetItem = ({ pet }: PetItemProps) => {
         </div>
         <div className="flex gap-x-[0.5rem] text-[1rem]">
           <p className="whitespace-nowrap text-[#939396]">성향</p>
-          <p className="max-h-[50px] scrollbar-hide overflow-y-auto">{introduction}</p>
+          <p className="max-h-[50px] overflow-y-auto scrollbar-hide">{introduction}</p>
         </div>
       </div>
     </div>
