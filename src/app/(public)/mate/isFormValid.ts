@@ -1,5 +1,5 @@
-import { MateNextPostType } from "@/types/mate.type";
-import { FormPostsType } from "./_components/common/addressInfoField";
+import { FormPostsType, MateNextPostType } from "@/types/mate.type";
+
 
 export const isFormValid = (formPosts: FormPostsType) => {
 
