@@ -22,7 +22,7 @@ export default function Home() {
   const BannerSLIDES = Array.from(Array(BannerSLIDE_COUNT).keys());
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-[#D2CDF6]">
+    <div className="flex min-h-screen flex-col items-center bg-[#D2CDF6] mt-[4rem] lg:mt-0">
       <div className="w-full">
         <BannerCarousel slides={BannerSLIDES} options={BannerOPTIONS} />
       </div>

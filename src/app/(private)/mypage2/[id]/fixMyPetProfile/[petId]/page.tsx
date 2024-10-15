@@ -266,7 +266,7 @@ const FixMyPetProfile = () => {
   }
 
   return (
-    <>
+    <div className="mt-[4rem] lg:mt-0">
       <MyPageTabHeader />
       <div className="flex justify-between bg-[#F3F2F2]">
         <div className="m-[14px] flex gap-4 overflow-x-scroll scrollbar-hide">
@@ -454,7 +454,7 @@ const FixMyPetProfile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

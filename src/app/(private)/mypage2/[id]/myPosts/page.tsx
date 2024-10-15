@@ -50,8 +50,8 @@ const MyPosts: React.FC<PageProps> = async ({ params }) => {
   });
 
   return (
-    <div>
-      <div className="my-3 text-center font-semibold">나의 포스트</div>
+    <div className="mt-[5rem] lg:mt-0">
+      <div className="my-3 text-center font-semibold mt-2">나의 포스트</div>
       {post.map((post, index) => (
         <div className="px-6" key={post.id}>
           <Link href={`${process.env.NEXT_PUBLIC_SITE_URL}/community2/${post.id}`}>

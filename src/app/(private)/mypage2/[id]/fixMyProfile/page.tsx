@@ -174,7 +174,7 @@ const FixMyProfile = () => {
   }
 
   return (
-    <>
+    <div className="mt-[4rem] lg:mt-0">
       <MyPageTabHeader />
       <div className="flex w-full flex-col justify-center px-6" onClick={(e) => e.stopPropagation()}>
         <div className="mt-[21px] flex flex-col items-center justify-center">
@@ -271,7 +271,7 @@ const FixMyProfile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

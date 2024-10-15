@@ -106,7 +106,7 @@ function MyPage() {
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-[4rem] lg:mt-0">
       <div className="flex w-full justify-between whitespace-nowrap border-y-1 px-[24px] py-[34px] text-lg leading-tight text-neutral-800">
         <div className="flex gap-6">
           <Image
