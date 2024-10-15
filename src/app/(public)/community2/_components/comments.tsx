@@ -10,6 +10,7 @@ import { createClient } from "@/supabase/client";
 import Swal from "sweetalert2";
 import { getTimeDifference } from "@/app/utils/getTimeDifference";
 import LoadingComponent from "@/components/loadingComponents/Loading";
+import Link from "next/link";
 
 const supabase = createClient();
 
@@ -205,7 +206,10 @@ const Comments: React.FC<CommentsProps> = ({ postId }) => {
                   <div className="gap-[0.25rem]">
                     {/* 중간 부분 윗줄 */}
                     <div className="flex gap-[0.25rem]">
-                      <p className="text-[0.75rem] text-mainColor">{comment.users?.nickname}</p>
+                      <Link href={`/userInfo/${comment.user_id}`}>
+                        <p className="text-[0.75rem] text-mainColor">{comment.users?.nickname}</p>
+                      </Link>
+
                       <small className="text-[0.625rem]">{getTimeDifference(comment.created_at)}</small>
                     </div>
                     {/* 중간 내용 아랫줄 */}
