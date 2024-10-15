@@ -243,7 +243,10 @@ const CreatePostPage = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto h-full min-h-screen max-w-[420px] bg-white px-[1.5rem]">
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto h-full min-h-screen max-w-[420px] bg-white px-[1.5rem] lg:max-w-full lg:px-[10rem]"
+    >
       <h2 className="mb-4 mt-[2rem] text-[2rem] font-semibold">{postId ? "글 수정" : "글 작성"}하기</h2>
       <div className="mb-4 text-[1rem]">
         서로를 존중하는 말로 건강한 반려인 커뮤니티를 <br />
