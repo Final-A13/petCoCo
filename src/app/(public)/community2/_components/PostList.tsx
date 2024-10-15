@@ -205,7 +205,9 @@ const PostList: React.FC<PostListProps> = ({ selectedCategory, searchTerm, selec
               <img src="/assets/svg/chevron-left.svg" alt="..." />
             </button>
           </div>
-          <PlusIcon handleLoginCheck={handleLoginCheck} />
+          <div className="lg:hidden">
+            <PlusIcon handleLoginCheck={handleLoginCheck} />
+          </div>
         </div>
       </div>
     </div>

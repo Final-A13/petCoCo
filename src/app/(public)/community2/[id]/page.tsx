@@ -151,7 +151,7 @@ const CommunityMain: React.FC<PageProps> = ({ params }) => {
 
   return (
     <>
-      <div className="mx-auto h-full min-h-screen max-w-[420px] bg-white px-[1.5rem]">
+      <div className="mx-auto h-full min-h-screen max-w-[420px] bg-white px-[1.5rem] lg:max-w-full lg:px-[5rem]">
         <div className="mb-[0.5rem] mt-[2rem]">
           {post.category.split(",").map((category) => (
             <span

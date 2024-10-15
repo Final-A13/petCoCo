@@ -1,3 +1,4 @@
+import { MatePostAllTypeForItem } from "../mate.type";
 import { Tables } from "../supabase";
 
 export type MatePostType = Tables<"matePosts"> & {
@@ -34,7 +35,7 @@ export type PostsResponse = {
 };
 
 export type MatePostsResponse = {
-  data: MatePostType[];
+  data: MatePostAllTypeForItem[];
 };
 
 export type MatePostsAndUsersResponse = MatePostsResponse & {
