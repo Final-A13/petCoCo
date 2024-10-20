@@ -63,7 +63,6 @@ const FilterPage = () => {
   return (
     <div>
       <div className="mx-auto max-w-[420px] lg:max-w-none">
-        <Button className="hidden lg:block cursor-pointer" text="뒤로가기" />
         <div className="lg:flex lg:flex-row lg:mt-14">
           <div className="w-full lg:w-50%">
             <p className="ml-[1rem] mt-[1rem] text-[1.5rem] font-[600]">산책 메이트 상세 필터</p>
