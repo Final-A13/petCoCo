@@ -60,7 +60,7 @@ const MyPageTabHeader = () => {
           : "after:absolute after:bottom-0 after:right-0 after:z-10 after:w-1/2 after:border-[2px] after:border-b-2 after:border-[#D2CDF6] after:content-['']"
       }`}
     >
-      <div className="flex items-center justify-around py-3">
+      <div className="flex items-center justify-around py-3 pb-4">
         {pets && pets.length ? (
           <Link href={`/mypage2/${id}/fixMyPetProfile/${pets?.[0]?.id || ""}`}>
             <span className={`cursor-pointer ${isViewingPetProfile ? "font-bold" : "text-gray-600"}`}>동물 프로필</span>
