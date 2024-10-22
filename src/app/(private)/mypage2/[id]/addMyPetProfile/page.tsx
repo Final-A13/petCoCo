@@ -269,7 +269,7 @@ const AddMyPetProfile = () => {
             {introduction?.length}/200
           </div>
         </div>
-        <div className="py-[70px]">
+        <div className="py-[70px] pb-[6rem]">
           <button
             className="CCCCCC w-full rounded-lg bg-[#8E6EE8] py-3 text-center text-[16px] font-semibold text-[#FFFFFF]"
             onClick={submitChange}
