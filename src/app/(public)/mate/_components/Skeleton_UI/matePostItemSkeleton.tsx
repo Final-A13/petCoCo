@@ -3,7 +3,7 @@ import React from "react";
 const MatePostItemSkeleton = () => {
   return (
     <div className="w-full animate-pulse space-y-4 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0 xl:grid xl:grid-cols-3 xl:gap-4 xl:space-y-0 3xl:grid 3xl:grid-cols-4 3xl:gap-4 3xl:space-y-0">
-      {[...Array(9)].map((_, index) => (
+      {[...Array(12)].map((_, index) => (
         <div key={index} className="w-full rounded-[0.75rem] border px-4 py-[0.75rem] shadow-custom">
           <div className="flex flex-col">
             {/* 첫번째 줄 */}

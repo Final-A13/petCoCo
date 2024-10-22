@@ -27,7 +27,7 @@ const ButtonGroup = ({ label, buttonInfos, defaultValue, onChange }: ButtonGroup
   return (
     <>
       <label className="text-base font-normal leading-tight text-[#292826]">{label}</label>
-      <div className="mt-1 flex gap-3">
+      <div className="mt-1 flex gap-3 lg:gap-[6.88rem]">
         {buttonInfos.map((info, i) => {
           return (
             <Button key={i} onClick={() => handleEvent(info, i)} enable={i === selectIndex}>

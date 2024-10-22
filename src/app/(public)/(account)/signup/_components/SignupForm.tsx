@@ -68,7 +68,7 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="mx-auto mt-[32px] min-h-screen">
+    <div className="mx-auto mt-[5.5rem] min-h-screen lg:min-h-0 lg:mt-[5rem]">
       <div className="mx-auto w-full px-[16px]">
         <div className="flex items-center justify-center">
           <img src="/assets/svg/petCoco.svg" alt="petCocoLogo" />

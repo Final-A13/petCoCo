@@ -33,7 +33,7 @@ const CommunityMainPage = () => {
             </div>
           </div>
           <div className="lg:mx-auto lg:max-w-2xl">
-            <SearchBar onSubmit={handleSearchSubmit} value={searchTerm} setSearchTerm={setSearchTerm} />
+            <SearchBar onSubmit={handleSearchSubmit} value={searchTerm} setSearchTerm={setSearchTerm} className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:w-11/12 lg:bg-white" />
             {/* 최근 핫 키워드 */}
             <div>
               <div className="flex w-full justify-center gap-[0.62rem] py-[0.62rem]">

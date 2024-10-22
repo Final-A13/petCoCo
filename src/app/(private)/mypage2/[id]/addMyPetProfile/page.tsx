@@ -146,7 +146,7 @@ const AddMyPetProfile = () => {
   };
 
   return (
-    <div className="flex w-full flex-col justify-center">
+    <div className="flex w-full flex-col justify-center mt-[4rem] lg:mt-0">
       <div className="mt-[22px] flex flex-col items-center justify-center">
         <Image
           className="h-[100px] w-[100px] rounded-xl bg-lime-300 object-cover"

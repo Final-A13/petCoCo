@@ -174,10 +174,12 @@ const FixMyProfile = () => {
   }
 
   return (
-    <>
+    <div className="mt-[4rem] lg:mt-0">
+        <h1 className="lg:font-[600] lg:text-[2rem] hidden lg:block  lg:ml-[3.06rem] lg:mt-[2.41rem] lg:mb-[2.25rem]">프로필 수정</h1>
+        <div className="hidden lg:block lg:border-gray-200 lg:border-[1px] lg:mb-1"></div>
       <MyPageTabHeader />
       <div className="flex w-full flex-col justify-center px-6" onClick={(e) => e.stopPropagation()}>
-        <div className="mt-[21px] flex flex-col items-center justify-center">
+        <div className="mt-[21px] flex flex-col items-center justify-center lg:mt-[1.75rem]">
           <Image
             className="h-[100px] w-[100px] rounded-xl bg-lime-300 object-cover"
             width={100}
@@ -257,11 +259,11 @@ const FixMyProfile = () => {
               defaultValue={user.introduction}
               onChange={handleIntroductionChange}
             />
-            <div className="flex items-end justify-end text-xs font-medium leading-normal text-[#AFB1B6]">
+            <div className="flex items-end justify-end text-xs font-medium leading-normal text-[#AFB1B6] mt-[0.63rem]">
               {introduction?.length}/200
             </div>
           </div>
-          <div className="pb-[80px] pt-[30px]">
+          <div className="pb-[80px] pt-[30px] lg:w-[20.4375rem] lg:mx-auto">
             <button
               className="w-full rounded-lg bg-[#8E6EE8] py-3 text-center text-[16px] font-semibold text-[#FFFFFF]"
               onClick={submitChange}
@@ -271,7 +273,7 @@ const FixMyProfile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
