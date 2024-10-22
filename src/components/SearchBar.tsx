@@ -5,11 +5,12 @@ type SearchBarProps = {
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   value?: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  className: string;
 };
 
-const SearchBar = ({ onSubmit, value, setSearchTerm }: SearchBarProps) => {
+const SearchBar = ({ onSubmit, value, setSearchTerm, className }: SearchBarProps) => {
   return (
-    <div className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:w-11/12 lg:bg-white">
+    <div className={className}>
       <form onSubmit={onSubmit} className="flex px-[1.5rem] py-[0.75rem]">
         <input
           type="text"
