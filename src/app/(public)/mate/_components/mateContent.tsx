@@ -11,6 +11,11 @@ import PlusIcon from "@/app/utils/plusIcon";
 //Type
 import { Filters } from "@/zustand/useFilterStore";
 import FloatingButton from "./filter/floatingButton";
+import Image from "next/image";
+
+const BackgroundImage = () => (
+  <Image src="/assets/svg/web_bg.svg" layout="fill" objectFit="cover" quality={100} priority alt="Background" />
+);
 
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -78,7 +83,7 @@ const MateContent = () => {
               />
             </div>
             <div className="mx-auto mb-[0.75rem] mt-[1.5rem] w-full px-[1.5rem] lg:mb-[1.37rem] lg:mt-[2.12rem]">
-              <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} />
+              <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:w-[28.25rem] lg:bg-white" />
             </div>
           </div>
         </div>

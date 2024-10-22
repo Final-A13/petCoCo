@@ -46,7 +46,7 @@ const MyMate = () => {
     );
 
   return (
-    <div>
+    <div className="mt-[5rem] lg:mt-0">
       <div className="my-3 text-center font-semibold">나의 산책메이트</div>
       {data.map((post) => (
         <div className="my-3 px-[1.5rem]" key={post.id}>

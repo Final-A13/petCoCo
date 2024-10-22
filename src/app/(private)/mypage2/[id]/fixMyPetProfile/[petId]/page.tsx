@@ -266,7 +266,9 @@ const FixMyPetProfile = () => {
   }
 
   return (
-    <>
+    <div className="mt-[4rem] lg:mt-0">
+      <h1 className="lg:font-[600] lg:text-[2rem] hidden lg:block  lg:ml-[3.06rem] lg:mt-[2.41rem] lg:mb-[2.25rem]">프로필 수정</h1>
+        <div className="hidden lg:block lg:border-gray-200 lg:border-[1px] lg:mb-1"></div>
       <MyPageTabHeader />
       <div className="flex justify-between bg-[#F3F2F2]">
         <div className="m-[14px] flex gap-4 overflow-x-scroll scrollbar-hide">
@@ -437,15 +439,15 @@ const FixMyPetProfile = () => {
                 {introduction?.length}/200
               </div>
             </div>
-            <div className="flex w-full justify-evenly gap-[11px] pb-[80px] pt-[30px]">
+            <div className="flex w-full justify-evenly gap-[11px] pb-[80px] pt-[30px] lg:mx-auto">
               <button
-                className="min-w-[155px] rounded-lg border border-[#8E6EE8] bg-[#FFFFFF] px-8 py-3 text-center text-[16px] font-semibold text-[#8E6EE8]"
+                className="min-w-[155px] rounded-lg border border-[#8E6EE8] bg-[#FFFFFF] px-8 py-3 text-center text-[16px] font-semibold text-[#8E6EE8] lg:w-[20.4375rem]"
                 onClick={() => handleDelte(filteredProfile[0]?.id)}
               >
                 프로필 삭제
               </button>
               <button
-                className="min-w-[155px] rounded-lg bg-[#8E6EE8] px-8 py-3 text-center text-[16px] font-semibold text-[#FFFFFF]"
+                className="min-w-[155px] rounded-lg bg-[#8E6EE8] px-8 py-3 text-center text-[16px] font-semibold text-[#FFFFFF] lg:w-[20.4375rem]"
                 onClick={submitChange}
               >
                 수정 완료
@@ -454,7 +456,7 @@ const FixMyPetProfile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
