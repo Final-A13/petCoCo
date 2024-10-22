@@ -9,7 +9,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ onSubmit, value, setSearchTerm }: SearchBarProps) => {
   return (
-    <div className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:bg-white lg:w-[28.25rem]">
+    <div className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:w-11/12 lg:bg-white">
       <form onSubmit={onSubmit} className="flex px-[1.5rem] py-[0.75rem]">
         <input
           type="text"
@@ -20,14 +20,19 @@ const SearchBar = ({ onSubmit, value, setSearchTerm }: SearchBarProps) => {
         />
 
         <button type="submit" className="">
-          <div className="w-[1.5rem] h-[1.5rem]">
-            <Image src="/assets/svg/search.svg" alt="검색 아이콘" width={24} height={24} className="w-full h-full object-cover" />
+          <div className="h-[1.5rem] w-[1.5rem]">
+            <Image
+              src="/assets/svg/search.svg"
+              alt="검색 아이콘"
+              width={24}
+              height={24}
+              className="h-full w-full object-cover"
+            />
           </div>
         </button>
       </form>
     </div>
   );
-  
 };
 
 export default SearchBar;

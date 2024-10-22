@@ -66,6 +66,7 @@ const TabBar: React.FC = () => {
 
   const isMessagePath = pathname.startsWith("/message");
   const isMatePath = pathname.startsWith("/mate");
+  const isCommunityPath = pathname.startsWith("/community2");
 
   return (
     <nav className="${isMessagePath ? 'hidden lg:flex' : 'flex'} fixed bottom-0 z-40 w-full max-w-[420px] border border-t-bgGray500 bg-white bg-opacity-80 px-2 pb-[0.7rem] pt-[0.3rem] lg:left-0 lg:top-0 lg:h-full lg:w-[180px] lg:max-w-none lg:flex-col lg:justify-start lg:border-r lg:border-t-0 lg:pt-[5rem]">
@@ -89,13 +90,23 @@ const TabBar: React.FC = () => {
           ))}
         </div>
         {isMatePath ? (
-          <div className="hidden lg:block lg:mb-10">
-            <div className="w-full text-center flex flex-col gap-4 text-[0.61863rem] text-base">
-              <Link href="/mate/posts" className="bg-background rounded-md p-2 cursor-pointer">
+          <div className="hidden lg:mb-10 lg:block">
+            <div className="flex w-full flex-col gap-4 text-center text-[0.61863rem] text-base">
+              <Link href="/mate/posts" className="cursor-pointer rounded-md bg-background p-2">
                 글쓰기
               </Link>
-              <Link href="/mate/filter" className="bg-gray-200  rounded-md p-2 cursor-pointer">
+              <Link href="/mate/filter" className="cursor-pointer rounded-md bg-gray-200 p-2">
                 필터
+              </Link>
+            </div>
+          </div>
+        ) : null}
+
+        {isCommunityPath ? (
+          <div className="hidden lg:mb-10 lg:block">
+            <div className="flex w-full flex-col gap-4 text-center text-[0.61863rem] text-base">
+              <Link href="/community2/createPost" className="cursor-pointer rounded-md bg-background p-2">
+                글쓰기
               </Link>
             </div>
           </div>
