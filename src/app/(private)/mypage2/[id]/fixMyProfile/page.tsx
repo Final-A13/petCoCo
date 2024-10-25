@@ -159,16 +159,20 @@ const FixMyProfile = () => {
 
   if (isPending) {
     return (
-      <div>
-        <LoadingComponent />
+      <div className="col-span-full flex min-h-[calc(100vh-10px)] w-full items-center justify-center lg:min-h-[calc(100vh-10px)] xl:min-h-[calc(100vh-10px)] 3xl:min-h-[calc(100vh-10px)]">
+        <div className="flex flex-col items-center justify-start">
+          <LoadingComponent />
+        </div>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div>
-        <LoadingComponent />
+      <div className="col-span-full flex min-h-[calc(100vh-10px)] w-full items-center justify-center lg:min-h-[calc(100vh-10px)] xl:min-h-[calc(100vh-10px)] 3xl:min-h-[calc(100vh-10px)]">
+        <div className="flex flex-col items-center justify-start">
+          <LoadingComponent />
+        </div>
       </div>
     );
   }
