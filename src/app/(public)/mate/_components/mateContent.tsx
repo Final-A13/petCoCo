@@ -10,17 +10,45 @@ import MatePostList from "./post/matePostList";
 import PlusIcon from "@/app/utils/plusIcon";
 //Type
 import { Filters } from "@/zustand/useFilterStore";
-import FloatingButton from "./filter/floatingButton";
+// import FloatingButton from "./filter/floatingButton";
 import Image from "next/image";
+import { Suspense } from "react";
+import bgImage from "/public/assets/img/mate_bg.png";
+import dynamic from "next/dynamic";
 
 const BackgroundImage = () => (
-  <Image src="/assets/svg/web_bg.svg" layout="fill" objectFit="cover" quality={100} priority alt="Background" />
+  <div className="hidden lg:absolute lg:inset-0 lg:block">
+    <Image
+      src={bgImage}
+      fill
+      objectFit="cover"
+      sizes="(max-width: 1024px) 0vw, 100vw"
+      priority
+      placeholder="blur"
+      alt="Background"
+      quality={75}
+      fetchPriority="high"
+    />
+  </div>
 );
+
+const Header = () => (
+  <div className="hidden lg:block">
+    <h1 className="hidden lg:mt-[3.13rem] lg:block lg:w-[28.25rem] lg:text-[2rem] lg:font-[600]">산책 메이트</h1>
+    <p className="hidden lg:mt-[1rem] lg:block lg:w-[28.25rem] lg:text-[1rem] lg:font-[400]">
+      여러분의 소중한 반려견의 산책 친구를 만들어 주세요.
+    </p>
+  </div>
+);
+
+const FloatingButton = dynamic(() => import("./filter/floatingButton"), {
+  ssr: false
+});
 
 const MateContent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeSearchTerm, setActiveSearchTerm] = useState<string>("");
-  const [sortBy, setSortBy] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("all");
 
   const { user } = useAuthStore();
   const router = useRouter();
@@ -38,6 +66,7 @@ const MateContent = () => {
   const handleDateSort = () => setSortBy("recruitment_end");
   const handleDistanceSort = () => setSortBy("distance");
   const handleNewSort = () => setSortBy("new");
+  const handleSort = (type: string) => () => setSortBy(type);
 
   const handleLoginCheck = () => {
     if (user) {
@@ -66,28 +95,41 @@ const MateContent = () => {
     <div className="relative mx-auto mt-[4rem] min-h-screen max-w-[420px] lg:mt-0 lg:max-w-none">
       <div className="lg: w-full gap-y-[1.9375rem] lg:flex lg:flex-col">
         {/* 웹사이트 메인 부분 */}
-        <div className="h-full w-full lg:flex lg:flex-col lg:items-center lg:bg-gray-100 lg:bg-[url('/assets/svg/web_bg.svg')] lg:bg-cover lg:bg-center">
-          <h1 className="hidden lg:mt-[3.13rem] lg:block lg:w-[28.25rem] lg:text-[2rem] lg:font-[600]">산책 메이트</h1>
-          <p className="hidden lg:mt-[1rem] lg:block lg:w-[28.25rem] lg:text-[1rem] lg:font-[400]">
-            여러분의 소중한 반려견의 산책 친구를 만들어 주세요.
-          </p>
-          <div className="flex flex-col lg:flex lg:flex-col-reverse xl:flex xl:flex-col-reverse">
-            <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide lg:mb-[3.12rem] lg:ml-6 lg:mt-0">
-              <PostListFilterTab
-                handleAllPosts={handleAllPosts}
-                handleRecruiting={handleRecruiting}
-                handleDateSort={handleDateSort}
-                handleDistanceSort={handleDistanceSort}
-                handleNewSort={handleNewSort}
-                sortBy={sortBy || "all"} // 정렬 기본 값 all로 설정
-              />
-            </div>
-            <div className="mx-auto mb-[0.75rem] mt-[1.5rem] w-full px-[1.5rem] lg:mb-[1.37rem] lg:mt-[2.12rem]">
-              <SearchBar setSearchTerm={setSearchTerm} value={searchTerm} onSubmit={handleSearchPosts} className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:w-[28.25rem] lg:bg-white" />
+        <div className="h-full w-full lg:relative lg:flex lg:flex-col lg:items-center lg:bg-gray-100">
+          <Suspense
+            fallback={
+              <div className="h-96 w-full animate-pulse bg-gray-100" /> // 로딩 상태 개선
+            }
+          >
+            <BackgroundImage />
+          </Suspense>
+          <div className="lg:relative lg:z-10">
+            <Header />
+            <div className="flex flex-col lg:flex lg:flex-col-reverse xl:flex xl:flex-col-reverse">
+              <div className="mt-[1rem] overflow-x-auto whitespace-nowrap scrollbar-hide lg:mb-[3.12rem] lg:ml-6 lg:mt-0">
+                <PostListFilterTab
+                  handleAllPosts={handleSort("all")}
+                  handleRecruiting={handleSort("recruiting")}
+                  handleDateSort={handleSort("recruitment_end")}
+                  handleDistanceSort={handleSort("distance")}
+                  handleNewSort={handleSort("new")}
+                  sortBy={sortBy}
+                />
+              </div>
+              <div className="mx-auto mb-[0.75rem] mt-[1.5rem] w-full px-[1.5rem] lg:mb-[1.37rem] lg:mt-[2.12rem]">
+                <SearchBar
+                  setSearchTerm={setSearchTerm}
+                  value={searchTerm}
+                  onSubmit={handleSearchPosts}
+                  className="mb-[0.75rem] w-full rounded-full border border-mainColor lg:w-[28.25rem] lg:bg-white"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <MatePostList activeSearchTerm={activeSearchTerm} sortBy={sortBy || "all"} filters={filters} />
+        <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
+          <MatePostList activeSearchTerm={activeSearchTerm} sortBy={sortBy} filters={filters} />
+        </Suspense>
       </div>
       <FloatingButton
         img_src="/assets/svg/filter-lines-color.svg"

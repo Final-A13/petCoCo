@@ -47,8 +47,9 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
             <div className="h-[3.75rem] w-[3.75rem] shrink">
               <Image
                 src={
-                  post.users.profile_img ||
-                  "https://eoxrihspempkfnxziwzd.supabase.co/storage/v1/object/public/post_image/1722324396777_xo2ka9.jpg"
+                  post.users.profile_img
+                    ? `${post.users.profile_img}?width=60&height=60&format=webp`
+                    : "https://eoxrihspempkfnxziwzd.supabase.co/storage/v1/object/public/post_image/1722324396777_xo2ka9.jpg"
                 }
                 alt="사용자 프로필 이미지"
                 width={60}
@@ -79,16 +80,16 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
                 </div>
               </div>
             </div>
-          
-          {/* 세번째 줄 */}
-          {/* 채팅하기 버튼 */}
-          <div className="mt-[0.69rem] flex">
-            <Button
-              className="w-full cursor-pointer rounded-full bg-mainColor px-4 py-[0.5rem] text-center font-semibold text-white"
-              onClick={handleStartChat}
-              text="채팅하기"
-            ></Button>
-          </div>
+
+            {/* 세번째 줄 */}
+            {/* 채팅하기 버튼 */}
+            <div className="mt-[0.69rem] flex">
+              <Button
+                className="w-full cursor-pointer rounded-full bg-mainColor px-4 py-[0.5rem] text-center font-semibold text-white"
+                onClick={handleStartChat}
+                text="채팅하기"
+              ></Button>
+            </div>
           </div>
         </div>
       </div>
