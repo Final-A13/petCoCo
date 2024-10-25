@@ -26,6 +26,7 @@ const DetailUserCard = ({ post, handleStartChat }: DetailUserCardProps) => {
             width={60}
             height={60}
             className="h-full w-full rounded-full object-cover"
+            priority
           />
         </div>
         <Button

@@ -41,12 +41,14 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
   };
 
   return (
-    <div className="mx-[1rem] mt-[1.06rem]">
+    <div className="">
       {/* 제목 및 버튼 영역 */}
       <div className="flex flex-col">
         <div className="flex flex-col">
+          <h1 className="hidden lg:block lg:mx-[1rem] lg:mt-[2.06rem] lg:ml-[1.75rem] lg:text-[2rem] lg:font-[600]">산책 메이트</h1>
+          <div className="hidden lg:block lg:border-gray-200 lg:border-[1px] lg:mt-[2rem] lg:mb-[1.79rem]"></div>
           {/* 수정, 삭제, 상태변경 버튼 */}
-          <div className="flex flex-col">
+          <div className="flex flex-col mx-[1rem]">
             {userId === post.user_id && (
               <div className="mb-[0.5rem] flex justify-end gap-x-[0.625rem]">
                 <Button
@@ -66,15 +68,14 @@ const DetailView = ({ post, userId, handleEditPost, handleDeletePost, handleTogg
                 />
               </div>
             )}
-
             {/* 제목, 일시 */}
-            <h1 className="mx-auto break-words text-center text-[1.125rem] font-[600] lg:w-full lg:text-left lg:text-[1.5rem]">
+            <h2 className="mx-auto break-words text-center text-[1.125rem] font-[600] lg:w-full lg:text-left lg:text-[1.5rem]">
               [{post.date_time ? formatDateTimeTitle(post.date_time) : ""}] {post.title}
-            </h1>
+            </h2>
           </div>
 
           {/* 반응형 div */}
-          <div className="lg:flex lg:gap-x-4 ">
+          <div className="lg:flex lg:gap-x-4 mx-[1rem] ">
             <div className="lg:w-[70%]">
               {/* 본문 내용 */}
               {/* 산책 위치 지도 */}
