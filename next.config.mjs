@@ -9,7 +9,8 @@ const nextConfig = {
         hostname: "eoxrihspempkfnxziwzd.supabase.co",
         protocol: "https"
       }
-    ]
+    ],
+    formats: ['image/avif', 'image/webp']
   },
   async headers() {
     return [
