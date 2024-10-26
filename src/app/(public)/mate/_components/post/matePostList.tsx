@@ -68,7 +68,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   if (isGeoPending) {
     return (
-      <div className="col-span-full flex min-h-[calc(100vh-240px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 3xl:min-h-[calc(100vh-500px)]">
+      <div className="col-span-full flex min-h-[calc(100vh-240px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 2xl:min-h-[calc(100vh-500px)]">
         <div className="flex flex-col items-center justify-start">
           <div className="text-mainColor">사용자의 위치를 계산하는 중입니다 🐶</div>
           <LoadingComponent />
@@ -79,7 +79,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   return (
     <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
-      <div className="flex w-full flex-col gap-y-[1.5rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 3xl:grid 3xl:grid-cols-4 3xl:gap-4">
+      <div className="flex w-full flex-col gap-y-[1.5rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 2xl:grid 2xl:grid-cols-4 2xl:gap-4">
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post.id} className="w-full">
