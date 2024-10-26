@@ -38,6 +38,7 @@
     "react-icons": "^5.2.1",
     "react-intersection-observer": "^9.13.0",
     "react-kakao-maps-sdk": "^1.1.27",
+    "sharp": "^0.33.5",
     "supabase": ">=1.8.1",
     "sweetalert2": "^11.12.4",
     "tailwind-scrollbar-hide": "^1.1.7",
