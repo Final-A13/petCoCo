@@ -36,6 +36,13 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="manifest" href="/manifest.json" />
+        <link
+          rel="preload"
+          href="/fonts/Pretendard-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </Head>
       <body className={`mx-auto flex min-h-screen max-w-[420px] flex-col bg-white lg:max-w-full`}>
         <QueryProvider>
