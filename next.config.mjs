@@ -10,7 +10,7 @@ const nextConfig = {
         protocol: "https"
       }
     ],
-    formats: ['image/avif', 'image/webp']
+    formats: ['image/avif', 'image/webp'],
   },
   async headers() {
     return [
@@ -22,7 +22,26 @@ const nextConfig = {
             value: "no-store, max-age=0"
           }
         ]
-      }
+      },
+      {
+        source: '/:all*(svg|jpg|png)',
+        locale: false,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, must-revalidate',
+          },
+        ],
+      },
     ];
   }
 };
