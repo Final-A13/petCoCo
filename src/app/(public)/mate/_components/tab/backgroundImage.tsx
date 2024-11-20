@@ -11,7 +11,7 @@ export const BackgroundImage = () => (
         priority={true}
         loading="eager"
         sizes="(max-width: 1024px) 0vw, 100vw"
-        alt="Background"
+        alt="메이트 웹 배경 이미지"
         quality={75}
         style={{ objectFit: 'cover' }}
       />
