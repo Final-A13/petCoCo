@@ -7,12 +7,13 @@ import startChat from "@/app/utils/startChat";
 import MateInfoItem from "../../_components/mateInfoItem";
 // Type
 import { MatePostAllTypeForItem } from "@/types/mate.type";
+import React from "react";
 
 interface MatePostItemPorps {
   post: MatePostAllTypeForItem;
 }
 
-const MatePostItem = ({ post }: MatePostItemPorps) => {
+const MatePostItem = React.memo(({ post }: MatePostItemPorps) => {
   const router = useRouter();
   const { user } = useAuthStore();
 
@@ -54,8 +55,9 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
                 alt="사용자 프로필 이미지"
                 width={60}
                 height={60}
-                className="h-full w-full rounded-full object-cover"
                 priority
+                className="h-full w-full rounded-full object-cover"
+                quality={75}
               />
             </div>
             <Link
@@ -95,6 +97,10 @@ const MatePostItem = ({ post }: MatePostItemPorps) => {
       </div>
     </div>
   );
-};
+});
+
+// Display name 설정
+MatePostItem.displayName = "MatePostItem";
+
 
 export default MatePostItem;

@@ -15,7 +15,7 @@ interface MatePostListProps {
 }
 
 const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) => {
-  const { geolocationData, isGeoPending, geoError } = useGeoData();
+  const { isGeoPending, geoError } = useGeoData();
   const observerTarget = useRef<HTMLDivElement>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending, isError, error } = useInfiniteMatePosts({
@@ -79,7 +79,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
 
   return (
     <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
-      <div className="flex w-full flex-col gap-y-[1.5rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 2xl:grid 2xl:grid-cols-4 2xl:gap-4">
+      <div className="flex w-full flex-col gap-y-[1rem] lg:grid lg:grid-cols-2 lg:gap-4 xl:grid xl:grid-cols-3 xl:gap-4 2xl:grid 2xl:grid-cols-4 2xl:gap-4">
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post.id} className="w-full">
@@ -88,7 +88,7 @@ const MatePostList = ({ activeSearchTerm, sortBy, filters }: MatePostListProps) 
           ))
         ) : (
           <>
-            <div className="col-span-full flex min-h-[calc(100vh-240px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)] 3xl:min-h-[calc(100vh-500px)]">
+            <div className="3xl:min-h-[calc(100vh-500px)] col-span-full flex min-h-[calc(100vh-240px)] w-full items-center justify-center lg:min-h-[calc(100vh-500px)] xl:min-h-[calc(100vh-500px)]">
               <div className="flex flex-col items-center justify-start">
                 <span className="mr-2 text-3xl">🐶</span>
                 <p className="py-4 text-center">현재 모집 중인 산책 메이트가 없습니다.</p>
