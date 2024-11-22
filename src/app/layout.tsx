@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from 'next/font/local'; 
 import "./globals.css";
 import QueryProvider from "./provider";
 import Header from "@/components/Header";
@@ -8,7 +8,11 @@ import Footer from "@/components/Footer";
 import TabBar from "@/components/TabBar";
 import Head from "next/head";
 
-// const inter = Inter({ subsets: ["latin"] });
+const pretendard = localFont({
+  src: './fonts/Pretendard-Regular.woff2',
+  variable: '--font-pretendard',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "PetCoco",
@@ -36,15 +40,8 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="manifest" href="/manifest.json" />
-        <link
-          rel="preload"
-          href="/fonts/Pretendard-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </Head>
-      <body className={`mx-auto flex min-h-screen max-w-[420px] flex-col bg-white lg:max-w-full`}>
+      <body className={`${pretendard.variable} font-sans mx-auto flex min-h-screen max-w-[420px] flex-col bg-white lg:max-w-full`}>
         <QueryProvider>
           <div className="lg:flex">
             <TabBar />

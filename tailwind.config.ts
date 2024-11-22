@@ -27,7 +27,10 @@ const config: Config = {
       boxShadow: {
         custom: "2px 2px 10px 0px rgba(0, 0, 0, 0.10)",
         plusBtn: "2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-      }
+      },
+      fontFamily: {
+        sans: ['var(--font-pretendard)', 'sans-serif'],
+      },
     }
   },
   plugins: [
