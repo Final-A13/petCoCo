@@ -12,6 +12,7 @@ const nextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
+  compress: true, 
   async headers() {
     return [
       {
@@ -31,15 +32,7 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
-        ],
-      },
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, must-revalidate',
-          },
+          
         ],
       },
     ];
