@@ -18,16 +18,6 @@ import PostListFilterTab from "./tab/postListFilterTab";
 import MatePostList from "./post/matePostList";
 // import FloatingButton from "./filter/floatingButton";
 
-// const FloatingButton = dynamic(() => import("./filter/floatingButton"), {
-//   ssr: true,
-//   loading: () => (
-//     <div
-//       className="fixed bottom-[10.815rem] z-50 cursor-pointer rounded-full bg-gray-200 p-[0.81rem] shadow-plusBtn lg:hidden"
-//       style={{ right: "calc(50% - 187.5px + 0.56rem)" }}
-//     />
-//   )
-// });
-
 const FloatingButton = dynamic(() => import("./filter/floatingButton"), {
   ssr: true,
   loading: () => (
