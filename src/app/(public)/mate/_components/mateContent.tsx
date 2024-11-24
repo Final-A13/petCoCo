@@ -8,18 +8,28 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthStore } from "@/zustand/useAuth";
 import { useFilterStore } from "@/zustand/useFilterStore";
 import { Filters } from "@/zustand/useFilterStore";
-import MatePostItemSkeleton from "./Skeleton_UI/matePostItemSkeleton";
+// import MatePostItemSkeleton from "./Skeleton_UI/matePostItemSkeleton";
 import { Header } from "./tab/header";
-import PlusIcon from "@/app/utils/plusIcon";
+// import PlusIcon from "@/app/utils/plusIcon";
 import { BackgroundImage } from "./tab/backgroundImage";
 
-// import SearchBar from "@/components/SearchBar";
-// import PostListFilterTab from "./tab/postListFilterTab";
+import SearchBar from "@/components/SearchBar";
+import PostListFilterTab from "./tab/postListFilterTab";
 import MatePostList from "./post/matePostList";
 // import FloatingButton from "./filter/floatingButton";
 
+// const FloatingButton = dynamic(() => import("./filter/floatingButton"), {
+//   ssr: true,
+//   loading: () => (
+//     <div
+//       className="fixed bottom-[10.815rem] z-50 cursor-pointer rounded-full bg-gray-200 p-[0.81rem] shadow-plusBtn lg:hidden"
+//       style={{ right: "calc(50% - 187.5px + 0.56rem)" }}
+//     />
+//   )
+// });
+
 const FloatingButton = dynamic(() => import("./filter/floatingButton"), {
-  ssr: false,
+  ssr: true,
   loading: () => (
     <div
       className="fixed bottom-[10.815rem] z-50 cursor-pointer rounded-full bg-gray-200 p-[0.81rem] shadow-plusBtn lg:hidden"
@@ -28,22 +38,15 @@ const FloatingButton = dynamic(() => import("./filter/floatingButton"), {
   )
 });
 
-const PostListFilterTab = dynamic(() => import("./tab/postListFilterTab"), {
+const PlusIcon = dynamic(() => import("@/app/utils/plusIcon"), {
   ssr: true
 });
 
-const SearchBar = dynamic(() => import("@/components/SearchBar"), {
-  ssr: true
-});
+// const PostListFilterTab = dynamic(() => import("./tab/postListFilterTab"), {
+//   ssr: true
+// });
 
-// const MatePostList = dynamic(() => import("./post/matePostList"), {
-//   loading: () => (
-//     <div className="mb-[100px] flex w-full flex-col items-center justify-center px-[1.5rem]">
-//       <div className="flex w-full flex-col gap-y-[1.5rem]">
-//         <MatePostItemSkeleton />
-//       </div>
-//     </div>
-//   ),
+// const SearchBar = dynamic(() => import("@/components/SearchBar"), {
 //   ssr: true
 // });
 
@@ -63,7 +66,7 @@ const MateContent = () => {
     setActiveSearchTerm(searchTerm);
     setSearchTerm("");
   };
-
+  
   const handleSort = (type: string) => () => setSortBy(type);
 
   const handleLoginCheck = () => {
